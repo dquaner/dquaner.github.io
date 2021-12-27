@@ -110,7 +110,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-ckw9743si00001ii34r01ehoz" class="article article-type-post" itemscope
+    <article id="post-ckxos4xw40001dia83jwn8mbf" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -389,7 +389,132 @@
 <h3 id="Inheritance"><a href="#Inheritance" class="headerlink" title="Inheritance"></a>Inheritance</h3><p><strong>超级 POM</strong></p>
 <p><strong>依赖管理</strong></p>
 <h3 id="Aggregation-or-Multi-Module"><a href="#Aggregation-or-Multi-Module" class="headerlink" title="Aggregation (or Multi-Module)"></a>Aggregation (or Multi-Module)</h3><p><strong>继承与聚合</strong></p>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h1 id="3-Build-Settings"><a href="#3-Build-Settings" class="headerlink" title="3. Build Settings"></a>3. Build Settings</h1><h2 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h2><p>BaseBuild 元素集<br>资源<br>插件<br>默认配置继承<br>高级配置继承<br>插件管理<br>构建元素集<br>目录<br>扩展<br>报告<br>报告集</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h1 id="3-Build-Settings"><a href="#3-Build-Settings" class="headerlink" title="3. Build Settings"></a>3. Build Settings</h1><p>除了上面给出的 POM 的基础之外，在声明 POM 的基本能力之前，还必须了解另外两个要素。 它们是构建元素，处理诸如声明项目的目录结构和管理插件之类的事情； 和报告元素，它在很大程度上反映了用于报告目的的构建元素。</p>
+<h2 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h2><h3 id="BaseBuild-元素集合"><a href="#BaseBuild-元素集合" class="headerlink" title="BaseBuild 元素集合"></a>BaseBuild 元素集合</h3><p><strong>Resources</strong></p>
+<p><strong>Plugins</strong></p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;build&gt;
+    ...
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.6&lt;/version&gt;
+        &lt;extensions&gt;false&lt;/extensions&gt;
+        &lt;inherited&gt;true&lt;/inherited&gt;
+        &lt;configuration&gt;
+          &lt;classifier&gt;test&lt;/classifier&gt;
+        &lt;/configuration&gt;
+        &lt;dependencies&gt;...&lt;/dependencies&gt;
+        &lt;executions&gt;...&lt;/executions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<p>除 <code>groupId:artifactId:version</code> 标准体系之外，还有其他元素可配置插件或配置该 build 与插件的交互：</p>
+<ul>
+<li><p><strong>extensions</strong>: <code>true</code> or <code>false</code>，是否加载该插件的扩展，默认为 false。本文档后续会详细介绍扩展。</p>
+</li>
+<li><p><strong>inherited</strong>: <code>true</code> or <code>false</code>，该插件的配置是否可被继承本 POM 的子 POMs 应用，默认值为 true。</p>
+</li>
+<li><p><strong>configuration</strong>: This is specific to the individual plugin. Without going too in depth into the mechanics of how plugins work, suffice it to say that whatever properties that the plugin Mojo may expect (these are getters and setters in the Java Mojo bean) can be specified here.这是特定于单个插件的。无需深入了解插件如何工作的机制，插件 Mojo 可能期望的任何属性（这些是 Java Mojo bean 中的 getter 和 setter）都可以在此处指定。在上面的示例中，we are setting the classifier property to test in the <code>maven-jar-plugin</code>‘s Mojo. It may be good to note that all configuration elements, wherever they are within the POM, are intended to pass values to another underlying system, such as a plugin. In other words: values within a configuration element are never explicitly required by the POM schema, but a plugin goal has every right to require configuration values.<br>If your POM declares a parent, it inherits plugin configuration from either the build/plugins or pluginManagement sections of the parent.</p>
+</li>
+</ul>
+<p>default configuration inheritance:<br>To illustrate, consider the following fragment from a parent POM:</p>
+<pre><code class="xml">&lt;plugin&gt;
+  &lt;groupId&gt;my.group&lt;/groupId&gt;
+  &lt;artifactId&gt;my-plugin&lt;/artifactId&gt;
+  &lt;configuration&gt;
+    &lt;items&gt;
+      &lt;item&gt;parent-1&lt;/item&gt;
+      &lt;item&gt;parent-2&lt;/item&gt;
+    &lt;/items&gt;
+    &lt;properties&gt;
+      &lt;parentKey&gt;parent&lt;/parentKey&gt;
+    &lt;/properties&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>And consider the following plugin configuration from a project that uses that parent as its parent:</p>
+<pre><code class="xml">&lt;plugin&gt;
+  &lt;groupId&gt;my.group&lt;/groupId&gt;
+  &lt;artifactId&gt;my-plugin&lt;/artifactId&gt;
+  &lt;configuration&gt;
+    &lt;items&gt;
+      &lt;item&gt;child-1&lt;/item&gt;
+    &lt;/items&gt;
+    &lt;properties&gt;
+      &lt;childKey&gt;child&lt;/childKey&gt;
+    &lt;/properties&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>The default behavior is to merge the content of the configuration element according to element name. If the child POM has a particular element, that value becomes the effective value. if the child POM does not have an element, but the parent does, the parent value becomes the effective value. Note that this is purely an operation on XML; no code or configuration of the plugin itself is involved. Only the elements, not their values, are involved.</p>
+<p>Applying those rules to the example, Maven comes up with:</p>
+<plugin>
+  <groupId>my.group</groupId>
+  <artifactId>my-plugin</artifactId>
+  <configuration>
+    <items>
+      <item>child-1</item>
+    </items>
+    <properties>
+      <childKey>child</childKey>
+      <parentKey>parent</parentKey>
+    </properties>
+  </configuration>
+</plugin>
+advanced configuration inheritance: combine.children and combine.self
+You can control how child POMs inherit configuration from parent POMs by adding attributes to the children of the configuration element. The attributes are combine.children and combine.self. Use these attributes in a child POM to control how Maven combines plugin configuration from the parent with the explicit configuration in the child.
+
+<p>Here is the child configuration with illustrations of the two attributes:</p>
+<configuration>
+  <items combine.children="append">
+    <!-- combine.children="merge" is the default -->
+    <item>child-1</item>
+  </items>
+  <properties combine.self="override">
+    <!-- combine.self="merge" is the default -->
+    <childKey>child</childKey>
+  </properties>
+</configuration>
+Now, the effective result is the following:
+
+<configuration>
+  <items combine.children="append">
+    <item>parent-1</item>
+    <item>parent-2</item>
+    <item>child-1</item>
+  </items>
+  <properties combine.self="override">
+    <childKey>child</childKey>
+  </properties>
+</configuration>
+combine.children="append" results in the concatenation of parent and child elements, in that order. combine.self="override", on the other hand, completely suppresses parent configuration. You cannot use both combine.self="override" and combine.children="append" on an element; if you try, override will prevail.
+
+<p>Note that these attributes only apply to the configuration element they are declared on, and are not propagated to nested elements. That is if the content of an item element from the child POM was a complex structure instead of text, its sub-elements would still be subject to the default merge strategy unless they were themselves marked with attributes.</p>
+<p>The combine.* attributes are inherited from parent to child POMs. Take care when adding those attributes to a parent POM as this might affect child or grand-child POMs.</p>
+<p>dependencies: Dependencies are seen a lot within the POM, and are an element under all plugins element blocks. The dependencies have the same structure and function as under that base build. The major difference in this case is that instead of applying as dependencies of the project, they now apply as dependencies of the plugin that they are under. The power of this is to alter the dependency list of a plugin, perhaps by removing an unused runtime dependency via exclusions, or by altering the version of a required dependency. See above under Dependencies for more information.<br>executions: It is important to keep in mind that a plugin may have multiple goals. Each goal may have a separate configuration, possibly even binding a plugin’s goal to a different phase altogether. executions configure the execution of a plugin’s goals.<br>For example, suppose you wanted to bind the antrun:run goal to the verify phase. We want the task to echo the build directory, as well as avoid passing on this configuration to its children (assuming it is a parent) by setting inherited to false. You would get an execution like this:</p>
+<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <build><br>    <plugins><br>      <plugin><br>        <artifactId>maven-antrun-plugin</artifactId><br>        <version>1.1</version><br>        <executions><br>          <execution><br>            <id>echodir</id><br>            <goals><br>              <goal>run</goal><br>            </goals><br>            <phase>verify</phase><br>            <inherited>false</inherited><br>            <configuration><br>              <tasks><br>                <echo>Build Dir: ${project.build.directory}</echo><br>              </tasks><br>            </configuration><br>          </execution><br>        </executions></p>
+<pre><code>  &lt;/plugin&gt;
+&lt;/plugins&gt;
+</code></pre>
+  </build>
+</project>
+id: Self explanatory. It specifies this execution block between all of the others. When the phase is run, it will be shown in the form: [plugin:goal execution: id]. In the case of this example: [antrun:run execution: echodir]
+goals: Like all pluralized POM elements, this contains a list of singular elements. In this case, a list of plugin goals which are being specified by this execution block.
+phase: This is the phase that the list of goals will execute in. This is a very powerful option, allowing one to bind any goal to any phase in the build lifecycle, altering the default behavior of Maven.
+inherited: Like the inherited element above, setting this to false will suppress Maven from passing this execution onto its children. This element is only meaningful to parent POMs.
+configuration: Same as above, but confines the configuration to this specific list of goals, rather than all goals under the plugin.
+
+<p><strong>Plugin Management</strong><br>pluginManagement: is an element that is seen along side plugins. Plugin Management contains plugin elements in much the same way, except that rather than configuring plugin information for this particular project build, it is intended to configure project builds that inherit from this one. However, this only configures plugins that are actually referenced within the plugins element in the children or in the current POM. The children have every right to override pluginManagement definitions.<br><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <build><br>    …<br>    <pluginManagement><br>      <plugins><br>        <plugin><br>          <groupId>org.apache.maven.plugins</groupId><br>          <artifactId>maven-jar-plugin</artifactId><br>          <version>2.6</version><br>          <executions><br>            <execution><br>              <id>pre-process-classes</id><br>              <phase>compile</phase><br>              <goals><br>                <goal>jar</goal><br>              </goals><br>              <configuration><br>                <classifier>pre-process</classifier><br>              </configuration><br>            </execution><br>          </executions><br>        </plugin><br>      </plugins><br>    </pluginManagement><br>    …<br>  </build><br></project><br>If we added these specifications to the plugins element, they would apply only to a single POM. However, if we apply them under the pluginManagement element, then this POM and all inheriting POMs that add the maven-jar-plugin to the build will get the pre-process-classes execution as well. So rather than the above mess included in every child pom.xml, only the following is required:</p>
+<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <build><br>    …<br>    <plugins><br>      <plugin><br>        <groupId>org.apache.maven.plugins</groupId><br>        <artifactId>maven-jar-plugin</artifactId><br>      </plugin><br>    </plugins><br>    …<br>  </build><br></project></p>
+<h3 id="Build-元素集合"><a href="#Build-元素集合" class="headerlink" title="Build 元素集合"></a>Build 元素集合</h3><p>目录<br>扩展<br>报告<br>报告集</p>
 <h1 id="4-More-Project-Information"><a href="#4-More-Project-Information" class="headerlink" title="4. More Project Information"></a>4. More Project Information</h1><p>执照<br>组织<br>开发商<br>贡献者</p>
 <h1 id="5-Environment-Settings"><a href="#5-Environment-Settings" class="headerlink" title="5. Environment Settings"></a>5. Environment Settings</h1><h2 id="Issue-管理"><a href="#Issue-管理" class="headerlink" title="Issue 管理"></a>Issue 管理</h2><p>Issue 管理定义了缺陷跟踪系统 (Bugzilla, TestTrack, ClearQuest, etc) 的使用。尽管没有什么可以阻止插件将这些信息用于某些目的，但它主要用于生成项目文档。</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
@@ -443,7 +568,7 @@
 &lt;/project&gt;
 </code></pre>
 <ul>
-<li>subscribe, unsubscribe: 指定用于执行相关操作的电子邮件地址。要订阅上面的用户列表，用户可以发送电子邮件至 <a href="mailto:&#x75;&#x73;&#101;&#114;&#45;&#115;&#x75;&#x62;&#115;&#x63;&#114;&#105;&#x62;&#101;&#x40;&#x31;&#x32;&#x37;&#46;&#48;&#46;&#x30;&#x2e;&#x31;">&#x75;&#x73;&#101;&#114;&#45;&#115;&#x75;&#x62;&#115;&#x63;&#114;&#105;&#x62;&#101;&#x40;&#x31;&#x32;&#x37;&#46;&#48;&#46;&#x30;&#x2e;&#x31;</a>。</li>
+<li>subscribe, unsubscribe: 指定用于执行相关操作的电子邮件地址。要订阅上面的用户列表，用户可以发送电子邮件至 <a href="mailto:&#x75;&#115;&#101;&#114;&#x2d;&#115;&#117;&#x62;&#x73;&#99;&#114;&#x69;&#x62;&#x65;&#64;&#49;&#x32;&#x37;&#46;&#x30;&#46;&#x30;&#46;&#x31;">&#x75;&#115;&#101;&#114;&#x2d;&#115;&#117;&#x62;&#x73;&#99;&#114;&#x69;&#x62;&#x65;&#64;&#49;&#x32;&#x37;&#46;&#x30;&#46;&#x30;&#46;&#x31;</a>。</li>
 <li>archive: 指定旧邮件列表电子邮件存档的 url（如果存在）。如果有镜像档案，它们可以在 otherArchives 下指定。</li>
 <li>post: 用于发布到邮件列表的电子邮件地址。请注意，并非所有邮件列表都有能力发布（例如构建失败列表）。</li>
 </ul>
@@ -529,18 +654,114 @@
 &lt;/project&gt;
 </code></pre>
 <p>downloadUrl: is the URL of the repository which another POM can point to in order to grab this POM’s artifact. In the simplest terms, we told the POM how to upload it (through repository/url), but from where can the public download it? This element answers that question.<br>status: Warning! Like a baby bird in a nest, the status should never be touched by human hands! The reason for this is that Maven will set the status of the project when it is transported out to the repository. Its valid types are as follows.<br>none: No special status. This is the default for a POM.<br>converted: The manager of the repository converted this POM from an earlier version to Maven 2.<br>partner: This artifact has been synchronized with a partner repository.<br>deployed: By far the most common status, meaning that this artifact was deployed from a Maven 2 or 3 instance. This is what you get when you manually deploy using the command-line deploy phase.<br>verified: This project has been verified, and should be considered finalized.<br>Repository<br>Whereas the repositories element specifies in the POM the location and manner in which Maven may download remote artifacts for use by the current project, distributionManagement specifies where (and how) this project will get to a remote repository when it is deployed. The repository elements will be used for snapshot distribution if the snapshotRepository is not defined.</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;distributionManagement&gt;
+    &lt;repository&gt;
+      &lt;uniqueVersion&gt;false&lt;/uniqueVersion&gt;
+      &lt;id&gt;corp1&lt;/id&gt;
+      &lt;name&gt;Corporate Repository&lt;/name&gt;
+      &lt;url&gt;scp://repo/maven2&lt;/url&gt;
+      &lt;layout&gt;default&lt;/layout&gt;
+    &lt;/repository&gt;
+    &lt;snapshotRepository&gt;
+      &lt;uniqueVersion&gt;true&lt;/uniqueVersion&gt;
+      &lt;id&gt;propSnap&lt;/id&gt;
+      &lt;name&gt;Propellors Snapshots&lt;/name&gt;
+      &lt;url&gt;sftp://propellers.net/maven&lt;/url&gt;
+      &lt;layout&gt;legacy&lt;/layout&gt;
+    &lt;/snapshotRepository&gt;
+    ...
+  &lt;/distributionManagement&gt;
+  ...
+&lt;/project&gt;
+</code></pre>
+<p>id, name: The id is used to uniquely identify this repository amongst many, and the name is a human readable form.<br>uniqueVersion: The unique version takes a true or false value to denote whether artifacts deployed to this repository should get a uniquely generated version number, or use the version number defined as part of the address.<br>url: This is the core of the repository element. It specifies both the location and the transport protocol used to transfer a built artifact (and POM file, and checksum data) to the repository.<br>layout: These are the same types and purpose as the layout element defined in the repository element. They are default and legacy.<br>Site Distribution<br>More than distribution to the repositories, distributionManagement is responsible for defining how to deploy the project’s site and documentation.</p>
 <p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <distributionManagement><br>    <repository><br>      <uniqueVersion>false</uniqueVersion><br>      <id>corp1</id><br>      <name>Corporate Repository</name><br>      <url>scp://repo/maven2</url><br>      <layout>default</layout><br>    </repository><br>    <snapshotRepository><br>      <uniqueVersion>true</uniqueVersion><br>      <id>propSnap</id><br>      <name>Propellors Snapshots</name><br>      <url>s<a href="ftp://propellers.net/maven">ftp://propellers.net/maven</a></url><br>      <layout>legacy</layout><br>    </snapshotRepository><br>    …<br>  </distributionManagement><br>  …<br></project><br>id, name: The id is used to uniquely identify this repository amongst many, and the name is a human readable form.<br>uniqueVersion: The unique version takes a true or false value to denote whether artifacts deployed to this repository should get a uniquely generated version number, or use the version number defined as part of the address.<br>url: This is the core of the repository element. It specifies both the location and the transport protocol used to transfer a built artifact (and POM file, and checksum data) to the repository.<br>layout: These are the same types and purpose as the layout element defined in the repository element. They are default and legacy.<br>Site Distribution<br>More than distribution to the repositories, distributionManagement is responsible for defining how to deploy the project’s site and documentation.</p>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <distributionManagement><br>    …<br>    <site><br>      <id>mojo.website</id><br>      <name>Mojo Website</name><br>      <url>scp://beaver.codehaus.org/home/projects/mojo/public_html/</url><br>    </site><br>    …<br>  </distributionManagement><br>  …<br></project><br>id, name, url: These elements are similar to their counterparts above in the distributionManagement repository element.<br>Relocation<br>&lt;project xmlns=”<a target="_blank" rel="noopener" href="http://maven.apache.org/POM/4.0.0&quot;1">http://maven.apache.org/POM/4.0.0&quot;1</a> xmlns:xsi=”<a target="_blank" rel="noopener" href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a><br>  xsi:schemaLocation=”<a target="_blank" rel="noopener" href="http://maven.apache.org/POM/4.0.0">http://maven.apache.org/POM/4.0.0</a> <a target="_blank" rel="noopener" href="https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;">https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</a><br>  …<br>  <distributionManagement><br>    …<br>    <relocation><br>      <groupId>org.apache</groupId><br>      <artifactId>my-project</artifactId><br>      <version>1.0</version><br>      <message>We have moved the Project under Apache</message><br>    </relocation><br>    …<br>  </distributionManagement><br>  …<br></project><br>Projects are not static; they are living things (or dying things, as the case may be). A common thing that happens as projects grow, is that they are forced to move to more suitable quarters. For example, when your next wildly successful open source project moves under the Apache umbrella, it would be good to give users a heads-up that the project is being renamed to org.apache:my-project:1.0. Besides specifying the new address, it is also good form to provide a message explaining why.</p>
-<p>Profiles<br>A new feature of the POM 4.0 is the ability of a project to change settings depending on the environment where it is being built. A profile element contains both an optional activation (a profile trigger) and the set of changes to be made to the POM if that profile has been activated. For example, a project built for a test environment may point to a different database than that of the final deployment. Or dependencies may be pulled from different repositories based upon the JDK version used. The elements of profiles are as follows:</p>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <profiles><br>    <profile><br>      <id>test</id><br>      <activation>…</activation><br>      <build>…</build><br>      <modules>…</modules><br>      <repositories>…</repositories><br>      <pluginRepositories>…</pluginRepositories><br>      <dependencies>…</dependencies><br>      <reporting>…</reporting><br>      <dependencyManagement>…</dependencyManagement><br>      <distributionManagement>…</distributionManagement><br>    </profile><br>  </profiles><br></project><br>Activation<br>Activations are the key of a profile. The power of a profile comes from its ability to modify the basic POM only under certain circumstances. Those circumstances are specified via an activation element.</p>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <profiles><br>    <profile><br>      <id>test</id><br>      <activation><br>        <activeByDefault>false</activeByDefault><br>        <jdk>1.5</jdk><br>        <os><br>          <name>Windows XP</name><br>          <family>Windows</family><br>          <arch>x86</arch><br>          <version>5.1.2600</version><br>        </os><br>        <property><br>          <name>sparrow-type</name><br>          <value>African</value><br>        </property><br>        <file><br>          <exists>${basedir}/file2.properties</exists><br>          <missing>${basedir}/file1.properties</missing><br>        </file><br>      </activation><br>      …<br>    </profile><br>  </profiles><br></project><br>Before Maven 3.2.2 Activation occurs when one or more of the specified criteria have been met. When the first positive result is encountered, processing stops and the profile is marked as active. Since Maven 3.2.2 Activation occurs when all of the specified criteria have been met.</p>
-<p>jdk: activation has a built in, Java-centric check in the jdk element. This will activate if the test is run under a jdk version number that matches the prefix given. In the above example, 1.5.0_06 will match. Ranges are also supported. See the maven-enforcer-plugin for more details about supported ranges.<br>os: The os element can define some operating system specific properties shown above. See the maven-enforcer-plugins RequireOS Rule for more details about OS values.<br>property: The profile will activate if Maven detects a system property and commandline property (a value which can be dereferenced within the POM by ${name}) of the corresponding name=value pair.<br>file: Finally, a given filename may activate the profile by the existence of a file, or if it is missing. NOTE: interpolation for this element is limited to ${basedir}, System properties and request properties.<br>The activation element is not the only way that a profile may be activated. The settings.xml file’s activeProfile element may contain the profile’s id. They may also be activated explicitly through the command line via a comma separated list after the -P flag (e.g. -P codecoverage).</p>
-<p>To see which profile will activate in a certain build, use the maven-help-plugin.</p>
-<p>mvn help:active-profiles<br>The BaseBuild Element Set (revisited)<br>As mentioned above, the reason for the two types of build elements reside in the fact that it does not make sense for a profile to configure build directories or extensions as it does in the top level of the POM. Reguardless of in which environment the project is built, some values will remain constant, such as the directory structure of the source code. If you find your project needing to keep two sets of code for different environments, it may be prudent to investigate refactoring the project into two or more separate projects.</p>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <distributionManagement><br>    …<br>    <site><br>      <id>mojo.website</id><br>      <name>Mojo Website</name><br>      <url>scp://beaver.codehaus.org/home/projects/mojo/public_html/</url><br>    </site><br>    …<br>  </distributionManagement><br>  …<br></project><br>id, name, url: These elements are similar to their counterparts above in the distributionManagement repository element.</p>
+<h2 id="Relocation"><a href="#Relocation" class="headerlink" title="Relocation"></a>Relocation</h2><pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;1 xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;distributionManagement&gt;
+    ...
+    &lt;relocation&gt;
+      &lt;groupId&gt;org.apache&lt;/groupId&gt;
+      &lt;artifactId&gt;my-project&lt;/artifactId&gt;
+      &lt;version&gt;1.0&lt;/version&gt;
+      &lt;message&gt;We have moved the Project under Apache&lt;/message&gt;
+    &lt;/relocation&gt;
+    ...
+  &lt;/distributionManagement&gt;
+  ...
+&lt;/project&gt;
+</code></pre>
+<p>Projects are not static; they are living things (or dying things, as the case may be). A common thing that happens as projects grow, is that they are forced to move to more suitable quarters. For example, when your next wildly successful open source project moves under the Apache umbrella, it would be good to give users a heads-up that the project is being renamed to org.apache:my-project:1.0. Besides specifying the new address, it is also good form to provide a message explaining why.</p>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>POM 4.0 的一个新特性是项目能够根据构建环境更改设置。一个<code>profile</code>元素包含一个可选的activation（配置文件触发器）和一组对 POM 的更改（如果该配置文件已被激活）。例如，为测试环境构建的项目可能指向与最终部署不同的数据库；或者可以根据使用的 JDK 版本从不同的存储库中提取依赖项。<code>profiles</code>的元素如下：</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;id&gt;test&lt;/id&gt;
+      &lt;activation&gt;...&lt;/activation&gt;
+      &lt;build&gt;...&lt;/build&gt;
+      &lt;modules&gt;...&lt;/modules&gt;
+      &lt;repositories&gt;...&lt;/repositories&gt;
+      &lt;pluginRepositories&gt;...&lt;/pluginRepositories&gt;
+      &lt;dependencies&gt;...&lt;/dependencies&gt;
+      &lt;reporting&gt;...&lt;/reporting&gt;
+      &lt;dependencyManagement&gt;...&lt;/dependencyManagement&gt;
+      &lt;distributionManagement&gt;...&lt;/distributionManagement&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+&lt;/project&gt;
+</code></pre>
+<h3 id="Activation"><a href="#Activation" class="headerlink" title="Activation"></a>Activation</h3><p>激活是配置文件的关键。配置文件的强大之处在于它仅在某些情况下才能修改基本 POM。 这些情况是通过激活元素指定的。</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;id&gt;test&lt;/id&gt;
+      &lt;activation&gt;
+        &lt;activeByDefault&gt;false&lt;/activeByDefault&gt;
+        &lt;jdk&gt;1.5&lt;/jdk&gt;
+        &lt;os&gt;
+          &lt;name&gt;Windows XP&lt;/name&gt;
+          &lt;family&gt;Windows&lt;/family&gt;
+          &lt;arch&gt;x86&lt;/arch&gt;
+          &lt;version&gt;5.1.2600&lt;/version&gt;
+        &lt;/os&gt;
+        &lt;property&gt;
+          &lt;name&gt;sparrow-type&lt;/name&gt;
+          &lt;value&gt;African&lt;/value&gt;
+        &lt;/property&gt;
+        &lt;file&gt;
+          &lt;exists&gt;$&#123;basedir&#125;/file2.properties&lt;/exists&gt;
+          &lt;missing&gt;$&#123;basedir&#125;/file1.properties&lt;/missing&gt;
+        &lt;/file&gt;
+      &lt;/activation&gt;
+      ...
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+&lt;/project&gt;
+</code></pre>
+<p>Before Maven 3.2.2 Activation occurs when one or more of the specified criteria have been met. When the first positive result is encountered, processing stops and the profile is marked as active. Since Maven 3.2.2 Activation occurs when all of the specified criteria have been met.</p>
+<ul>
+<li><p>jdk: activation has a built in, Java-centric check in the jdk element. This will activate if the test is run under a jdk version number that matches the prefix given. In the above example, 1.5.0_06 will match. Ranges are also supported. See the maven-enforcer-plugin for more details about supported ranges.</p>
+</li>
+<li><p>os: The os element can define some operating system specific properties shown above. See the maven-enforcer-plugins RequireOS Rule for more details about OS values.</p>
+</li>
+<li><p>property: The profile will activate if Maven detects a system property and commandline property (a value which can be dereferenced within the POM by ${name}) of the corresponding name=value pair.</p>
+</li>
+<li><p>file: Finally, a given filename may activate the profile by the existence of a file, or if it is missing. NOTE: interpolation for this element is limited to ${basedir}, System properties and request properties.</p>
+</li>
+</ul>
+<p>The <code>activation</code> element is not the only way that a profile may be activated. The settings.xml file’s activeProfile element may contain the profile’s id. They may also be activated explicitly through the command line via a comma separated list after the -P flag (e.g. -P codecoverage).</p>
+<p>To see which profile will activate in a certain build, use the <code>maven-help-plugin</code>.</p>
+<p>mvn help:active-profiles</p>
+<h3 id="The-BaseBuild-Element-Set-revisited"><a href="#The-BaseBuild-Element-Set-revisited" class="headerlink" title="The BaseBuild Element Set (revisited)"></a>The BaseBuild Element Set (revisited)</h3><p>As mentioned above, the reason for the two types of build elements reside in the fact that it does not make sense for a profile to configure build directories or extensions as it does in the top level of the POM. Reguardless of in which environment the project is built, some values will remain constant, such as the directory structure of the source code. If you find your project needing to keep two sets of code for different environments, it may be prudent to investigate refactoring the project into two or more separate projects.</p>
 <h1 id="6-Final"><a href="#6-Final" class="headerlink" title="6. Final"></a>6. Final</h1><p>Maven POM 很大。然而，它的大小也证明了它的多功能性。至少可以说，将项目的所有方面抽象为单个 artifact 的能力是强大的。有关每个项目的数十种不同的构建脚本和分散的文档的时代已经一去不复返了。与组成 Maven 星系的 Maven 的其他明星一起 —— 定义明确的构建生命周期、易于编写和维护的插件、集中式存储库、系统范围和基于用户的配置，以及越来越多的工具来使开发人员更容易完成维护复杂项目的工作 —— POM 是大而明亮的中心。</p>
 
         </div>
@@ -561,9 +782,9 @@
 <nav class="article-nav">
   
   
-    <a href="/2021/11/21/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/11/21/Hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">Hexo常用命令</div>
     </a>
   
 </nav>
@@ -658,7 +879,7 @@
           </li>
         
           <li>
-            <a href="/2021/11/21/hello-world/">Hello World</a>
+            <a href="/2021/11/21/Hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Hexo常用命令</a>
           </li>
         
       </ul>
