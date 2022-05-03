@@ -113,7 +113,7 @@
   
     
       <article
-id="post-Install-Sentry-with-Docker"
+id="post-Sentry-的安装和使用"
 class="article article-type-post"
 >
 
@@ -124,11 +124,21 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/2022/04/26/Install-Sentry-with-Docker/">Install Sentry with Docker</a>
+        <a href="/2022/04/26/Sentry-%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">Sentry 的安装和使用</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        
+        <h1 id="1-Sentry-简介"><a href="#1-Sentry-简介" class="headerlink" title="1. Sentry 简介"></a>1. Sentry 简介</h1><p>从错误跟踪到性能监控，Sentry 可以帮助开发人员看到真正重要的事情，更快的解决问题，并且不断的了解他们的程序。</p>
+<h2 id="1-1-应用实例"><a href="#1-1-应用实例" class="headerlink" title="1.1 应用实例"></a>1.1 应用实例</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://blog.sentry.io/2021/08/12/distributed-tracing-101-for-full-stack-developers/">分布式追踪</a>帮助开发者应对全栈程序日益复杂的监控需求。</p>
+</li>
+<li><p>通过 Sentry 的<a target="_blank" rel="noopener" href="https://sentry.io/resources/tracing-for-the-frontend-to-the-backend/?promo_name=promo-panel">性能监控</a>，可以将性能问题追溯到造成缓慢的 API 调用和数据库查询。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.sentry.io/2021/06/15/find-the-root-cause-faster-with-trace-view-and-quick-trace/">跟踪视图和跟踪导航器</a>提供跨所有项目事务的贯穿线。</p>
+</li>
+<li><p>使用 <a target="_blank" rel="noopener" href="https://sentry-blog-preview.netlify.app/2022/02/10/usual-performance-suspects-introducing-suspect-spans">Suspect span</a> 追踪事务中花费最多时间的地方。</p>
+</li>
+</ul>
         
     </div>
     </div>
@@ -146,6 +156,14 @@ class="article article-type-post"
   <time datetime="2022-04-26T14:45:33.000Z" itemprop="datePublished">2022-04-26</time>
 </div>
     
+        <div class="article-category">
+        <a class="article-category-link" href="/categories/devOps/">devOps</a>
+        </div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li></ul>
+        </div>
     
     </div>
 </footer>
@@ -176,18 +194,6 @@ class="article article-type-post"
 </blockquote>
 <h1 id="Elastic-Observability-是什么？"><a href="#Elastic-Observability-是什么？" class="headerlink" title="Elastic Observability 是什么？"></a>Elastic Observability 是什么？</h1><p>Observability 提供对正在环境中运行的应用程序行为的详细洞察和上下文。在 Elastic 中，我们将 observability（可观察性）视为任何你构建的并且想要监控的系统的一个属性。能够在可观察的系统中快速检测到根本原因事件并进行修复是任何分析器应该具备的最低能力。</p>
 <p>Elastic Observability 提供一个单一的堆栈来统一你的日志，统计数据，运行时数据，应用程序跟踪，用户体验数据以及合成数据。将这些数据直接提取到 Elasticsearch，在这里你可以进一步处理和增强数据，然后在 Kibana 中进行可视化。</p>
-<ul>
-<li><strong>日志数据：</strong> 网络日志，应用程序日志，数据库日志，容器日志…</li>
-<li><strong>APM数据：</strong> 事务监控，分布式跟踪，依赖映射…</li>
-<li><strong>用户体验数据：</strong> 真实用户监控，核心 Web Vitals，Load/View 分布…</li>
-<li><strong>指标数据：</strong> 主机/容器统计数据，数据库统计数据，网络统计数据，存储统计数据…</li>
-<li><strong>合成数据：</strong> User journey testing，Step errors，Step screenshots…</li>
-<li><strong>运行时数据：</strong> 运行时间，应答，证书验证…</li>
-</ul>
-<p>对你所有环境中发生的事件进行实时搜索、监控和分析。分析指定事务的日志，监控它运行的主机或容器的性能指标，跟踪事务，并检查整体服务可用性。</p>
-<p><strong>日志数据</strong></p>
-<p>分析来自主机、服务、Kubernetes、Apache 以及很多其他地方的日志。</p>
-
         
     </div>
     </div>
@@ -206,7 +212,7 @@ class="article article-type-post"
 </div>
     
         <div class="article-category">
-        <a class="article-category-link" href="/categories/ELK/">ELK</a>
+        <a class="article-category-link" href="/categories/devOps/">devOps</a>
         </div>
     
     
@@ -348,7 +354,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ELK/">ELK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li></ul>
     </div>
   </div>
 
@@ -371,7 +377,7 @@ class="article article-type-post"
       <ul>
         
           <li>
-            <a href="/2022/04/26/Install-Sentry-with-Docker/">Install Sentry with Docker</a>
+            <a href="/2022/04/26/Sentry-%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">Sentry 的安装和使用</a>
           </li>
         
           <li>
