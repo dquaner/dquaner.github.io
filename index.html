@@ -179,7 +179,8 @@ class="article article-type-post"
     </header>
     <div class="article-entry post-inner-html">
         
-        <h1 id="What’s-New"><a href="#What’s-New" class="headerlink" title="What’s New"></a>What’s New</h1><h1 id="Core"><a href="#Core" class="headerlink" title="Core"></a>Core</h1><h1 id="Stats"><a href="#Stats" class="headerlink" title="Stats"></a>Stats</h1><h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h1 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h1><h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><h1 id="Upgrading"><a href="#Upgrading" class="headerlink" title="Upgrading"></a>Upgrading</h1><ul>
+        <span id="more"></span>
+<h1 id="What’s-New"><a href="#What’s-New" class="headerlink" title="What’s New"></a>What’s New</h1><h1 id="Core"><a href="#Core" class="headerlink" title="Core"></a>Core</h1><h1 id="Stats"><a href="#Stats" class="headerlink" title="Stats"></a>Stats</h1><h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h1 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h1><h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><h1 id="Upgrading"><a href="#Upgrading" class="headerlink" title="Upgrading"></a>Upgrading</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/upgrading/3.6-to-3.7/">Migrating from 3.6 to 3.7</a></li>
 <li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/upgrading/3.4-to-3.5/">Migrating from 3.4 to 3.5</a></li>
 <li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/upgrading/3.3-to-3.4/">Migrating from 3.3 to 3.4</a></li>
@@ -239,7 +240,6 @@ class="article article-type-post"
         <p><a href="#%E5%AE%89%E8%A3%85">安装</a>：了解 Java，Kotlin 以及 Scala 安装要求，使用 Bundle 或构建工具（maven, sbt, gradle）安装 Gatling。</p>
 <p><a href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">快速入门</a>：了解 Gatling 的概念，并使用记录器创建一个可运行的 Gatling 模拟。</p>
 <p><a href="#%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B">高级教程</a>：隔离进程，配置虚拟用户，使用 feeders，检查和循环。</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h1 id="高级教程"><a href="#高级教程" class="headerlink" title="高级教程"></a>高级教程</h1>
         
     </div>
     </div>
@@ -293,14 +293,6 @@ class="article article-type-post"
         <h1 id="Gatling"><a href="#Gatling" class="headerlink" title="Gatling"></a>Gatling</h1><p>Gatling 是一个功能强大的负载测试工具。它为易于使用，易于维护和高性能设计。</p>
 <p>开箱即用，Gatling 提供了对 HTTP 协议的出色支持，这使它成为任何 HTTP 服务器负载测试的首选工具。由于核心引擎实际上是协议无关的，因此也可能实现对其他协议的支持。例如，Gatling 目前也提供 JMS 支持。</p>
 <p><a href="https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%BA%8C%EF%BC%89Tutorials/#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8">快速入门</a>对最重要的概念进行了概述，带你完成一个简单的场景的设置，用于对一个 HTTP 服务器进行负载测试。</p>
-<p>拥有在代码中定义且资源高效的<code>场景</code>是我们开发 Gatling 的两个要求。基于有丰富表达能力的领域特定语言(DSL)，<code>场景</code>是自解释的。它们易于维护并且可以保存在一个版本控制系统中。</p>
-<p>只要底层协议（如 HTTP）能够以非阻塞的方式实现，Gatling的体系结构就是异步的。这种架构使我们能够使用消息实现虚拟用户而不是专用线程，这使得它们的资源成本非常低。因此，运行数千个并发虚拟用户不是问题。</p>
-<h2 id="Gatling-Enterprise"><a href="#Gatling-Enterprise" class="headerlink" title="Gatling Enterprise"></a>Gatling Enterprise</h2><p>Gatling Enterprise，以前叫做 Gatling FrontLine，是 Gatling 的管理界面，包括用于集成和自动化的高级指标和高级功能。</p>
-<h2 id="从早期版本的-Gatling-迁移"><a href="#从早期版本的-Gatling-迁移" class="headerlink" title="从早期版本的 Gatling 迁移"></a>从早期版本的 Gatling 迁移</h2><p><a href="#Upgrading">Upgrading</a></p>
-<h1 id="Next…"><a href="#Next…" class="headerlink" title="Next…"></a>Next…</h1><p><a href="">Tutorials</a><br>Getting started step-by-step articles</p>
-<p><a href="">Guides</a><br>How-to guides</p>
-<p><a href="">Reference</a><br>Technical material and descriptions</p>
-
         
     </div>
     </div>
