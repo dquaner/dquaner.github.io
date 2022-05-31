@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Hexo常用命令 | 杜圆圆的学习笔记</title>
+    <title>初识 Gatling | 杜圆圆的学习笔记</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -110,7 +110,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cl3ue8se70006nsa84i8xf3jx" class="article article-type-post" itemscope
+    <article id="post-cl3ue8sec000gnsa82nur0zys" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -126,7 +126,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      Hexo常用命令
+      初识 Gatling
     </h1>
   
 
@@ -136,11 +136,19 @@
         <div class="article-more-info article-more-info-post hairline">
 
             <div class="article-date">
-  <time datetime="2021-11-20T16:40:00.765Z" itemprop="datePublished">2021-11-21</time>
+  <time datetime="2022-05-30T07:47:08.000Z" itemprop="datePublished">2022-05-30</time>
 </div>
 
             
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/devOps/">devOps</a>
+            </div>
+            
 
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li></ul>
+            </div>
             
 
             
@@ -148,20 +156,59 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+            <h1 id="Gatling-是什么？"><a href="#Gatling-是什么？" class="headerlink" title="Gatling 是什么？"></a>Gatling 是什么？</h1><p>Gatling 是一个强大的开源的负载测试解决方案。</p>
+<p>Gatling 专为持续负载测试设计，并与你的开发流程集成。它包括一个网络记录器和丰富多彩的报告。</p>
 <span id="more"></span>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+<table style="border: none; margin-left: auto; margin-right: auto;">
+    <tr>
+        <td style="border: none;">
+<p><b>编写你的测试场景，自动化你的测试</b></p>
+Gatling 的类代码脚本使你可以轻松维护你的测试场景，并且在你的持续交付流程中无缝地自动化它们。<br/>
+Gatling 开发了自己的领域特定语言(DSL)，以增加测试场景的可读性，你可以选择 Scala，Java 或 Kotlin。 
+        </td>
+        <td style="border: none;">
+            <img src="gatling-open-source.png">
+        </td>
+    </tr>
+    <tr>
+        <td style="border: none;">
+            <img src="gatling-analyze-bottleneck-data.png">
+        </td>
+        <td style="border: none;">
+<p><b>分析和调查应用程序的瓶颈</b></p>
+Gatling 是一个强大的工具:只需几台机器，就可以在web应用程序上模拟每秒数十万个请求，并获得高精度的指标。<br/>
+在测试结束时，Gatling 会自动生成一个详尽、动态和丰富多彩的报告。均值和平均数据是不够的：使用Gatling，可以得到响应时间分布的正确百分位数 —— 不要把最慢的用户甩在后面！
+        </td>
+    </tr>
+    <tr>
+        <td style="border: none;">
+<p><b>Gatling 和持续负载测试</b></p>
+借助 Jenkins 自动化你的负载测试活动并更快地交付！你可以在每次提交后监控性能回归。 <br/>
+持续负载测试补充了大规模性能测试活动，它是持续交付流程的重要组成部分。在开发周期的前期运行小规模的定期测试可以减轻周期结束时调试阶段的压力。 <br/> 
+时间、质量、成本：持续负载测试可以帮助你更好更快地改进 Web 应用程序。
+        </td>
+        <td style="border: none;">
+            <img src="continuous-load-testing-gatling.png">
+        </td>
+    </tr>
+</table>
+
+
+<h1 id="使用-Gatling-的两种方式"><a href="#使用-Gatling-的两种方式" class="headerlink" title="使用 Gatling 的两种方式"></a>使用 Gatling 的两种方式</h1><p>将 Gatling 作为独立的工具使用：下载 <a target="_blank" rel="noopener" href="https://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/3.7.6/gatling-charts-highcharts-bundle-3.7.6-bundle.zip">Gatling’s bundle</a></p>
+<p>或者将 Gatling 作为依赖引入你的项目：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/">使用 Maven</a></li>
+<li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/extensions/gradle_plugin/">使用 Gradle</a></li>
+<li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/extensions/sbt_plugin/">使用 SBT</a></li>
+</ul>
+<h1 id="Gatling-企业版"><a href="#Gatling-企业版" class="headerlink" title="Gatling 企业版"></a>Gatling 企业版</h1><p>Gatling Enterprise 是 Gatling 的官方组织版本，提供 Gatling 的管理界面。Gatling Enterprise 包括用于集成和自动化的高级指标和高级功能。</p>
+<p><img src="/2022/05/30/%E5%88%9D%E8%AF%86-Gatling/dashboard-frontline.png" alt="dashboard-frontline"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Gatling 是一款开源的负载测试解决方案，帮助你解决网络站点和网络应用程序的性能问题。</p>
+<p>Gatling 为 DevOps 和 CI/CD 设计。</p>
+<p>如何使用 Gatling ？编写你的测试场景或使用我们的记录器，定义你想要模拟的虚拟用户的数量，并测试你的应用。</p>
+<p>Gatling 提供非常细节和相关的数据以发现系统的性能瓶颈，并优化响应时间。</p>
+<p>然后？进行迭代！因为性能峰值是你成功的关键。</p>
 
         </div>
 
@@ -180,15 +227,20 @@
     
 <nav class="article-nav">
   
-    <a href="/2021/11/21/Maven-POM-Reference-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/05/30/%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91-ECS-%E5%92%8C-Shadowsocks-%E6%90%AD%E5%BB%BA-ladder/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          Maven POM Reference 官方文档
+          使用阿里云 ECS 和 Shadowsocks 搭建 ladder
         
       </div>
     </a>
   
+  
+    <a href="/2022/04/26/Sentry-%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">Sentry 的安装和使用</div>
+    </a>
   
 </nav>
 
@@ -196,15 +248,15 @@
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=Hexo常用命令 - 杜圆圆的学习笔记&url=https://dquaner.github.io/2021/11/21/Hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+            href="https://twitter.com/share?text=初识 Gatling - 杜圆圆的学习笔记&url=https://dquaner.github.io/2022/05/30/%E5%88%9D%E8%AF%86-Gatling/">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=Hexo常用命令 - 杜圆圆的学习笔记&u=https://dquaner.github.io/2021/11/21/Hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+            href="https://www.facebook.com/sharer.php?title=初识 Gatling - 杜圆圆的学习笔记&u=https://dquaner.github.io/2022/05/30/%E5%88%9D%E8%AF%86-Gatling/">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=Hexo常用命令 - 杜圆圆的学习笔记&url=https://dquaner.github.io/2021/11/21/Hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/&pic=">
+            href="https://service.weibo.com/share/share.php?title=初识 Gatling - 杜圆圆的学习笔记&url=https://dquaner.github.io/2022/05/30/%E5%88%9D%E8%AF%86-Gatling/&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
