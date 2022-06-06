@@ -63,7 +63,7 @@
 }
 
 .post-inner-html h1,.post-inner-html h2,.post-inner-html h3,.post-inner-html h4,.post-inner-html h5,.post-inner-html h6 {
-	font-weight: inherit;
+	font-weight: bold;
 	color: var(--color-post-main);
 	background-color: transparent
 }

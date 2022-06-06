@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Gatling-官方文档（三）Reference | 杜圆圆的学习笔记</title>
+    <title>Gatling 官方文档（三）Reference | 杜圆圆的学习笔记</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     
@@ -110,7 +110,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cl3uf5hi30004w7a8awr8a2bn" class="article article-type-post" itemscope
+    <article id="post-cl42iuio000044ra87qvq53i3" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -126,7 +126,7 @@
             
   
     <h1 class="article-title" itemprop="name">
-      Gatling-官方文档（三）Reference
+      Gatling 官方文档（三）Reference
     </h1>
   
 
@@ -156,14 +156,25 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <span id="more"></span>
-<h1 id="What’s-New"><a href="#What’s-New" class="headerlink" title="What’s New"></a>What’s New</h1><h1 id="Core"><a href="#Core" class="headerlink" title="Core"></a>Core</h1><h1 id="Stats"><a href="#Stats" class="headerlink" title="Stats"></a>Stats</h1><h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h1 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h1><h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><h1 id="Upgrading"><a href="#Upgrading" class="headerlink" title="Upgrading"></a>Upgrading</h1><ul>
+            <p><a href="#%E6%96%B0%E7%89%B9%E6%80%A7">新特性</a><br>介绍最新发布版本的新特性。</p>
+<p><a href="#%E6%A0%B8%E5%BF%83">核心</a><br>介绍核心概念，比如 simulation，scenario，check，session，assertions。</p>
+<p><a href="#%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE">统计数据</a><br>Gatling 产生的统计数据。</p>
+<p><a href="#HTTP">HTTP</a><br>用于 HTTP，Websocket，服务器发送事件和 HTTP 轮询的 DSL。</p>
+<p><a href="#JMS">JMS</a><br>用于 JMS 的 DSL。</p>
+<p><a href="#MQTT">MQTT</a><br>用于 MQTT 的 DSL。</p>
+<p><a href="#%E6%89%A9%E5%B1%95">扩展</a><br>扩展的官方和社区模块。</p>
+<p><a href="#%E5%8D%87%E7%BA%A7">升级</a><br>如何从之前的 Gatling 版本升级。</p>
+<p><a href="#%E9%A1%B9%E7%9B%AE%E4%BF%A1%E6%81%AF">项目信息</a><br>更多 Gatling 项目信息。</p>
+<span id="more"></span>
+<h1 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h1><h1 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h2 id="Simulation"><a href="#Simulation" class="headerlink" title="Simulation"></a>Simulation</h2><h2 id="Injection"><a href="#Injection" class="headerlink" title="Injection"></a>Injection</h2><h2 id="Scenario"><a href="#Scenario" class="headerlink" title="Scenario"></a>Scenario</h2><h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><h2 id="Checks"><a href="#Checks" class="headerlink" title="Checks"></a>Checks</h2><h2 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h2><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>了解如何调整操作系统以获得更多性能，配置打开文件的限制、内核和网络。</p>
+<h3 id="IPv4-vs-IPv6"><a href="#IPv4-vs-IPv6" class="headerlink" title="IPv4 vs IPv6"></a>IPv4 vs IPv6</h3><p>我们发现 IPv6（在 Java 中默认启用）有时会造成一些性能问题，所以启用</p>
+<h1 id="统计数据"><a href="#统计数据" class="headerlink" title="统计数据"></a>统计数据</h1><h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h1 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h1><h1 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h1><h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="Maven-插件"><a href="#Maven-插件" class="headerlink" title="Maven 插件"></a>Maven 插件</h2><h2 id="Gradle-插件"><a href="#Gradle-插件" class="headerlink" title="Gradle 插件"></a>Gradle 插件</h2><h2 id="SBT-插件"><a href="#SBT-插件" class="headerlink" title="SBT 插件"></a>SBT 插件</h2><h2 id="Jenkins-插件"><a href="#Jenkins-插件" class="headerlink" title="Jenkins 插件"></a>Jenkins 插件</h2><h2 id="Bamboo-插件"><a href="#Bamboo-插件" class="headerlink" title="Bamboo 插件"></a>Bamboo 插件</h2><h2 id="TeamCity-插件"><a href="#TeamCity-插件" class="headerlink" title="TeamCity 插件"></a>TeamCity 插件</h2><h2 id="Functional-specs"><a href="#Functional-specs" class="headerlink" title="Functional specs"></a>Functional specs</h2><h2 id="第三方插件"><a href="#第三方插件" class="headerlink" title="第三方插件"></a>第三方插件</h2><h1 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h1><ul>
 <li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/upgrading/3.6-to-3.7/">Migrating from 3.6 to 3.7</a></li>
 <li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/upgrading/3.4-to-3.5/">Migrating from 3.4 to 3.5</a></li>
 <li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/upgrading/3.3-to-3.4/">Migrating from 3.3 to 3.4</a></li>
 <li><a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/upgrading/2.3-to-3.0/">Migrating from 2.3 to 3.0</a></li>
 </ul>
-<h1 id="Project-Information"><a href="#Project-Information" class="headerlink" title="Project Information"></a>Project Information</h1>
+<h1 id="项目信息"><a href="#项目信息" class="headerlink" title="项目信息"></a>项目信息</h1>
         </div>
 
     </div>
@@ -185,7 +196,7 @@
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          Gatling-官方文档（四）Guides
+          Gatling 官方文档（四）Guides
         
       </div>
     </a>
@@ -193,7 +204,7 @@
   
     <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%BA%8C%EF%BC%89Tutorials/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-caption">上一篇</div>
-      <div class="article-nav-title">Gatling-官方文档（二）Tutorials</div>
+      <div class="article-nav-title">Gatling 官方文档（二）Tutorials</div>
     </a>
   
 </nav>
@@ -202,15 +213,15 @@
     <section class="share">
         <div class="share-title">分享</div>
         <a class="share-item" target="_blank"
-            href="https://twitter.com/share?text=Gatling-官方文档（三）Reference - 杜圆圆的学习笔记&url=https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">
+            href="https://twitter.com/share?text=Gatling 官方文档（三）Reference - 杜圆圆的学习笔记&url=https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">
             <box-icon type='logo' name='twitter'></box-icon>
         </a>
         <a class="share-item" target="_blank"
-            href="https://www.facebook.com/sharer.php?title=Gatling-官方文档（三）Reference - 杜圆圆的学习笔记&u=https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">
+            href="https://www.facebook.com/sharer.php?title=Gatling 官方文档（三）Reference - 杜圆圆的学习笔记&u=https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">
             <box-icon name='facebook-square' type='logo' ></box-icon>
         </a>
         <!-- <a class="share-item" target="_blank"
-            href="https://service.weibo.com/share/share.php?title=Gatling-官方文档（三）Reference - 杜圆圆的学习笔记&url=https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/&pic=">
+            href="https://service.weibo.com/share/share.php?title=Gatling 官方文档（三）Reference - 杜圆圆的学习笔记&url=https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/&pic=">
             <div class="n-icon n-icon-weibo"></div>
         </a> -->
     </section>
@@ -284,15 +295,15 @@
       <ul>
         
           <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E5%9B%9B%EF%BC%89Guides/">Gatling-官方文档（四）Guides</a>
+            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E5%9B%9B%EF%BC%89Guides/">Gatling 官方文档（四）Guides</a>
           </li>
         
           <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">Gatling-官方文档（三）Reference</a>
+            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">Gatling 官方文档（三）Reference</a>
           </li>
         
           <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%BA%8C%EF%BC%89Tutorials/">Gatling-官方文档（二）Tutorials</a>
+            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%BA%8C%EF%BC%89Tutorials/">Gatling 官方文档（二）Tutorials</a>
           </li>
         
           <li>
