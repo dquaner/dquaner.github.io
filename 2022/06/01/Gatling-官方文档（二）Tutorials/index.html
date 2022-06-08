@@ -110,7 +110,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cl42iuio200054ra8hl269u7b" class="article article-type-post" itemscope
+    <article id="post-cl45pjmzp0005q5a89ib6cj7q" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -176,7 +176,7 @@
 <p>Windows 用户：不要将 Gatling 放在 <code>Programs</code> 文件夹中，因为可能存在权限和路径问题。</p>
 </blockquote>
 <p>运行 Gatling 至少需要 JDK8，建议使用最新版本。</p>
-<p>有关操作系统 (OS) 的安装和调整的所有详细信息，参阅 <a href="https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/#Operations">operations</a>。 </p>
+<p>有关操作系统 (OS) 的安装和调整的所有详细信息，参阅 <a href="https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/#%E6%93%8D%E4%BD%9C">operations</a>。</p>
 <blockquote>
 <p>Gatling 启动脚本和 Gatling maven 插件支持 <code>JAVA_HOME</code> 环境变量。根据设置，最终可能会运行与 <code>java -version</code> 版本不同的版本。如果遇到奇怪的错误，例如 <code>Unsupported major.minor version 51.0</code> 并且你希望运行 JDK8 或更高版本，你可能需要显式设置 <code>JAVA_HOME</code> 环境变量。</p>
 </blockquote>
@@ -193,11 +193,11 @@
 <li><strong>results</strong>：生成的测试结果。</li>
 </ul>
 <h2 id="3-使用构建工具安装"><a href="#3-使用构建工具安装" class="headerlink" title="3. 使用构建工具安装"></a>3. 使用构建工具安装</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><p>Gatling 提供了一个官方的 maven 插件：<code>gatling-maven-plugin</code>。这个插件会帮你编译你的 Scala 代码并启动 Gatling 模拟。</p>
-<p>详情参阅 <a href="">maven 插件文档</a>。</p>
+<p>详情参阅 <a href="https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/#Maven-%E6%8F%92%E4%BB%B6">maven 插件文档</a>。</p>
 <h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><p>Gatling 提供了一个官方的 gradle 插件：<code>io.gatling.gradle</code>。这个插件会帮你启动 Gatling 模拟。</p>
-<p>详情参阅 <a href="">gradle 插件文档</a>。</p>
+<p>详情参阅 <a href="https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/#Gradle-%E6%8F%92%E4%BB%B6">gradle 插件文档</a>。</p>
 <h3 id="SBT"><a href="#SBT" class="headerlink" title="SBT"></a>SBT</h3><p>Gatling 提供了一个官方的 sbt 插件：<code>gatling-sbt</code>。这个插件会帮你启动 Gatling 模拟。</p>
-<p>详情参阅 <a href="">sbt 插件文档</a>。</p>
+<p>详情参阅 <a href="https://dquaner.github.io/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/#SBT-%E6%8F%92%E4%BB%B6">sbt 插件文档</a>。</p>
 <h2 id="4-使用-IDE"><a href="#4-使用-IDE" class="headerlink" title="4. 使用 IDE"></a>4. 使用 IDE</h2><p>你可以选择任何文本编辑器编辑你的模拟类，但如果你是开发人员，你可能希望将最喜欢的 IDE 与 Gatling 一起使用。</p>
 <h3 id="IntelliJ-IDEA"><a href="#IntelliJ-IDEA" class="headerlink" title="IntelliJ IDEA"></a>IntelliJ IDEA</h3><p>IntelliJ IDEA 社区版默认启用 Java、Kotlin、maven 和 gradle 支持。</p>
 <p>如果想使用 Scala 和 sbt，必须安装 Scala 插件。增加 scala compiler 的堆栈大小，以避免遭受 <code>StackOverflowErrors</code> 的困扰。Gatling 建议将 <code>Xss</code> 设置为 <code>100M</code>。</p>
@@ -227,39 +227,106 @@
 <h2 id="2-测试用例"><a href="#2-测试用例" class="headerlink" title="2. 测试用例"></a>2. 测试用例</h2><p>本教程会过一遍 Gatling HTTP 的大部分特性。你会了解到 simulations，scenarios，feeders，recorder，loops 等等。</p>
 <h3 id="示例程序"><a href="#示例程序" class="headerlink" title="示例程序"></a>示例程序</h3><p>Computer-Database: <a target="_blank" rel="noopener" href="http://computer-database.gatling.io/">http://computer-database.gatling.io</a></p>
 <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>为了测试示例程序的性能，我们会创建场景，代表用户访问网站时实际发生的情况：</p>
-<ol>
-<li>用户访问应用程序</li>
-<li>用户搜索关键字 ‘macbook’</li>
-<li>用户打开其中一个相关的模型</li>
-<li>用户返回主页</li>
-<li>用户翻页</li>
-<li>用户创建一个新模型</li>
-</ol>
+<pre><code>1. 用户访问应用程序
+2. 用户搜索关键字 &#39;macbook&#39;
+3. 用户打开其中一个相关的模型
+4. 用户返回主页
+5. 用户翻页
+6. 用户创建一个新模型
+</code></pre>
 <h2 id="3-基本操作"><a href="#3-基本操作" class="headerlink" title="3. 基本操作"></a>3. 基本操作</h2><h3 id="使用-Recorder"><a href="#使用-Recorder" class="headerlink" title="使用 Recorder"></a>使用 Recorder</h3><p>为了方便的创建 scenario，我们使用 Recorder。Gatling 提供 Recorder 工具，可以记录你在网络应用的行为并且把它们导出为 Gatling scenario。 </p>
-<p>运行 <code>bin</code> 目录下的脚本启动 Recorder：</p>
-<ul>
-<li>Linux/Unix: <code>$GATLING_HOME/bin/recorder.sh</code></li>
-<li>Windows: <code>$GATLING_HOME/bin/recorder.bat</code></li>
-</ul>
+<p>运行 <code>bin</code> 目录下的脚本启动 Recorder：<br>Linux/Unix: <code>$GATLING_HOME/bin/recorder.sh</code><br>Windows: <code>$GATLING_HOME/bin/recorder.bat</code></p>
 <p>启动后，配置如何记录你的请求和应答：</p>
-<p>Recorder Mode: <code>HTTP Proxy</code></p>
-<p>Simulation Information:</p>
 <ul>
-<li>Package: <code>computerdatabase</code></li>
-<li>Class Name: <code>BasicSimulation</code></li>
-<li>Format: <code>Java 8</code></li>
-<li>Follow Redirects? <code>checked</code></li>
-<li>Infer HTML resources? <code>checked</code></li>
-<li>Automatic Referers? <code>checked</code></li>
-<li>Remove cache headers? <code>checked</code></li>
+<li><p>Recorder Mode: <code>HTTP Proxy</code></p>
+</li>
+<li><p>Simulation Information:<br>Package: <code>computerdatabase</code><br>Class Name: <code>BasicSimulation</code><br>Format: <code>Java 8</code><br>Follow Redirects? <code>checked</code><br>Infer HTML resources? <code>checked</code><br>Automatic Referers? <code>checked</code><br>Remove cache headers? <code>checked</code></p>
+</li>
+<li><p>Filters: 点击 <code>No static resources</code> 按钮</p>
+</li>
 </ul>
-<p>Filters: 点击 <code>No static resources</code> 按钮</p>
 <p><img src="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%BA%8C%EF%BC%89Tutorials/recorder.png" alt="recorder"></p>
 <p>配置好 recorder 之后，点击 <code>Start!</code> 按钮并且配置你的浏览器来使用 Gatling Recorder 的代理。</p>
 <blockquote>
 <p>Recorder 和浏览器配置的详细信息，参阅 <a href="">Recorder reference</a>。</p>
 </blockquote>
-<h3 id="记录场景"><a href="#记录场景" class="headerlink" title="记录场景"></a>记录场景</h3><h3 id="Gatling-场景解释"><a href="#Gatling-场景解释" class="headerlink" title="Gatling 场景解释"></a>Gatling 场景解释</h3><h3 id="运行-Gatling"><a href="#运行-Gatling" class="headerlink" title="运行 Gatling"></a>运行 Gatling</h3><h3 id="深入了解"><a href="#深入了解" class="headerlink" title="深入了解"></a>深入了解</h3><h1 id="高级教程"><a href="#高级教程" class="headerlink" title="高级教程"></a>高级教程</h1>
+<h3 id="记录场景"><a href="#记录场景" class="headerlink" title="记录场景"></a>记录场景</h3><p>现在开始浏览应用程序吧：</p>
+<pre><code>1. 输入 &#39;Search&#39; 标签
+2. 访问网站：http://computer-database.gatling.io
+3. 搜索名字里带有 &#39;macbook&#39; 的模型
+4. 选择 &#39;Macbook pro&#39;
+5. 输入 &#39;Browse&#39; 标签
+6. 返回主页
+7. 点击 &#39;Next&#39; 按钮在模型页面迭代几次
+8. 输入 &#39;Edit&#39; 标签
+9. 点击 &#39;Add new computer&#39;
+10. 填表
+11. 点击 &#39;Create this computer&#39;
+</code></pre>
+<p>尝试像真正的用户那样行动，不要在不花时间阅读的情况下立即从一页跳到另一页。这将使产生的 scenario 更接近真实用户的行为。</p>
+<p>当你做完 scenario 模拟，点击 <code>Stop</code> 。</p>
+<p>Simulation 将在 Gatling 的安装文件夹下的 <code>user-files/simulations/computerdatabase</code> 中生成，名称为 <code>BasicSimulation.java</code> 。</p>
+<h3 id="Gatling-场景解释"><a href="#Gatling-场景解释" class="headerlink" title="Gatling 场景解释"></a>Gatling 场景解释</h3><p>生成的 Scenario 如下：</p>
+<pre><code class="java">//package computerdatabase; // 1
+
+// 2
+import io.gatling.javaapi.core.*;
+import io.gatling.javaapi.http.*;
+
+import static io.gatling.javaapi.core.CoreDsl.*;
+import static io.gatling.javaapi.http.HttpDsl.*;
+
+class BasicSimulationJava extends Simulation &#123; // 3
+
+  HttpProtocolBuilder httpProtocol = http // 4
+    .baseUrl(&quot;http://computer-database.gatling.io&quot;) // 5
+    .acceptHeader(&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;) // 6
+    .doNotTrackHeader(&quot;1&quot;)
+    .acceptLanguageHeader(&quot;en-US,en;q=0.5&quot;)
+    .acceptEncodingHeader(&quot;gzip, deflate&quot;)
+    .userAgentHeader(&quot;Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0&quot;);
+
+  ScenarioBuilder scn = scenario(&quot;BasicSimulation&quot;) // 7
+    .exec(http(&quot;request_1&quot;) // 8
+      .get(&quot;/&quot;)) // 9
+    .pause(5); // 10
+
+  &#123;
+    setUp( // 11
+      scn.injectOpen(atOnceUsers(1)) // 12
+    ).protocols(httpProtocol); // 13
+  &#125;
+&#125;
+</code></pre>
+<p>解释：</p>
+<pre><code>1. 可选的 package
+2. 必要的 imports
+3. 类的声明，注意它需要继承 Simulation 类
+4. 所有 HTTP 请求的常见配置
+5. 所有相对 url 的 baseUrl
+6. 将与所有请求一起发送的通用 HTTP Header
+7. Scenario 定义
+8. 一个名为 `request_1` 的 HTTP 请求，此名称将显示在最终报告中
+9. GET 请求的目标 url
+10. 一些暂停/思考时间
+&gt; 间隔时间的单位默认为秒，例如 pause(5) 等价于 Java 中的 `java.time.Duration.ofSeconds(5)` 或 Scala 中的 `pause(5.seconds)`
+11. 设置将在此模拟中启动的场景
+12. 声明将向名为 scn 的场景中注入一个用户
+13. 添加上面(4)声明的 HTTP 配置
+</code></pre>
+<p>有关 Simulation 结构的更多详细信息，请查看 <a href="">Simulation 参考</a> 页面。</p>
+<h3 id="运行-Gatling"><a href="#运行-Gatling" class="headerlink" title="运行 Gatling"></a>运行 Gatling</h3><p>启动 <code>bin</code> 目录下的另一个脚本：</p>
+<p>Linux/Unix: <code>$GATLING_HOME/bin/gatling.sh</code><br>Windows: <code>$GATLING_HOME/bin/gatling.bat</code></p>
+<p>你会看到一个 simulation 的菜单:</p>
+<pre><code class="sh">Choose a simulation number:
+[0] BasicSimulation
+</code></pre>
+<p>当模拟完成后，控制台会输出一个报告的 HTML 链接。</p>
+<blockquote>
+<p>如果 Gatling 没有按预期运行，查看 <a target="_blank" rel="noopener" href="https://gatling.io/docs/gatling/reference/current/project/faq/">FAQ</a> 或在项目 <a target="_blank" rel="noopener" href="https://groups.google.com/forum/#!forum/gatling">Google Group</a> 提问。</p>
+</blockquote>
+<h3 id="深入了解"><a href="#深入了解" class="headerlink" title="深入了解"></a>深入了解</h3><p>准备好更进一步了吗？请查看<a href="#%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B">高级教程</a>。</p>
+<h1 id="高级教程"><a href="#高级教程" class="headerlink" title="高级教程"></a>高级教程</h1>
         </div>
 
     </div>
