@@ -110,7 +110,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-cl6i3nzfm0000zoa821di5jx0" class="article article-type-post" itemscope
+    <article id="post-cl6i5digk0001gta82l086bst" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -152,7 +152,7 @@
         </div>
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
-            <h1 id="GIT-基本操作"><a href="#GIT-基本操作" class="headerlink" title="GIT 基本操作"></a>GIT 基本操作</h1><p><a href="!git-command.jpeg">git-command.jpeg</a></p>
+            <h1 id="GIT-基本操作"><a href="#GIT-基本操作" class="headerlink" title="GIT 基本操作"></a>GIT 基本操作</h1><p><img src="/2022/08/06/GIT-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/git-command.jpeg" alt="git-command"></p>
 <p>说明：</p>
 <ul>
 <li>workspace：工作区</li>
@@ -160,22 +160,24 @@
 <li>local repository：本地仓库</li>
 <li>remote repository：远程仓库</li>
 </ul>
+<span id="more"></span>
+
 <h1 id="一般工作流程"><a href="#一般工作流程" class="headerlink" title="一般工作流程"></a>一般工作流程</h1><ol>
 <li><p>将项目拷贝到本地</p>
-<pre><code>git clone [url]
+<pre><code class="sh">git clone [url]
 </code></pre>
 <p>拉取远程仓库的新提交：</p>
-<pre><code>git fetch  // 不会自动合并分支
+<pre><code class="sh">git fetch  // 不会自动合并分支
 git pull  // 拉取远程仓库上当前分支的最新提交，并合并到本地分支上
 git pull [remote-shortname] [local-branch]
 </code></pre>
 </li>
 <li><p>创建自己的工作分支</p>
-<pre><code>git branch [new-branch-name]  // 创建分支
+<pre><code class="sh">git branch [new-branch-name]  // 创建分支
 git checkout [new-branch-name]  // 切换到指定分支
 </code></pre>
 <p>或：</p>
-<pre><code>git checkout -b [new-branch-name]  // 创建并切换到新分支
+<pre><code class="sh">git checkout -b [new-branch-name]  // 创建并切换到新分支
 </code></pre>
 </li>
 <li><p>git commit</p>
