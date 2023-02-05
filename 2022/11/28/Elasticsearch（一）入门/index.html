@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>Elasticsearch（一）入门 | 杜圆圆的学习笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+        <meta property="algolia:search" data-application-id="QVZKZA7CCN" data-api-key="3247c59b2591077db39388602665c9c2" data-index-name="my_blog">
+    
+
+    
+
+    
+    <link rel="icon" href="/images/icon-dyy.jpeg">
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1637200696663.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1637200696663.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = false
+        window.aomori_search_algolia = true
+
+    </script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <a class="header-type-title" href="/">杜圆圆的学习笔记</a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/dquaner">
+        <box-icon type='logo' name='github'></box-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-cldroa5ut001636a835ul846f" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      Elasticsearch（一）入门
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2022-11-28T06:47:27.000Z" itemprop="datePublished">2022-11-28</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/ELK/">ELK</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" rel="tag">全文搜索</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="安装-Elasticsearch"><a href="#安装-Elasticsearch" class="headerlink" title="安装 Elasticsearch"></a>安装 Elasticsearch</h2><p><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/targz.html">下载并安装 Elasticsearch</a></p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><pre><code class="sh">- LICENSE.txt
+- NOTICE.txt
+- README.asciidoc
+- bin  #可执行脚本
+- config  #配置文件
+- jdk.app  #内置的 jdk
+- lib  #库
+- logs  #日志
+- modules  #模块
+- plugins  #插件
+</code></pre>
+<span id="more"></span>
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>本地启动 Elasticsearch：<code>./bin/elasticsearch</code></p>
+<p>默认情况下：</p>
+<ul>
+<li>9300 端口为 Elasticsearch 集群间组件的通信端口</li>
+<li>9200 端口为浏览器访问的 http 协议 RESTful 端口</li>
+</ul>
+<p>生成 superuser 密码：<code>bin/elasticsearch-reset-password -u elastic</code></p>
+<p>浏览器访问：<a target="_blank" rel="noopener" href="https://localhost:9200/">https://localhost:9200</a></p>
+<h2 id="RESTful-amp-JSON"><a href="#RESTful-amp-JSON" class="headerlink" title="RESTful &amp; JSON"></a>RESTful &amp; JSON</h2><p>Elasticsearch：分布式、RESTful 风格的搜索和分析。</p>
+<h3 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h3><p>ES 允许采用 REST 风格的请求:</p>
+<ul>
+<li>在 REST 中，资源的唯一标识是 URI。</li>
+<li>HTTP 标准的请求方法：GET, POST, PUT, DELETE, HEAD。其中 GET, HEAD 具有安全性；GET, PUT, DELETE, HEAD 具有幂等性。</li>
+</ul>
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><p>ES 数据的请求和存储都是 JSON 格式，即 JavaScript Object Notation。</p>
+<h2 id="安装-postman"><a href="#安装-postman" class="headerlink" title="安装 postman"></a>安装 postman</h2><h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><p>ES 是面向文档型数据库，一条数据在这里就是一个文档。为了方便理解，将 ES 和 MySQL 存储数据的概念进行类比：</p>
+<table>
+<thead>
+<tr>
+<th>Elasticsearch</th>
+<th>MySQL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Index(索引)</td>
+<td>Database(数据库)</td>
+</tr>
+<tr>
+<td>Type(类型)</td>
+<td>Table(表)</td>
+</tr>
+<tr>
+<td>Document(文档)</td>
+<td>Row(行)</td>
+</tr>
+<tr>
+<td>Fields(字段)</td>
+<td>Column(列)</td>
+</tr>
+</tbody></table>
+<p>由于 ES 使用倒排索引，Type 的概念已经被逐渐弱化：Elasticsearch 6.X 中，一个 index 只能包含一个 type；Elasticsearch 7.X 中，Type 的概念已经被删除了。</p>
+<h3 id="ES-的倒排索引"><a href="#ES-的倒排索引" class="headerlink" title="ES 的倒排索引"></a>ES 的倒排索引</h3><p>首先需要了解正排（正向）索引，看一个例子。</p>
+<p>比如，保存一篇文章，包括文章标号和内容。我们可以将文章编号设定为主键，同时生成主键索引，这样我们就可以通过主键索引快速关联到存储的信息，这样的索引方式就是正排索引。</p>
+<pre><code>id     content
+--------------
+1001   my name is zhang san
+1002   my name is li si
+</code></pre>
+<p>那么，如果我们需要通过热门关键字搜索文章呢？这是一种模糊查询，而且需要遍历每条内容，使用刚才的索引方式性能会很差。所以我们需要换一种方式将索引与数据关联 —— 倒排索引。</p>
+<p>举例来说，我们建立关键字和 id 的关联：</p>
+<pre><code>keyword     id
+--------------
+name        1001, 1002
+zhang       1001
+</code></pre>
+<p>现在通过关键字来查询主键 id，然后再去关联文章内容；以前是通过主键 id 关联文章内容，再去找他的关键字。所以倒排索引的查询效率很快，它不体现表的概念，强调的是关键字与主键的关联。</p>
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>Request:</p>
+<pre><code class="sh">PUT https://localhost:9200/shopping
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;acknowledged&quot;: true,
+    &quot;shards_acknowledged&quot;: true,
+    &quot;index&quot;: &quot;shopping&quot;
+&#125;
+</code></pre>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><h4 id="查询指定索引"><a href="#查询指定索引" class="headerlink" title="查询指定索引"></a>查询指定索引</h4><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;shopping&quot;: &#123;
+        &quot;aliases&quot;: &#123;&#125;,
+        &quot;mappings&quot;: &#123;&#125;,
+        &quot;settings&quot;: &#123;
+            &quot;index&quot;: &#123;
+                &quot;routing&quot;: &#123;
+                    &quot;allocation&quot;: &#123;
+                        &quot;include&quot;: &#123;
+                            &quot;_tier_preference&quot;: &quot;data_content&quot;
+                        &#125;
+                    &#125;
+                &#125;,
+                &quot;number_of_shards&quot;: &quot;1&quot;,
+                &quot;provided_name&quot;: &quot;shopping&quot;,
+                &quot;creation_date&quot;: &quot;1669625259073&quot;,
+                &quot;number_of_replicas&quot;: &quot;1&quot;,
+                &quot;uuid&quot;: &quot;78ZYP8d7TyeKh2doB9Ajkw&quot;,
+                &quot;version&quot;: &#123;
+                    &quot;created&quot;: &quot;8050299&quot;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="查询所有索引"><a href="#查询所有索引" class="headerlink" title="查询所有索引"></a>查询所有索引</h4><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/_cat/indices?v
+</code></pre>
+<p>Response：</p>
+<pre><code class="sh">health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   shopping 78ZYP8d7TyeKh2doB9Ajkw   1   1          0            0       225b           225b
+</code></pre>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>Request:</p>
+<pre><code class="sh">DELETE https://localhost:9200/shopping
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;acknowledged&quot;: true
+&#125;
+</code></pre>
+<h2 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h2><h3 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h3><h4 id="创建文档"><a href="#创建文档" class="headerlink" title="创建文档"></a>创建文档</h4><p>Request:</p>
+<pre><code class="sh">POST https://localhost:9200/shopping/_doc
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;title&quot;: &quot;小米手机&quot;,
+    &quot;category&quot;: &quot;小米&quot;,
+    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+    &quot;price&quot;: 3999.00
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;_index&quot;: &quot;shopping&quot;,
+    &quot;_id&quot;: &quot;DjywvYQBQMsxYdbC6hpA&quot;,
+    &quot;_version&quot;: 1,
+    &quot;result&quot;: &quot;created&quot;,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 2,
+        &quot;successful&quot;: 1,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;_seq_no&quot;: 0,
+    &quot;_primary_term&quot;: 1
+&#125;
+</code></pre>
+<p>Note: 为什么此处不能使用 PUT ？<br>同样的请求多次发送之后，随机产生的 <code>_id</code> 不同，说明此操作不是幂等性的，所以不能使用幂等性的 PUT 。</p>
+<h4 id="自定义文档-id"><a href="#自定义文档-id" class="headerlink" title="自定义文档 id"></a>自定义文档 id</h4><p>Request:</p>
+<pre><code class="sh">POST/PUT https://localhost:9200/shopping/_doc/1001
+POST/PUT https://localhost:9200/shopping/_create/1001
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;title&quot;: &quot;小米手机&quot;,
+    &quot;category&quot;: &quot;小米&quot;,
+    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+    &quot;price&quot;: 3999.00
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;_index&quot;: &quot;shopping&quot;,
+    &quot;_id&quot;: &quot;1001&quot;,
+    &quot;_version&quot;: 1,
+    &quot;result&quot;: &quot;created&quot;,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 2,
+        &quot;successful&quot;: 1,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;_seq_no&quot;: 1,
+    &quot;_primary_term&quot;: 1
+&#125;
+</code></pre>
+<h3 id="查询-1"><a href="#查询-1" class="headerlink" title="查询"></a>查询</h3><h4 id="主键查询"><a href="#主键查询" class="headerlink" title="主键查询"></a>主键查询</h4><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_doc/1001
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;_index&quot;: &quot;shopping&quot;,
+    &quot;_id&quot;: &quot;1001&quot;,
+    &quot;_version&quot;: 1,
+    &quot;_seq_no&quot;: 1,
+    &quot;_primary_term&quot;: 1,
+    &quot;found&quot;: true,
+    &quot;_source&quot;: &#123;
+        &quot;title&quot;: &quot;小米手机&quot;,
+        &quot;category&quot;: &quot;小米&quot;,
+        &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+        &quot;price&quot;: 3999.00
+    &#125;
+&#125;
+</code></pre>
+<h4 id="全部查询"><a href="#全部查询" class="headerlink" title="全部查询"></a>全部查询</h4><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 3,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 3,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: 1.0,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;DjywvYQBQMsxYdbC6hpA&quot;,
+                &quot;_score&quot;: 1.0,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1001&quot;,
+                &quot;_score&quot;: 1.0,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1002&quot;,
+                &quot;_score&quot;: 1.0,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><h4 id="全量修改"><a href="#全量修改" class="headerlink" title="全量修改"></a>全量修改</h4><p>Request:</p>
+<pre><code class="sh">PUT https://localhost:9200/shopping/_doc/1001
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;title&quot;: &quot;小米手机&quot;,
+    &quot;category&quot;: &quot;小米&quot;,
+    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+    &quot;price&quot;: 4999.00
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;_index&quot;: &quot;shopping&quot;,
+    &quot;_id&quot;: &quot;1001&quot;,
+    &quot;_version&quot;: 2,
+    &quot;result&quot;: &quot;updated&quot;,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 2,
+        &quot;successful&quot;: 1,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;_seq_no&quot;: 3,
+    &quot;_primary_term&quot;: 1
+&#125;
+</code></pre>
+<h4 id="局部修改"><a href="#局部修改" class="headerlink" title="局部修改"></a>局部修改</h4><p>Request:</p>
+<pre><code class="sh">POST https://localhost:9200/shopping/_update/1001
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;doc&quot;: &#123;
+        &quot;title&quot;: &quot;华为手机&quot;
+    &#125;
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;_index&quot;: &quot;shopping&quot;,
+    &quot;_id&quot;: &quot;1001&quot;,
+    &quot;_version&quot;: 3,
+    &quot;result&quot;: &quot;updated&quot;,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 2,
+        &quot;successful&quot;: 1,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;_seq_no&quot;: 4,
+    &quot;_primary_term&quot;: 1
+&#125;
+</code></pre>
+<h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3><p>Request:</p>
+<pre><code class="sh">DELETE https://localhost:9200/shopping/_doc/1001
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;_index&quot;: &quot;shopping&quot;,
+    &quot;_id&quot;: &quot;1001&quot;,
+    &quot;_version&quot;: 4,
+    &quot;result&quot;: &quot;deleted&quot;,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 2,
+        &quot;successful&quot;: 1,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;_seq_no&quot;: 5,
+    &quot;_primary_term&quot;: 1
+&#125;
+</code></pre>
+<h2 id="更多查询操作"><a href="#更多查询操作" class="headerlink" title="更多查询操作"></a>更多查询操作</h2><h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3><h4 id="在请求路径中添加查询条件"><a href="#在请求路径中添加查询条件" class="headerlink" title="在请求路径中添加查询条件"></a>在请求路径中添加查询条件</h4><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search?q=category:小米
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 309,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 2,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: 0.17402273,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;DjywvYQBQMsxYdbC6hpA&quot;,
+                &quot;_score&quot;: 0.17402273,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1002&quot;,
+                &quot;_score&quot;: 0.17402273,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h4 id="在请求体中添加查询条件"><a href="#在请求体中添加查询条件" class="headerlink" title="在请求体中添加查询条件"></a>在请求体中添加查询条件</h4><p>更常用的方法是将查询条件放在请求体中：</p>
+<p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;query&quot;: &#123;
+        &quot;match&quot;: &#123; // 查询方式：匹配查询
+            &quot;category&quot;: &quot;小米&quot;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 2,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 2,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: 0.17402273,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;DjywvYQBQMsxYdbC6hpA&quot;,
+                &quot;_score&quot;: 0.17402273,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1002&quot;,
+                &quot;_score&quot;: 0.17402273,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h4 id="全量查询"><a href="#全量查询" class="headerlink" title="全量查询"></a>全量查询</h4><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;query&quot;: &#123;
+        &quot;match_all&quot;: &#123;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 1,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 2,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: 1.0,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;DjywvYQBQMsxYdbC6hpA&quot;,
+                &quot;_score&quot;: 1.0,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1002&quot;,
+                &quot;_score&quot;: 1.0,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;query&quot;: &#123;
+        &quot;match_all&quot;: &#123;
+        &#125;
+    &#125;,
+    &quot;from&quot;: 0, // 当前页起始位置
+    &quot;size&quot;: 1  // 每页的数据条数
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 2,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 2,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: 1.0,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;DjywvYQBQMsxYdbC6hpA&quot;,
+                &quot;_score&quot;: 1.0,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h3 id="查询排序"><a href="#查询排序" class="headerlink" title="查询排序"></a>查询排序</h3><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;query&quot;: &#123;
+        &quot;match_all&quot;: &#123;
+        &#125;
+    &#125;,
+    &quot;from&quot;: 0, // 当前页数据起始位置
+    &quot;size&quot;: 5, // 每页的数据条数
+    &quot;_source&quot;: [&quot;title&quot;, &quot;price&quot;],
+    &quot;sort&quot;: &#123;  // 查询排序
+        &quot;price&quot;: &quot;desc&quot;
+    &#125;
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 196,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 4,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: null,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1003&quot;,
+                &quot;_score&quot;: null,
+                &quot;_source&quot;: &#123;
+                    &quot;price&quot;: 4999.0,
+                    &quot;title&quot;: &quot;华为手机&quot;
+                &#125;,
+                &quot;sort&quot;: [
+                    4999.0
+                ]
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;DjywvYQBQMsxYdbC6hpA&quot;,
+                &quot;_score&quot;: null,
+                &quot;_source&quot;: &#123;
+                    &quot;price&quot;: 3999.0,
+                    &quot;title&quot;: &quot;小米手机&quot;
+                &#125;,
+                &quot;sort&quot;: [
+                    3999.0
+                ]
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1002&quot;,
+                &quot;_score&quot;: null,
+                &quot;_source&quot;: &#123;
+                    &quot;price&quot;: 3999.0,
+                    &quot;title&quot;: &quot;小米手机&quot;
+                &#125;,
+                &quot;sort&quot;: [
+                    3999.0
+                ]
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1004&quot;,
+                &quot;_score&quot;: null,
+                &quot;_source&quot;: &#123;
+                    &quot;price&quot;: 3999.0,
+                    &quot;title&quot;: &quot;华为手机&quot;
+                &#125;,
+                &quot;sort&quot;: [
+                    3999.0
+                ]
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h3 id="多条件查询"><a href="#多条件查询" class="headerlink" title="多条件查询"></a>多条件查询</h3><h4 id="must"><a href="#must" class="headerlink" title="must"></a>must</h4><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;query&quot;: &#123;
+        &quot;bool&quot;: &#123;
+            &quot;must&quot;: [
+                &#123;
+                    &quot;match&quot;: &#123;
+                        &quot;category&quot;: &quot;小米&quot;
+                    &#125;
+                &#125;,
+                &#123;
+                    &quot;match&quot;: &#123;
+                        &quot;price&quot;: 4999.00
+                    &#125;
+                &#125;
+            ]
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 887,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 1,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: 1.7493869,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1006&quot;,
+                &quot;_score&quot;: 1.7493869,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 4999.00
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h4 id="should"><a href="#should" class="headerlink" title="should"></a>should</h4><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;query&quot;: &#123;
+        &quot;bool&quot;: &#123;
+            &quot;should&quot;: [
+                &#123;
+                    &quot;match&quot;: &#123;
+                        &quot;category&quot;: &quot;小米&quot;
+                    &#125;
+                &#125;,
+                &#123;
+                    &quot;match&quot;: &#123;
+                        &quot;category&quot;: &quot;华为&quot;
+                    &#125;
+                &#125;
+            ]
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 3,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 6,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: 2.3263016,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1003&quot;,
+                &quot;_score&quot;: 2.3263016,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;华为手机&quot;,
+                    &quot;category&quot;: &quot;华为&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 4999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1004&quot;,
+                &quot;_score&quot;: 2.3263016,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;华为手机&quot;,
+                    &quot;category&quot;: &quot;华为&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;DjywvYQBQMsxYdbC6hpA&quot;,
+                &quot;_score&quot;: 0.7493869,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1002&quot;,
+                &quot;_score&quot;: 0.7493869,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 3999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1005&quot;,
+                &quot;_score&quot;: 0.7493869,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 1999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1006&quot;,
+                &quot;_score&quot;: 0.7493869,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 4999.00
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h3 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h3><p>Request:</p>
+<pre><code class="sh">GET https://localhost:9200/shopping/_search
+</code></pre>
+<p>Body:</p>
+<pre><code class="json">&#123;
+    &quot;query&quot;: &#123;
+        &quot;bool&quot;: &#123;
+            &quot;should&quot;: [
+                &#123;
+                    &quot;match&quot;: &#123;
+                        &quot;category&quot;: &quot;小米&quot;
+                    &#125;
+                &#125;,
+                &#123;
+                    &quot;match&quot;: &#123;
+                        &quot;category&quot;: &quot;华为&quot;
+                    &#125;
+                &#125;
+            ],
+            &quot;filter&quot;: &#123;
+                &quot;range&quot;: &#123;
+                    &quot;price&quot;: &#123;
+                        &quot;gt&quot;: 4000
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>Response：</p>
+<pre><code class="json">&#123;
+    &quot;took&quot;: 7,
+    &quot;timed_out&quot;: false,
+    &quot;_shards&quot;: &#123;
+        &quot;total&quot;: 1,
+        &quot;successful&quot;: 1,
+        &quot;skipped&quot;: 0,
+        &quot;failed&quot;: 0
+    &#125;,
+    &quot;hits&quot;: &#123;
+        &quot;total&quot;: &#123;
+            &quot;value&quot;: 2,
+            &quot;relation&quot;: &quot;eq&quot;
+        &#125;,
+        &quot;max_score&quot;: 2.3263016,
+        &quot;hits&quot;: [
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1003&quot;,
+                &quot;_score&quot;: 2.3263016,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;华为手机&quot;,
+                    &quot;category&quot;: &quot;华为&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 4999.00
+                &#125;
+            &#125;,
+            &#123;
+                &quot;_index&quot;: &quot;shopping&quot;,
+                &quot;_id&quot;: &quot;1006&quot;,
+                &quot;_score&quot;: 0.7493869,
+                &quot;_source&quot;: &#123;
+                    &quot;title&quot;: &quot;小米手机&quot;,
+                    &quot;category&quot;: &quot;小米&quot;,
+                    &quot;images&quot;: &quot;http://www.images.com/xm.jpg&quot;,
+                    &quot;price&quot;: 4999.00
+                &#125;
+            &#125;
+        ]
+    &#125;
+&#125;
+</code></pre>
+<h3 id="全文检索"><a href="#全文检索" class="headerlink" title="全文检索"></a>全文检索</h3><h3 id="完全匹配"><a href="#完全匹配" class="headerlink" title="完全匹配"></a>完全匹配</h3><h3 id="高亮查询"><a href="#高亮查询" class="headerlink" title="高亮查询"></a>高亮查询</h3><h3 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h3><h3 id="映射关系"><a href="#映射关系" class="headerlink" title="映射关系"></a>映射关系</h3>
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          RxJava 基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/11/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E4%B8%83%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">设计模式：七大设计原则</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=Elasticsearch（一）入门 - 杜圆圆的学习笔记&url=https://dquaner.github.io/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=Elasticsearch（一）入门 - 杜圆圆的学习笔记&u=https://dquaner.github.io/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=Elasticsearch（一）入门 - 杜圆圆的学习笔记&url=https://dquaner.github.io/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar sidebar-search-fix">
+                
+
+    <div class="search">
+    <div class="has-icon-right">
+        <input type="text" class="form-input" id="search" placeholder="SEARCH" autocomplete="off">
+        <div class="form-icon">
+            <box-icon name='search' color="#3c4859"></box-icon>
+        </div>
+    </div>
+    <div class="search-result" id="search-ps"></div>
+</div>
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ELK/">ELK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devOps/" rel="tag">devOps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" rel="tag">全文搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">响应式编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2023/01/04/RxJava-JVM-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E6%89%A9%E5%B1%95/">RxJava: JVM 的响应式扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/">RxJava 基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/">Elasticsearch（一）入门</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E4%B8%83%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">设计模式：七大设计原则</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/06/GIT-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">GIT 常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            杜圆圆的学习笔记 &copy; 2023<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+
+
+<script src="/dist/build.js?1637200696663.js"></script>
+
+
+<script src="/dist/custom.js?1637200696663.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

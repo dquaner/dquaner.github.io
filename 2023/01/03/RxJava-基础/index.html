@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    
+    <title>RxJava 基础 | 杜圆圆的学习笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    
+
+    
+        <meta property="algolia:search" data-application-id="QVZKZA7CCN" data-api-key="3247c59b2591077db39388602665c9c2" data-index-name="my_blog">
+    
+
+    
+
+    
+    <link rel="icon" href="/images/icon-dyy.jpeg">
+    
+
+    
+
+    
+
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1637200696663.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1637200696663.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            
+        }
+        window.aomori_logo_typed_animated = false
+        window.aomori_search_algolia = true
+
+    </script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-inner">
+                
+                    <a class="header-type-title" href="/">杜圆圆的学习笔记</a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">Home</a>
+                
+                <a href="/archives">Archives</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/dquaner">
+        <box-icon type='logo' name='github'></box-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">Home</a>
+                    
+                    <a href="/archives">Archives</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-cldroa5ut001736a8585vewwf" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      RxJava 基础
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2023-01-03T08:54:56.000Z" itemprop="datePublished">2023-01-03</time>
+</div>
+
+            
+            <div class="article-category">
+                <a class="article-category-link" href="/categories/Java/">Java</a>
+            </div>
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">响应式编程</a></li></ul>
+            </div>
+            
+
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><h2 id="1-1-响应式编程"><a href="#1-1-响应式编程" class="headerlink" title="1.1 响应式编程"></a>1.1 响应式编程</h2><p>在介绍RxJava前，我们先聊聊响应式编程。那么什么是响应式编程呢？响应式编程是一种基于异步数据流概念的编程模式。数据流就像一条河：它可以被观测，被过滤，被操作，或者为新的消费者与另外一条流合并为一条新的流。</p>
+<p>响应式编程的一个关键概念是<strong>事件</strong>。事件可以被等待，可以触发过程，也可以触发其它事件。事件是唯一的以合适的方式将我们的现实世界映射到我们的软件中：如果屋里太热了我们就打开一扇窗户。同样的，当我们的天气app从服务端获取到新的天气数据后，我们需要更新app上展示天气信息的UI；汽车上的车道偏移系统探测到车辆偏移了正常路线就会提醒驾驶者纠正，就是是响应事件。</p>
+<p>今天，响应式编程最通用的一个场景是UI：我们的移动App必须做出对网络调用、用户触摸输入和系统弹框的响应。在这个世界上，软件之所以是事件驱动并响应的是因为现实生活也是如此。</p>
+<span id="more"></span>
+
+<h2 id="1-2-什么是-RxJava"><a href="#1-2-什么是-RxJava" class="headerlink" title="1.2 什么是 RxJava"></a>1.2 什么是 RxJava</h2><img src="RxJava的来历.png" width=700>
+
+<p>RxJava本质上是一个异步操作库，是一个能让你用极其简洁的逻辑去处理繁琐复杂任务的异步事件库。</p>
+<h2 id="1-3-RxJava-好在哪"><a href="#1-3-RxJava-好在哪" class="headerlink" title="1.3 RxJava 好在哪"></a>1.3 RxJava 好在哪</h2><p>假设我们安居客用户App上有个需求，需要从服务端拉取上海浦东新区塘桥板块的所有小区 <code>Community[] communities</code>，每个小区下包含多套房源 <code>List&lt;House&gt; houses</code>；我们需要把塘桥板块的所有总价大于500W的房源都展示在App的房源列表页。用于从服务端拉取communities需要发起网络请求，比较耗时，因此需要在后台运行。而这些房源信息需要展示到App的页面上，因此需要在UI线程上执行。</p>
+<pre><code class="java">new Thread() &#123;
+    @Override
+    public void run() &#123;
+        super.run();
+        //从服务端获取小区列表
+        List&lt;Community&gt; communities = getCommunitiesFromServer();
+        for (Community community : communities) &#123;
+            List&lt;House&gt; houses = community.houses;
+            for (House house : houses) &#123;
+                if (house.price &gt;= 5000000) &#123;
+                    runOnUiThread(new Runnable() &#123;
+                        @Override
+                        public void run() &#123;
+                            //将房子的信息添加到屏幕上
+                            addHouseInformationToScreen(house);
+                        &#125;
+                    &#125;);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;.start();
+</code></pre>
+<p>使用RxJava的写法是这样的：</p>
+<pre><code class="java">Observable.from(getCommunitiesFromServer())
+            .flatMap(new Func1&lt;Community, Observable&lt;House&gt;&gt;() &#123;
+                @Override
+                public Observable&lt;House&gt; call(Community community) &#123;
+                    return Observable.from(community.houses);
+                &#125;
+            &#125;).filter(new Func1&lt;House, Boolean&gt;() &#123;
+                @Override
+                public Boolean call(House house) &#123;
+                    return house.price&gt;=5000000;
+                &#125;
+            &#125;).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Action1&lt;House&gt;() &#123;
+                @Override
+                public void call(House house) &#123;
+                    //将房子的信息添加到屏幕上
+                    addHouseInformationToScreen(house);
+                &#125;
+            &#125;);
+</code></pre>
+<p>从上面这段代码我们可以看到：虽然代码量看起来变复杂了，但是RxJava的实现是一条<strong>链式调用</strong>，没有任何的嵌套；整个实现逻辑看起来异常简洁清晰，这对我们的编程实现和后期维护是有巨大帮助的。特别是对于那些回调嵌套的场景。配合Lambda表达式还可以简化成这样：</p>
+<pre><code class="java">Observable.from(getCommunitiesFromServer())
+        .flatMap(community -&gt; Observable.from(community.houses))
+        .filter(house -&gt; house.price&gt;=5000000)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(this::addHouseInformationToScreen);
+</code></pre>
+<h1 id="2-基本概念及使用介绍"><a href="#2-基本概念及使用介绍" class="headerlink" title="2. 基本概念及使用介绍"></a>2. 基本概念及使用介绍</h1><h2 id="2-1-扩展的观察者模式"><a href="#2-1-扩展的观察者模式" class="headerlink" title="2.1 扩展的观察者模式"></a>2.1 扩展的观察者模式</h2><p>在RxJava中主要有4个角色：</p>
+<ul>
+<li>Observable</li>
+<li>Subject</li>
+<li>Observer</li>
+<li>Subscriber</li>
+</ul>
+<p><code>Observable</code> 和 <code>Subject</code> 是两个“生产”实体，<code>Observer</code> 和 <code>Subscriber</code> 是两个“消费”实体。说直白点 Observable 对应于观察者模式中的被观察者，而 <code>Observer</code> 和 <code>Subscriber</code> 对应于观察者模式中的观察者。<code>Subscriber</code> 其实是一个实现了 <code>Observer</code> 的抽象类，后面我们分析源码的时候也会介绍到。<code>Subject</code> 比较复杂，以后再分析。</p>
+<p>观察者 <code>Observer</code> 和被观察者 <code>Observable</code> 通过 subscribe() 方法实现订阅关系。从而 <code>Observable</code> 可以在需要的时候发出事件来通知 <code>Observer</code> 。</p>
+<h2 id="2-2-RxJava-如何使用"><a href="#2-2-RxJava-如何使用" class="headerlink" title="2.2 RxJava 如何使用"></a>2.2 RxJava 如何使用</h2><h3 id="第一步：创建观察者-Observer"><a href="#第一步：创建观察者-Observer" class="headerlink" title="第一步：创建观察者 Observer"></a>第一步：创建观察者 Observer</h3><pre><code class="java">Observer&lt;Object&gt; observer = new Observer&lt;Object&gt;() &#123;
+
+    @Override
+    public void onCompleted() &#123;
+
+    &#125;
+
+    @Override
+    public void onError(Throwable e) &#123;
+
+    &#125;
+
+    @Override
+    public void onNext(Object s) &#123;
+
+    &#125;
+
+ &#125;;
+</code></pre>
+<ol>
+<li>RxJava中规定当不再有新的事件发出时，可以调用 <code>onCompleted()</code> 方法作为标示；</li>
+<li>当事件处理出现异常时框架自动触发 <code>onError()</code> 方法；</li>
+<li>同时 Observables 支持<code>链式调用</code>，从而避免了回调嵌套的问题。</li>
+</ol>
+<h3 id="第二步：创建被观察者-Observable"><a href="#第二步：创建被观察者-Observable" class="headerlink" title="第二步：创建被观察者 Observable"></a>第二步：创建被观察者 Observable</h3><pre><code class="java">Observable&lt;Object&gt; observable = Observable.create(new Observable.OnSubscribe&lt;Object&gt;() &#123;         
+    @Override
+    public void call(Subscriber&lt;? super Object&gt; subscriber) &#123;
+
+    &#125;
+&#125;);
+</code></pre>
+<p>Observable.create() 方法可以创建一个 <code>Observable</code> ，使用 create() 创建 <code>Observable</code> 需要一个 <code>OnSubscribe</code> 对象，这个对象继承 <code>Action1</code> 。当观察者订阅我们的 <code>Observable</code> 时，它作为一个参数传入并执行 call() 函数。</p>
+<p>除了 create()，just() 和 from() 同样可以创建 <code>Observable</code>。看看下面两个例子：</p>
+<p>just(T…) 将传入的参数依次发送:</p>
+<pre><code class="java">Observable observable = Observable.just(&quot;One&quot;, &quot;Two&quot;, &quot;Three&quot;);
+//上面这行代码会依次调用
+//onNext(&quot;One&quot;);
+//onNext(&quot;Two&quot;);
+//onNext(&quot;Three&quot;);
+//onCompleted();
+</code></pre>
+<p>from(T[])/from(Iterable&lt;? extends T&gt;) 将传入的数组或者 Iterable 拆分成 Java 对象依次发送:</p>
+<pre><code class="java">String[] parameters = &#123;&quot;One&quot;, &quot;Two&quot;, &quot;Three&quot;&#125;;
+Observable observable = Observable.from(parameters);
+//上面这行代码会依次调用
+//onNext(&quot;One&quot;);
+//onNext(&quot;Two&quot;);
+//onNext(&quot;Three&quot;);
+//onCompleted();
+</code></pre>
+<h3 id="第三步：被观察者-Observable-订阅观察者-Observer"><a href="#第三步：被观察者-Observable-订阅观察者-Observer" class="headerlink" title="第三步：被观察者 Observable 订阅观察者 Observer"></a>第三步：被观察者 Observable 订阅观察者 Observer</h3><p>有了观察者和被观察者，我们就可以通过subscribe()，来实现二者的订阅关系了。</p>
+<pre><code class="java">observable.subscribe(observer);
+</code></pre>
+<p>完整的RxJava调用：</p>
+<pre><code class="java">Observable.create(new Observable.OnSubscribe&lt;Integer&gt;() &#123;
+
+    @Override
+    public void call(Subscriber&lt;? super Integer&gt; subscriber) &#123;
+        for (int i = 0; i &lt; 5; i++) &#123;
+            subscriber.onNext(i);
+        &#125;
+        subscriber.onCompleted();
+    &#125;
+
+&#125;).subscribe(new Observer&lt;Integer&gt;() &#123;
+
+    @Override
+    public void onCompleted() &#123;
+        System.out.println(&quot;onCompleted&quot;);
+    &#125;
+
+    @Override
+    public void onError(Throwable e) &#123;
+        System.out.println(&quot;onError&quot;);
+    &#125;
+
+    @Override
+    public void onNext(Integer item) &#123;
+        System.out.println(&quot;Item is &quot; + item);
+    &#125;
+&#125;);
+</code></pre>
+<p>首先我们使用 Observable.create() 创建了一个新的 Observable<Integer> ，并为 create() 方法传入了一个 OnSubscribe ，<strong>OnSubscribe 中包含一个 call() 方法，一旦我们调用 subscribe() 订阅后就会自动触发 call() 方法</strong>。call() 方法中的参数 Subscriber 其实就是 subscribe() 方法中的观察者 Observer 。</p>
+<p>OnSubscribe 的 call() 方法中的参数 Subscriber 怎么就变成了 subscribe() 方法中的观察者 Observer ？</p>
+<p>先看看Subscriber这个类：</p>
+<pre><code class="java">public abstract class Subscriber&lt;T&gt; implements Observer&lt;T&gt;, Subscription &#123;
+    ...
+&#125;
+</code></pre>
+<p>从源码中我们可以看到，Subscriber 是 Observer 的一个抽象实现类，所以我首先可以肯定的是 Subscriber 和 Observer 类型是一致的。接着往下我们看看 subscribe() 这个方法：</p>
+<pre><code class="java">public final Subscription subscribe(final Observer&lt;? super T&gt; observer) &#123;
+
+    //这里的if判断对于我们要分享的问题没有关联，可以先无视
+    if (observer instanceof Subscriber) &#123;
+        return subscribe((Subscriber&lt;? super T&gt;)observer);
+    &#125;
+    return subscribe(new Subscriber&lt;T&gt;() &#123;
+
+        @Override
+        public void onCompleted() &#123;
+            observer.onCompleted();
+        &#125;
+
+        @Override
+        public void onError(Throwable e) &#123;
+            observer.onError(e);
+        &#125;
+
+        @Override
+        public void onNext(T t) &#123;
+            observer.onNext(t);
+        &#125;
+
+    &#125;);
+&#125;
+</code></pre>
+<p>我们看到 subscribe() 方法内部首先将传进来的 Observer 做了一层代理，将它转换成了 Subscriber 。我们再看看这个方法内部的 subscribe() 方法：</p>
+<pre><code class="java">public final Subscription subscribe(Subscriber&lt;? super T&gt; subscriber) &#123;
+    return Observable.subscribe(subscriber, this);
+&#125;
+</code></pre>
+<p>进一步往下追踪看看 return 后面这段代码到底做了什么。精简掉其他无关代码后的 subscribe(subscriber, this) 方法是这样的：</p>
+<pre><code class="java">private static &lt;T&gt; Subscription subscribe(Subscriber&lt;? super T&gt; subscriber, Observable&lt;T&gt; observable) &#123;
+
+    subscriber.onStart();
+    try &#123;
+        hook.onSubscribeStart(observable, observable.onSubscribe).call(subscriber);
+        return hook.onSubscribeReturn(subscriber);
+    &#125; catch (Throwable e) &#123;
+        return Subscriptions.unsubscribed();
+    &#125;
+&#125;
+</code></pre>
+<p>前面这个 hook.onSubscribeStart(observable, observable.onSubscribe) 返回的是它自己括号内的第二个参数 observable.onSubscribe ，然后调用了它的 call 方法。<strong>而这个 observable.onSubscribe 正是 create() 方法中的 Subscriber</strong>，这样整个流程就理顺了。看到这里是不是对RxJava的执行流程清晰了一点呢？</p>
+<h2 id="2-3-异步"><a href="#2-3-异步" class="headerlink" title="2.3 异步"></a>2.3 异步</h2><p>开篇就讲到RxJava就是来处理异步任务的。但是默认情况下我们在哪个线程调用subscribe()就在哪个线程生产事件，在哪个线程生产事件就在哪个线程消费事件。那怎么做到异步呢？RxJava为我们提供Scheduler用来做线程调度，我们来看看RxJava提供了哪些Scheduler。</p>
+<img src="RxJava线程.png" width=700>
+
+<p>同时 RxJava 还为我们提供了 subscribeOn() 和 observeOn() 两个方法来指定 Observable 和 Observer 运行的线程。</p>
+<pre><code class="java">Observable.from(getCommunitiesFromServer())
+        .flatMap(community -&gt; Observable.from(community.houses))
+        .filter(house -&gt; house.price&gt;=5000000)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(this::addHouseInformationToScreen);
+</code></pre>
+<p>subscribeOn(Schedulers.io()) 指定了获取小区列表、处理房源信息等一系列事件都是在 IO 线程中运行，observeOn(AndroidSchedulers.mainThread()) 指定了在屏幕上展示房源的操作在 UI 线程执行。这就做到了在子线程获取房源，主线程展示房源。</p>
+<h1 id="3-操作符"><a href="#3-操作符" class="headerlink" title="3. 操作符"></a>3. 操作符</h1><p>RxJava中的操作符主要分成了三类：</p>
+<ol>
+<li>转换类操作符<ul>
+<li>map</li>
+<li>flatMap</li>
+<li>concatMap</li>
+<li>flatMapIterable</li>
+<li>switchMap</li>
+<li>scan</li>
+<li>groupBy<br>…</li>
+</ul>
+</li>
+<li>过滤类操作符<ul>
+<li>fileter</li>
+<li>take</li>
+<li>takeLast</li>
+<li>takeUntil</li>
+<li>distinct</li>
+<li>distinctUntilChanged</li>
+<li>skip</li>
+<li>skipLast<br>…</li>
+</ul>
+</li>
+<li>组合类操作符<ul>
+<li>merge</li>
+<li>zip</li>
+<li>join</li>
+<li>combineLatest</li>
+<li>and/when/then</li>
+<li>switch</li>
+<li>startSwitch<br>…</li>
+</ul>
+</li>
+</ol>
+<h1 id="4-从微观角度解读-RxJava-源码"><a href="#4-从微观角度解读-RxJava-源码" class="headerlink" title="4. 从微观角度解读 RxJava 源码"></a>4. 从微观角度解读 RxJava 源码</h1><blockquote>
+<p>version: 1.1.9</p>
+</blockquote>
+<h2 id="4-1-RxJava-基本流程分析"><a href="#4-1-RxJava-基本流程分析" class="headerlink" title="4.1 RxJava 基本流程分析"></a>4.1 RxJava 基本流程分析</h2><p>我们在基本概念与使用中介绍过，一个最基本的 RxJava 调用是这样的：</p>
+<pre><code class="java">Observable.create(new Observable.OnSubscribe&lt;String&gt;() &#123;
+    @Override
+    public void call(Subscriber&lt;? super String&gt; subscriber) &#123;
+        subscriber.onNext(&quot;Hello RxJava!&quot;);
+        subscriber.onCompleted();
+    &#125;
+&#125;).subscribe(new Subscriber&lt;String&gt;() &#123;
+    @Override
+    public void onCompleted() &#123;
+        System.out.println(&quot;completed!&quot;);
+    &#125;
+    @Override
+    public void onError(Throwable e) &#123;
+    &#125;
+    @Override
+    public void onNext(String s) &#123;
+        System.out.println(s);
+    &#125;
+&#125;);
+</code></pre>
+<p>首先调用 Observable.create() 创建一个被观察者 Observable ，同时创建一个 OnSubscribe 作为 create() 方法的入参；接着创建一个观察者 Subscriber ，然后通过 subseribe() 实现二者的订阅关系。这里涉及到<strong>三个关键对象和一个核心的方法</strong>：</p>
+<p>对象：</p>
+<ul>
+<li>Observable（被观察者）</li>
+<li>OnSubscribe (从设计模式的角度来理解，OnSubscribe.call() 可以看做是观察者模式中被观察者用来通知观察者的 notifyObservers() 方法)</li>
+<li>Subscriber（观察者）</li>
+</ul>
+<p>方法：</p>
+<ul>
+<li>subscribe()（实现观察者与被观察者订阅关系的方法）</li>
+</ul>
+<h3 id="4-1-1-创建被观察者-Observable"><a href="#4-1-1-创建被观察者-Observable" class="headerlink" title="4.1.1 创建被观察者 Observable"></a>4.1.1 创建被观察者 Observable</h3><p>首先我们来看看 Observable.create() 的实现:</p>
+<pre><code class="java">public static &lt;T&gt; Observable&lt;T&gt; create(OnSubscribe&lt;T&gt; f) &#123;
+    return new Observable&lt;T&gt;(RxJavaHooks.onCreate(f));
+&#125;
+</code></pre>
+<p>这里创建了一个被观察者 Observable ，同时将 RxJavaHooks.onCreate(f) 作为构造函数的参数，源码如下：</p>
+<pre><code class="java">protected Observable(OnSubscribe&lt;T&gt; f) &#123;
+    this.onSubscribe = f;
+&#125;
+</code></pre>
+<p>我们看到源码中直接将参数 RxJavaHooks.onCreate(f) 赋值给了当前我们构造的被观察者 Observable 的成员变量 <code>onSubscribe</code> 。那么 RxJavaHooks.onCreate(f) 返回的又是什么呢？我们接着往下看：</p>
+<pre><code class="java">public static &lt;T&gt; Observable.OnSubscribe&lt;T&gt; onCreate(Observable.OnSubscribe&lt;T&gt; onSubscribe) &#123;
+    Func1&lt;OnSubscribe, OnSubscribe&gt; f = onObservableCreate; // null
+    if (f != null) &#123;
+        return f.call(onSubscribe);
+    &#125;
+    return onSubscribe;
+&#125;
+</code></pre>
+<p>由于我们并没调用 RxJavaHooks.initCreate()，所以上面代码中的 onObservableCreate 为null；因此 RxJavaHooks.onCreate(f) 最终返回的就是 f ，也就是我们在 Observable.create() 的时候 new 出来的 OnSubscribe 。</p>
+<p>至此我们做下逻辑梳理：<strong>Observable.create() 方法构造了一个被观察者 Observable 对象，同时将 new 出来的 OnSubscribe 赋值给了该 Observable 的成员变量 onSubscribe 。</strong></p>
+<h3 id="4-1-2-创建观察者-Subscriber"><a href="#4-1-2-创建观察者-Subscriber" class="headerlink" title="4.1.2 创建观察者 Subscriber"></a>4.1.2 创建观察者 Subscriber</h3><p>接着我们看下观察者Subscriber的源码，为了增加可读性，我去掉了源码中的注释和部分代码。</p>
+<pre><code class="java">public abstract class Subscriber&lt;T&gt; implements Observer&lt;T&gt;, Subscription &#123;
+
+    //订阅事件集，所有发送给当前Subscriber的事件都会保存在这里
+    private final SubscriptionList subscriptions;
+
+    ...
+
+    protected Subscriber(Subscriber&lt;?&gt; subscriber, boolean shareSubscriptions) &#123;
+        this.subscriber = subscriber;
+        this.subscriptions = shareSubscriptions &amp;&amp; subscriber != null ? subscriber.subscriptions : new SubscriptionList();
+    &#125;
+
+    ...
+
+    @Override
+    public final void unsubscribe() &#123;
+        subscriptions.unsubscribe();
+    &#125;
+
+    @Override
+    public final boolean isUnsubscribed() &#123;
+        return subscriptions.isUnsubscribed();
+    &#125;
+
+    public void onStart() &#123;
+    &#125;
+
+    ...
+&#125;
+
+public interface Subscription &#123;
+    void unsubscribe();
+    boolean isUnsubscribed();
+&#125;
+</code></pre>
+<p>Subscriber 实现了 Subscription 接口，从而对外提供 isUnsubscribed() 和 unsubscribe() 方法。</p>
+<ul>
+<li>isUnsubscribed() 用于判断是否已经取消订阅；</li>
+<li>unsubscribe() 用于将订阅事件列表(也就是当前观察者的成员变量 subscriptions )中的所有 Subscription 取消订阅，并且不再接受观察者 Observable 发送的后续事件。</li>
+</ul>
+<h3 id="4-1-3-实现订阅关系-subscribe"><a href="#4-1-3-实现订阅关系-subscribe" class="headerlink" title="4.1.3 实现订阅关系 subscribe()"></a>4.1.3 实现订阅关系 subscribe()</h3><p>前面我们分析了观察者和被观察者相关的源码，那么接下来便是整个订阅流程中最最关键的环节了。</p>
+<pre><code class="java">public final Subscription subscribe(Subscriber&lt;? super T&gt; subscriber) &#123;
+    return Observable.subscribe(subscriber, this);
+&#125;
+
+static &lt;T&gt; Subscription subscribe(Subscriber&lt;? super T&gt; subscriber, Observable&lt;T&gt; observable) &#123;
+
+    ...
+
+    subscriber.onStart();
+
+    if (!(subscriber instanceof SafeSubscriber)) &#123;
+        subscriber = new SafeSubscriber&lt;T&gt;(subscriber);
+    &#125;
+
+    try &#123;
+        RxJavaHooks.onObservableStart(observable, observable.onSubscribe).call(subscriber);
+
+        return RxJavaHooks.onObservableReturn(subscriber);
+    &#125; catch (Throwable e) &#123;
+        ...
+        return Subscriptions.unsubscribed();
+    &#125;
+&#125;
+</code></pre>
+<h2 id="4-2-RxJava-操作符原理分析"><a href="#4-2-RxJava-操作符原理分析" class="headerlink" title="4.2 RxJava 操作符原理分析"></a>4.2 RxJava 操作符原理分析</h2><h2 id="4-3-RxJava-线程调度原理分析"><a href="#4-3-RxJava-线程调度原理分析" class="headerlink" title="4.3 RxJava 线程调度原理分析"></a>4.3 RxJava 线程调度原理分析</h2>
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/2023/01/04/RxJava-JVM-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E6%89%A9%E5%B1%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          RxJava: JVM 的响应式扩展
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">Elasticsearch（一）入门</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=RxJava 基础 - 杜圆圆的学习笔记&url=https://dquaner.github.io/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/">
+            <box-icon type='logo' name='twitter'></box-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=RxJava 基础 - 杜圆圆的学习笔记&u=https://dquaner.github.io/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/">
+            <box-icon name='facebook-square' type='logo' ></box-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=RxJava 基础 - 杜圆圆的学习笔记&url=https://dquaner.github.io/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar sidebar-search-fix">
+                
+
+    <div class="search">
+    <div class="has-icon-right">
+        <input type="text" class="form-input" id="search" placeholder="SEARCH" autocomplete="off">
+        <div class="form-icon">
+            <box-icon name='search' color="#3c4859"></box-icon>
+        </div>
+    </div>
+    <div class="search-result" id="search-ps"></div>
+</div>
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-cate">
+    <div class="widget-title"><span>Categories</span></div>
+    <div class="widget-inner">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ELK/">ELK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devOps/" rel="tag">devOps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" rel="tag">全文搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">响应式编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2023/01/04/RxJava-JVM-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E6%89%A9%E5%B1%95/">RxJava: JVM 的响应式扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/">RxJava 基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/">Elasticsearch（一）入门</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%9A%E4%B8%83%E5%A4%A7%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">设计模式：七大设计原则</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/06/GIT-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">GIT 常用命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            杜圆圆的学习笔记 &copy; 2023<br>
+            Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
+        </div>
+    </div>
+
+</footer>
+
+
+
+
+
+
+<script src="/dist/build.js?1637200696663.js"></script>
+
+
+<script src="/dist/custom.js?1637200696663.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

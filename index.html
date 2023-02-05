@@ -113,7 +113,7 @@
   
     
       <article
-id="post-Cucumber-官方指南（一）引言"
+id="post-RxJava-JVM-的响应式扩展"
 class="article article-type-post"
 >
 
@@ -124,11 +124,12 @@ class="article article-type-post"
 
     <div class="article-body">
     <header class="article-title">
-        <a href="/2022/11/21/Cucumber-%E5%AE%98%E6%96%B9%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%95%E8%A8%80/">Cucumber 官方指南（一）引言</a>
+        <a href="/2023/01/04/RxJava-JVM-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E6%89%A9%E5%B1%95/">RxJava: JVM 的响应式扩展</a>
     </header>
     <div class="article-entry post-inner-html">
         
-        
+        <p>RxJava 是响应式扩展的一个 Java 虚拟机实现：一个使用可观察的序列组合异步和基于事件的程序的库。</p>
+<p>它扩展了观察者模式来支持数据/事件序列，并且添加了操作符来允许你以声明的方式将这些序列组合起来，同时抽象掉对一些事情的关注，例如低级线程，同步，线程安全、并发数据结构等。</p>
         
     </div>
     </div>
@@ -143,16 +144,131 @@ class="article article-type-post"
 <footer class="article-footer">
     <div class="article-more-info">
     <div class="article-date">
-  <time datetime="2022-11-21T07:57:44.000Z" itemprop="datePublished">2022-11-21</time>
+  <time datetime="2023-01-04T11:48:42.000Z" itemprop="datePublished">2023-01-04</time>
 </div>
     
         <div class="article-category">
-        <a class="article-category-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a>
+        <a class="article-category-link" href="/categories/Java/">Java</a>
         </div>
     
     
         <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cucumber/" rel="tag">Cucumber</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">响应式编程</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-RxJava-基础"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/">RxJava 基础</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h1 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h1><h2 id="1-1-响应式编程"><a href="#1-1-响应式编程" class="headerlink" title="1.1 响应式编程"></a>1.1 响应式编程</h2><p>在介绍RxJava前，我们先聊聊响应式编程。那么什么是响应式编程呢？响应式编程是一种基于异步数据流概念的编程模式。数据流就像一条河：它可以被观测，被过滤，被操作，或者为新的消费者与另外一条流合并为一条新的流。</p>
+<p>响应式编程的一个关键概念是<strong>事件</strong>。事件可以被等待，可以触发过程，也可以触发其它事件。事件是唯一的以合适的方式将我们的现实世界映射到我们的软件中：如果屋里太热了我们就打开一扇窗户。同样的，当我们的天气app从服务端获取到新的天气数据后，我们需要更新app上展示天气信息的UI；汽车上的车道偏移系统探测到车辆偏移了正常路线就会提醒驾驶者纠正，就是是响应事件。</p>
+<p>今天，响应式编程最通用的一个场景是UI：我们的移动App必须做出对网络调用、用户触摸输入和系统弹框的响应。在这个世界上，软件之所以是事件驱动并响应的是因为现实生活也是如此。</p>
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2023-01-03T08:54:56.000Z" itemprop="datePublished">2023-01-03</time>
+</div>
+    
+        <div class="article-category">
+        <a class="article-category-link" href="/categories/Java/">Java</a>
+        </div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">响应式编程</a></li></ul>
+        </div>
+    
+    </div>
+</footer>
+
+</article>
+
+    
+  
+    
+      <article
+id="post-Elasticsearch（一）入门"
+class="article article-type-post"
+>
+
+
+
+<div class="article-inner">
+    
+
+    <div class="article-body">
+    <header class="article-title">
+        <a href="/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/">Elasticsearch（一）入门</a>
+    </header>
+    <div class="article-entry post-inner-html">
+        
+        <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="安装-Elasticsearch"><a href="#安装-Elasticsearch" class="headerlink" title="安装 Elasticsearch"></a>安装 Elasticsearch</h2><p><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/targz.html">下载并安装 Elasticsearch</a></p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><pre><code class="sh">- LICENSE.txt
+- NOTICE.txt
+- README.asciidoc
+- bin  #可执行脚本
+- config  #配置文件
+- jdk.app  #内置的 jdk
+- lib  #库
+- logs  #日志
+- modules  #模块
+- plugins  #插件
+</code></pre>
+        
+    </div>
+    </div>
+
+    <div class="article-badge">
+        
+        
+    </div>
+
+</div>
+
+<footer class="article-footer">
+    <div class="article-more-info">
+    <div class="article-date">
+  <time datetime="2022-11-28T06:47:27.000Z" itemprop="datePublished">2022-11-28</time>
+</div>
+    
+        <div class="article-category">
+        <a class="article-category-link" href="/categories/ELK/">ELK</a>
+        </div>
+    
+    
+        <div class="article-tag">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" rel="tag">全文搜索</a></li></ul>
         </div>
     
     </div>
@@ -190,13 +306,13 @@ class="article article-type-post"
 </ul>
 <p>设计模式本身要遵守的七个原则：</p>
 <ol>
-<li>单一职责原则</li>
-<li>接口隔离原则</li>
-<li>依赖倒置原则</li>
-<li>里氏替换原则</li>
-<li>开闭原则</li>
-<li>迪米特法则</li>
-<li>合成复用原则</li>
+<li>单一职责原则（Single Responsibility Principle）</li>
+<li>接口隔离原则（Interface Segregation Principle）</li>
+<li>依赖倒置原则（Denpendency Inversion Principle）</li>
+<li>里氏替换原则（Liskov Substitution Principle）</li>
+<li>开闭原则（Open Closed Principle）</li>
+<li>迪米特法则（Demeter Principle）</li>
+<li>合成复用原则（Composite Reuse Principle）</li>
 </ol>
         
     </div>
@@ -554,119 +670,6 @@ class="article article-type-post"
 
     
   
-    
-      <article
-id="post-初识-Gatling"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/2022/05/30/%E5%88%9D%E8%AF%86-Gatling/">初识 Gatling</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h1 id="Gatling-是什么？"><a href="#Gatling-是什么？" class="headerlink" title="Gatling 是什么？"></a>Gatling 是什么？</h1><p>Gatling 是一个强大的开源的负载测试解决方案。</p>
-<p>Gatling 专为持续负载测试设计，并与你的开发流程集成。它包括一个网络记录器和丰富多彩的报告。</p>
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-05-30T07:47:08.000Z" itemprop="datePublished">2022-05-30</time>
-</div>
-    
-        <div class="article-category">
-        <a class="article-category-link" href="/categories/devOps/">devOps</a>
-        </div>
-    
-    
-        <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li></ul>
-        </div>
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
-    
-      <article
-id="post-Sentry-的安装和使用"
-class="article article-type-post"
->
-
-
-
-<div class="article-inner">
-    
-
-    <div class="article-body">
-    <header class="article-title">
-        <a href="/2022/04/26/Sentry-%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">Sentry 的安装和使用</a>
-    </header>
-    <div class="article-entry post-inner-html">
-        
-        <h1 id="1-Sentry-简介"><a href="#1-Sentry-简介" class="headerlink" title="1. Sentry 简介"></a>1. Sentry 简介</h1><p>从错误跟踪到性能监控，Sentry 可以帮助开发人员看到真正重要的事情，更快的解决问题，并且不断的了解他们的程序。</p>
-<h2 id="1-1-应用实例"><a href="#1-1-应用实例" class="headerlink" title="1.1 应用实例"></a>1.1 应用实例</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="https://blog.sentry.io/2021/08/12/distributed-tracing-101-for-full-stack-developers/">分布式追踪</a>帮助开发者应对全栈程序日益复杂的监控需求。</p>
-</li>
-<li><p>通过 Sentry 的<a target="_blank" rel="noopener" href="https://sentry.io/resources/tracing-for-the-frontend-to-the-backend/?promo_name=promo-panel">性能监控</a>，可以将性能问题追溯到造成缓慢的 API 调用和数据库查询。</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.sentry.io/2021/06/15/find-the-root-cause-faster-with-trace-view-and-quick-trace/">跟踪视图和跟踪导航器</a>提供跨所有项目事务的贯穿线。</p>
-</li>
-<li><p>使用 <a target="_blank" rel="noopener" href="https://sentry-blog-preview.netlify.app/2022/02/10/usual-performance-suspects-introducing-suspect-spans">Suspect span</a> 追踪事务中花费最多时间的地方。</p>
-</li>
-</ul>
-        
-    </div>
-    </div>
-
-    <div class="article-badge">
-        
-        
-    </div>
-
-</div>
-
-<footer class="article-footer">
-    <div class="article-more-info">
-    <div class="article-date">
-  <time datetime="2022-04-26T14:45:33.000Z" itemprop="datePublished">2022-04-26</time>
-</div>
-    
-        <div class="article-category">
-        <a class="article-category-link" href="/categories/devOps/">devOps</a>
-        </div>
-    
-    
-        <div class="article-tag">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sentry/" rel="tag">Sentry</a></li></ul>
-        </div>
-    
-    </div>
-</footer>
-
-</article>
-
-    
-  
 
   
     <nav class="pagination">
@@ -701,7 +704,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ELK/">ELK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a></li></ul>
     </div>
   </div>
 
@@ -711,7 +714,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cucumber/" rel="tag">Cucumber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELK/" rel="tag">ELK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sentry/" rel="tag">Sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devOps/" rel="tag">devOps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" rel="tag">全文搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">响应式编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -724,7 +727,15 @@ class="article article-type-post"
       <ul>
         
           <li>
-            <a href="/2022/11/21/Cucumber-%E5%AE%98%E6%96%B9%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%95%E8%A8%80/">Cucumber 官方指南（一）引言</a>
+            <a href="/2023/01/04/RxJava-JVM-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E6%89%A9%E5%B1%95/">RxJava: JVM 的响应式扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/">RxJava 基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/">Elasticsearch（一）入门</a>
           </li>
         
           <li>
@@ -733,14 +744,6 @@ class="article article-type-post"
         
           <li>
             <a href="/2022/08/06/GIT-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">GIT 常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E5%9B%9B%EF%BC%89Guides/">Gatling 官方文档（四）Guides</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">Gatling 官方文档（三）Reference</a>
           </li>
         
       </ul>
@@ -752,7 +755,7 @@ class="article article-type-post"
   <div class="widget-wrap widget-archive">
     <div class="widget-title"><span>Archive</span></div>
     <div class="widget-inner">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li></ul>
     </div>
   </div>
 
@@ -773,7 +776,7 @@ class="article article-type-post"
 
     <div class="footer-wrap">
         <div class="footer-inner"> 
-            杜圆圆的学习笔记 &copy; 2022<br>
+            杜圆圆的学习笔记 &copy; 2023<br>
             Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
         </div>
     </div>

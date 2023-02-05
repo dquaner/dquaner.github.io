@@ -110,7 +110,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-claqvg83700127ja8hq1o1wlz" class="article article-type-post" itemscope
+    <article id="post-cldroa5uw001e36a8fe377r6n" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -167,17 +167,17 @@
 </ul>
 <p>设计模式本身要遵守的七个原则：</p>
 <ol>
-<li>单一职责原则</li>
-<li>接口隔离原则</li>
-<li>依赖倒置原则</li>
-<li>里氏替换原则</li>
-<li>开闭原则</li>
-<li>迪米特法则</li>
-<li>合成复用原则</li>
+<li>单一职责原则（Single Responsibility Principle）</li>
+<li>接口隔离原则（Interface Segregation Principle）</li>
+<li>依赖倒置原则（Denpendency Inversion Principle）</li>
+<li>里氏替换原则（Liskov Substitution Principle）</li>
+<li>开闭原则（Open Closed Principle）</li>
+<li>迪米特法则（Demeter Principle）</li>
+<li>合成复用原则（Composite Reuse Principle）</li>
 </ol>
 <span id="more"></span>
 
-<h1 id="1-单一职责原则（Single-Responsibility-Principle）"><a href="#1-单一职责原则（Single-Responsibility-Principle）" class="headerlink" title="1.单一职责原则（Single Responsibility Principle）"></a>1.单一职责原则（Single Responsibility Principle）</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>对类来说，一个类应该只负责一项职责。</p>
+<h1 id="1-单一职责原则"><a href="#1-单一职责原则" class="headerlink" title="1.单一职责原则"></a>1.单一职责原则</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>对类来说，一个类应该只负责一项职责。</p>
 <p>例如，class A 负责两个不同的两个职责：职责1，职责2。当因为 职责1 需求变更而改变 A 时，有可能造成 职责2 的执行错误，所以需要将 class A 分解为更细粒度的 A1，A2。</p>
 <h2 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h2><p>以交通工具类为例：</p>
 <p><i>Example 1.</i></p>
@@ -268,7 +268,7 @@ class Vehicle &#123;
 <li>降低变更一个职责带来的风险</li>
 <li>通常情况下，我们应该遵守单一职责原则；只有逻辑足够简单时，才可以在类级别违反单一职责；只有类中的方法足够少时，可以在方法级别保持单一职责原则。</li>
 </ol>
-<h1 id="2-接口隔离原则（Interface-Segregation-Principle）"><a href="#2-接口隔离原则（Interface-Segregation-Principle）" class="headerlink" title="2.接口隔离原则（Interface Segregation Principle）"></a>2.接口隔离原则（Interface Segregation Principle）</h1><h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应该建立在最小的接口上。</p>
+<h1 id="2-接口隔离原则"><a href="#2-接口隔离原则" class="headerlink" title="2.接口隔离原则"></a>2.接口隔离原则</h1><h2 id="基本介绍-1"><a href="#基本介绍-1" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应该建立在最小的接口上。</p>
 <p>先看一张图：<br><img src="interface_segregation_principle1.png" width="600"></p>
 <p>class A 通过接口 Interface1 依赖 class B，class C 通过接口 Interface1 依赖 class D，如果 Interface1 对于 A 和 C 来说不是最小接口，那么 B 和 D 必须去实现它们不需要的方法。</p>
 <p>按接口隔离原则应该这样处理：<br>将接口 Interface1 拆分为独立的几个接口，A 和 C 分别与它们需要的接口建立依赖关系。<br><img src="interface_segregation_principle2.png" width="500"></p>
@@ -450,7 +450,7 @@ class C &#123;
     &#125;
 &#125;
 </code></pre>
-<h1 id="3-依赖倒置原则（Denpendency-Inversion-Principle）"><a href="#3-依赖倒置原则（Denpendency-Inversion-Principle）" class="headerlink" title="3.依赖倒置原则（Denpendency Inversion Principle）"></a>3.依赖倒置原则（Denpendency Inversion Principle）</h1><h2 id="基本介绍-2"><a href="#基本介绍-2" class="headerlink" title="基本介绍"></a>基本介绍</h2><ol>
+<h1 id="3-依赖倒置原则"><a href="#3-依赖倒置原则" class="headerlink" title="3.依赖倒置原则"></a>3.依赖倒置原则</h1><h2 id="基本介绍-2"><a href="#基本介绍-2" class="headerlink" title="基本介绍"></a>基本介绍</h2><ol>
 <li>高层模块不应该依赖于低层模块，二者都应该依赖其抽象（接口或抽象类）。</li>
 <li>抽象不应该依赖细节，细节应该依赖抽象。</li>
 <li>中心思想：面向接口编程。</li>
@@ -522,7 +522,7 @@ class Person &#123;
     &#125;
 &#125;
 </code></pre>
-<h2 id="依赖关系传递的三种方式和应用案例"><a href="#依赖关系传递的三种方式和应用案例" class="headerlink" title="依赖关系传递的三种方式和应用案例"></a>依赖关系传递的三种方式和应用案例</h2><ol>
+<h2 id="依赖关系传递的三种方式和示例"><a href="#依赖关系传递的三种方式和示例" class="headerlink" title="依赖关系传递的三种方式和示例"></a>依赖关系传递的三种方式和示例</h2><ol>
 <li>接口传递</li>
 </ol>
 <pre><code class="java">/**
@@ -600,7 +600,7 @@ class OpenAndClose implements IOpenAndClose &#123;
 <li>变量的声明类型尽量是抽象类或接口，这样我们的变量引用和实际对象间就存在一个缓冲层，利于程序扩展和优化。</li>
 <li>继承时遵循里氏替换原则。</li>
 </ol>
-<h1 id="4-里氏替换原则（Liskov-Substitution-Principle）"><a href="#4-里氏替换原则（Liskov-Substitution-Principle）" class="headerlink" title="4.里氏替换原则（Liskov Substitution Principle）"></a>4.里氏替换原则（Liskov Substitution Principle）</h1><h2 id="面向对象中的继承的思考和说明"><a href="#面向对象中的继承的思考和说明" class="headerlink" title="面向对象中的继承的思考和说明"></a>面向对象中的继承的思考和说明</h2><ol>
+<h1 id="4-里氏替换原则"><a href="#4-里氏替换原则" class="headerlink" title="4.里氏替换原则"></a>4.里氏替换原则</h1><h2 id="面向对象中的继承的思考和说明"><a href="#面向对象中的继承的思考和说明" class="headerlink" title="面向对象中的继承的思考和说明"></a>面向对象中的继承的思考和说明</h2><ol>
 <li>继承包含这样一层含义：父类中凡是已经实现好的方法，实际上是在设定规范和契约，虽然它不强制要求所有的子类必须遵循这些契约，但是如果子类对这些已经实现的方法任意修改，就会对整个继承体系造成破坏。</li>
 <li>继承在给程序设计带来便利的同时，也带来了弊端。比如使用继承会给程序带来侵入性，程序的可移植性降低，增加对象间的耦合性，如果一个类被其他类所继承，则当这个类需要修改时，必须考虑到所有的子类；并且父类修改后，所有涉及到子类的功能都有可能产生故障。</li>
 <li>在编程中，如何正确的使用继承？<strong>里氏替换原则</strong></li>
@@ -678,7 +678,7 @@ System.out.println(&quot;11+3+9=&quot; + b.func2(11,3));
 System.out.println(&quot;11-3=&quot; + b.func3(11,3));
 System.out.println(&quot;1-8=&quot; + b.func3(1,8));
 </code></pre>
-<h1 id="5-开闭原则（Open-Closed-Principle）"><a href="#5-开闭原则（Open-Closed-Principle）" class="headerlink" title="5.开闭原则（Open Closed Principle）"></a>5.开闭原则（Open Closed Principle）</h1><h2 id="基本介绍-4"><a href="#基本介绍-4" class="headerlink" title="基本介绍"></a>基本介绍</h2><ol>
+<h1 id="5-开闭原则"><a href="#5-开闭原则" class="headerlink" title="5.开闭原则"></a>5.开闭原则</h1><h2 id="基本介绍-4"><a href="#基本介绍-4" class="headerlink" title="基本介绍"></a>基本介绍</h2><ol>
 <li>开闭原则是编程中最基础、最重要的设计原则</li>
 <li>一个软件实体，如类、模块和函数，应该对扩展开放（对提供方），对修改关闭（对使用方）。也就是说，用抽象构建框架，用实现扩展细节。</li>
 <li>当软件需要变化时，尽量通过扩展软件实体的行为来实现变化，而不是通过修改已有的代码来实现变化。</li>
@@ -819,7 +819,7 @@ class AnotherShape extends Shape &#123;
 &#125;
 </code></pre>
 <p>使用方的代码不需要修改：满足了开闭原则。</p>
-<h1 id="6-迪米特法则（Demeter-Principle）"><a href="#6-迪米特法则（Demeter-Principle）" class="headerlink" title="6.迪米特法则（Demeter Principle）"></a>6.迪米特法则（Demeter Principle）</h1><h2 id="基本介绍-5"><a href="#基本介绍-5" class="headerlink" title="基本介绍"></a>基本介绍</h2><ol>
+<h1 id="6-迪米特法则"><a href="#6-迪米特法则" class="headerlink" title="6.迪米特法则"></a>6.迪米特法则</h1><h2 id="基本介绍-5"><a href="#基本介绍-5" class="headerlink" title="基本介绍"></a>基本介绍</h2><ol>
 <li>一个对象应该对其他对象保持最少的了解。</li>
 <li>类与类关系越密切，耦合度越大。</li>
 <li>迪米特法则又叫<strong>最少知道原则</strong>，即一个类对自己依赖的类知道的越少越好。也就是说，对于被依赖的类不管多么复杂，都尽量将逻辑封装在类内部，对外除了提供 public 方法，不泄漏任何信息。</li>
@@ -956,7 +956,7 @@ class SchoolManager &#123;
 <li>迪米特法则的核心是降低类之间的耦合。</li>
 <li>但是注意：由于每个类都减少了不必要的依赖，因为迪米特法则只是要求降低类之间（对象间）的耦合关系，并不是要求完全没有依赖关系。</li>
 </ol>
-<h1 id="7-合成复用原则（Composite-Reuse-Principle）"><a href="#7-合成复用原则（Composite-Reuse-Principle）" class="headerlink" title="7.合成复用原则（Composite Reuse Principle）"></a>7.合成复用原则（Composite Reuse Principle）</h1><h2 id="基本介绍-6"><a href="#基本介绍-6" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>原则是尽量使用合成/聚合的方式，而不是使用继承。</p>
+<h1 id="7-合成复用原则"><a href="#7-合成复用原则" class="headerlink" title="7.合成复用原则"></a>7.合成复用原则</h1><h2 id="基本介绍-6"><a href="#基本介绍-6" class="headerlink" title="基本介绍"></a>基本介绍</h2><p>原则是尽量使用合成/聚合的方式，而不是使用继承。</p>
 <p>继承：<br><img src="composite_reuse_principle1.png" width="300"></p>
 <p>使用以下三种方式替代：</p>
 <table width="100%">
@@ -993,11 +993,11 @@ class SchoolManager &#123;
     
 <nav class="article-nav">
   
-    <a href="/2022/11/21/Cucumber-%E5%AE%98%E6%96%B9%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%95%E8%A8%80/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-caption">下一篇</div>
       <div class="article-nav-title">
         
-          Cucumber 官方指南（一）引言
+          Elasticsearch（一）入门
         
       </div>
     </a>
@@ -1073,7 +1073,7 @@ class SchoolManager &#123;
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ELK/">ELK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a></li></ul>
     </div>
   </div>
 
@@ -1083,7 +1083,7 @@ class SchoolManager &#123;
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cucumber/" rel="tag">Cucumber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELK/" rel="tag">ELK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sentry/" rel="tag">Sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devOps/" rel="tag">devOps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" rel="tag">全文搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">响应式编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -1096,7 +1096,15 @@ class SchoolManager &#123;
       <ul>
         
           <li>
-            <a href="/2022/11/21/Cucumber-%E5%AE%98%E6%96%B9%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%95%E8%A8%80/">Cucumber 官方指南（一）引言</a>
+            <a href="/2023/01/04/RxJava-JVM-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E6%89%A9%E5%B1%95/">RxJava: JVM 的响应式扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/">RxJava 基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/">Elasticsearch（一）入门</a>
           </li>
         
           <li>
@@ -1105,14 +1113,6 @@ class SchoolManager &#123;
         
           <li>
             <a href="/2022/08/06/GIT-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">GIT 常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E5%9B%9B%EF%BC%89Guides/">Gatling 官方文档（四）Guides</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">Gatling 官方文档（三）Reference</a>
           </li>
         
       </ul>
@@ -1124,7 +1124,7 @@ class SchoolManager &#123;
   <div class="widget-wrap widget-archive">
     <div class="widget-title"><span>Archive</span></div>
     <div class="widget-inner">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li></ul>
     </div>
   </div>
 
@@ -1145,7 +1145,7 @@ class SchoolManager &#123;
 
     <div class="footer-wrap">
         <div class="footer-inner"> 
-            杜圆圆的学习笔记 &copy; 2022<br>
+            杜圆圆的学习笔记 &copy; 2023<br>
             Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
         </div>
     </div>

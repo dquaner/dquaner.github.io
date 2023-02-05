@@ -110,7 +110,7 @@
             <section class="inner">
                 <section class="inner-main">
                     <div class="post">
-    <article id="post-claqvg83c001a7ja8hkn33gka" class="article article-type-post" itemscope
+    <article id="post-cldroa5vj001l36a848qa7z1z" class="article article-type-post" itemscope
     itemprop="blogPost">
 
     <div class="article-inner">
@@ -157,17 +157,17 @@
 
         <div class="article-entry post-inner-html hairline" itemprop="articleBody">
             <blockquote>
-<p>原文地址：<a target="_blank" rel="noopener" href="https://maven.apache.org/pom.html">POM Reference</a><br>Last Published: 2021-11-20</p>
+<p>原文地址：<a target="_blank" rel="noopener" href="https://maven.apache.org/pom.html">POM Reference</a><br>Last Published: 2023-01-23</p>
 </blockquote>
-<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><h2 id="1-1-什么是POM？"><a href="#1-1-什么是POM？" class="headerlink" title="1.1 什么是POM？"></a>1.1 什么是POM？</h2><p>POM 代表 “Project Object Model”，它用 XML 表示一个 maven 项目并保存在 <code>pom.xml</code> 文件中。Maven 存在的情况下，谈论一个项目不仅仅是指 code 的集合，而是包括 configuration files、相关开发人员和他们的角色、缺陷跟踪系统、组织和许可、项目 URL、项目 dependencies 以及所有赋予 code 生命的其他小部分。它像一个与项目有关的所有事物的一站式商店。事实上，在 Maven 世界中，一个项目甚至不需要包含任何代码，只需要一个 <code>pom.xml</code> 文件。</p>
+<h1 id="1-POM-简介"><a href="#1-POM-简介" class="headerlink" title="1. POM 简介"></a>1. POM 简介</h1><h2 id="1-1-什么是POM？"><a href="#1-1-什么是POM？" class="headerlink" title="1.1 什么是POM？"></a>1.1 什么是POM？</h2><p>POM 即 “Project Object Model”，它用 XML 表示一个 maven 项目并保存在 <code>pom.xml</code> 文件中。 谈论一个 Maven 项目，不仅仅是指代码的集合，而是包括配置文件、相关开发人员和他们的角色、缺陷跟踪系统、组织和许可、项目 URL、项目依赖以及所有赋予代码生命的其他部分。它像一个与项目有关的所有事物的一站式商店。事实上，在 Maven 世界中，一个项目甚至不需要包含任何代码，只需要一个 <code>pom.xml</code> 文件。</p>
 <span id="more"></span>
 
-<h2 id="1-2-快速概览"><a href="#1-2-快速概览" class="headerlink" title="1.2 快速概览"></a>1.2 快速概览</h2><p>下面列出了 <code>project</code> 元素的直接子元素。注意，<code>modelVersion</code> 指定为 4.0.0。这是当前唯一受支持的 POM 版本，并且始终是必需的。</p>
+<h2 id="1-2-POM-概述"><a href="#1-2-POM-概述" class="headerlink" title="1.2 POM 概述"></a>1.2 POM 概述</h2><p>下面列出了 <code>&lt;project&gt;</code> 的直接子元素。注意，<code>modelVersion</code> 指定为 4.0.0。这是当前唯一受支持的 POM 版本，并且始终是必需的。</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
  
-  &lt;!-- The Basics --&gt;
+  &lt;!-- 基础信息 --&gt;
   &lt;groupId&gt;...&lt;/groupId&gt;
   &lt;artifactId&gt;...&lt;/artifactId&gt;
   &lt;version&gt;...&lt;/version&gt;
@@ -178,11 +178,11 @@
   &lt;modules&gt;...&lt;/modules&gt;
   &lt;properties&gt;...&lt;/properties&gt;
  
-  &lt;!-- Build Settings --&gt;
+  &lt;!-- 构建设置 --&gt;
   &lt;build&gt;...&lt;/build&gt;
   &lt;reporting&gt;...&lt;/reporting&gt;
  
-  &lt;!-- More Project Information --&gt;
+  &lt;!-- 更多项目信息 --&gt;
   &lt;name&gt;...&lt;/name&gt;
   &lt;description&gt;...&lt;/description&gt;
   &lt;url&gt;...&lt;/url&gt;
@@ -192,7 +192,7 @@
   &lt;developers&gt;...&lt;/developers&gt;
   &lt;contributors&gt;...&lt;/contributors&gt;
  
-  &lt;!-- Environment Settings --&gt;
+  &lt;!-- 环境设置 --&gt;
   &lt;issueManagement&gt;...&lt;/issueManagement&gt;
   &lt;ciManagement&gt;...&lt;/ciManagement&gt;
   &lt;mailingLists&gt;...&lt;/mailingLists&gt;
@@ -204,7 +204,8 @@
   &lt;profiles&gt;...&lt;/profiles&gt;
 &lt;/project&gt;
 </code></pre>
-<h1 id="2-The-Basics"><a href="#2-The-Basics" class="headerlink" title="2. The Basics"></a>2. The Basics</h1><p>POM 包含项目相关的所有<strong>必要信息</strong>，以及在构建项目过程中使用的<strong>插件</strong>配置。POM 声明了“谁”、“什么”和“哪里”，而 build lifecycle 声明了“何时”和“如何”，这并不是说 POM 不能影响 lifecycle 的流程 —— 它可以。例如，通过配置 <code>maven-antrun-plugin</code>，可以将 Apache Ant 任务嵌入到 POM 中。然而，它最终是一个<strong>声明</strong>。<code>build.xml</code> 准确地告诉 Ant 它运行时要做什么（程序性），而 POM 则是声明它的配置（声明性）。如果某些外力导致 build lifecycle 跳过 Ant 插件的执行，不会影响已执行的插件发挥作用。这与 <code>build.xml</code> 文件不同：后续的任务几乎总是依赖于在它之前执行的行。</p>
+<h1 id="2-基础信息"><a href="#2-基础信息" class="headerlink" title="2. 基础信息"></a>2. 基础信息</h1><p>POM 包含项目相关的所有<strong>必要信息</strong>，以及在构建项目过程中使用的插件配置。POM 声明了“谁”、“什么”和“哪里”，而构建生命周期声明了“何时”和“如何”，这并不是说 POM 不能影响生命周期的流程 —— 它可以。例如，通过配置 <code>maven-antrun-plugin</code>，可以将 Apache Ant 任务嵌入到 POM 中。然而，它最终是一个声明：<code>build.xml</code> 准确地告诉 Ant 它运行时要做什么（程序性），而 POM 则是声明它的配置（声明性）。如果某些外力导致构建生命周期跳过 Ant 插件的执行，不会影响已执行的插件发挥作用，这与 <code>build.xml</code> 文件不同：后续的任务几乎总是依赖于在它之前执行的行。</p>
+<p><i>示例：</i></p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
@@ -214,18 +215,45 @@
   &lt;version&gt;1.0&lt;/version&gt;
 &lt;/project&gt;
 </code></pre>
-<h2 id="2-1-Maven-坐标系统"><a href="#2-1-Maven-坐标系统" class="headerlink" title="2.1 Maven 坐标系统"></a>2.1 Maven 坐标系统</h2><p>上面定义的 POM 是 Maven 要求的<strong>最低限度</strong>，<code>groupId:artifactId:version</code> 都是<strong>必填字段</strong>（不过，如果 groupId 和 version 是从父级继承而来的，则不需要显式定义它们 —— 稍后将详细介绍 <a href="#2.2.2-%E7%BB%A7%E6%89%BF">POM 继承</a>）。这三个字段像 Maven 项目的坐标系统一样，标志着 repository 中的特定位置：</p>
+<h2 id="2-1-坐标系统"><a href="#2-1-坐标系统" class="headerlink" title="2.1 坐标系统"></a>2.1 坐标系统</h2><p>上面定义的 POM 是 Maven 要求的<strong>最低限度</strong>，<code>groupId:artifactId:version</code> 都是<strong>必填字段</strong>（如果 groupId 和 version 是从父级继承而来的，则不需要显式定义它们 —— 稍后将详细介绍 <a href="#2.3.2-%E7%BB%A7%E6%89%BF">POM 继承</a>）。这三个字段像 Maven 项目的坐标系统一样，标志着 Maven 库中的特定位置：</p>
 <ul>
-<li><p><strong>groupId：</strong> groupId 在组织或项目中通常是<strong>唯一</strong>的。例如，所有 core Maven artifacts 都应该位于 groupId <code>org.apache.maven</code> 下。groupId 不一定使用 <code>.</code> 表示法，例如 junit 项目（使用 <code>-</code> ）。请注意，点标记的 groupId 不必与项目包含的包​​结构相对应，但这是一个很好的做法。当存储在存储库中时，group 的行为很像操作系统中 Java 打包结构。这些点被操作系统特定的目录分隔符（例如 Unix 中的<code>/</code>）替换，成为基本存储库中的相对目录结构。在上述示例中，group <code>org.codehaus.mojo</code> 位于 <code>$M2_REPO/org/codehaus/mojo</code> 目录中。</p>
+<li><p><strong>groupId:</strong> </p>
+<ul>
+<li><p>在组织或项目中通常是唯一的，例如，所有 Maven 核心组件都应该位于 <code>org.apache.maven</code> 下。</p>
 </li>
-<li><p><strong>artifactId：</strong> artifactId 通常是<strong>项目的名称</strong>。虽然 groupId 很重要，但是 group 内的人在讨论中很少会提到 groupId（往往都是同一个ID，比如 MojoHaus 项目groupId：<code>org.codehaus.mojo</code>）。artifactId 与 groupId 一起创建了一个 key，将这个项目与世界上所有其他项目区分开。与 groupId 一起，artifactId 完全定义了 artifact 在 repository 中的生活区。在上述示例中，<code>my-project</code> 位于 <code>$M2_REPO/org/codehaus/mojo/my-project</code> 目录中。</p>
+<li><p>不一定使用 <code>.</code> 表示法，例如，junit 项目使用 <code>-</code> 。</p>
 </li>
-<li><p><strong>version：</strong> version 是命名拼图的最后一块。<code>groupId:artifactId</code> 表示单个项目，但它们无法描述我们正在谈论该项目的哪个化身。我们想要 2018 年（4.12 版）还是 2007 年（3.8.2 版）的 <code>junit:junit</code> ？简而言之：应该对代码更改进行版本控制，并且 version 元素用于控制版本保持一致。它还用于 artifact 的 repository 中以将项目按版本区分开。 <code>my-project</code> 1.0 版文件位于 <code>$M2_REPO/org/codehaus/mojo/my-project/1.0</code> 目录中。</p>
+<li><p>请注意，<code>.</code> 标记的 <code>groupId</code> 不必与项目包含的包​​结构相对应，但这是一个很好的做法。当存储在存储库中时，group 的行为很像操作系统中 Java 打包结构。这些 <code>.</code> 被操作系统特定的目录分隔符（比如 Unix 中的 <code>/</code> ）替换，成为 Maven 库中的相对目录结构。</p>
+</li>
+<li><p>上述示例中，<code>org.codehaus.mojo</code> 位于 <code>$M2_REPO/org/codehaus/mojo</code> 目录中。</p>
 </li>
 </ul>
-<p>上面给出的三个元素指向<strong>一个项目的一个特定版本</strong>，让 Maven 知道我们正在与”谁”打交道，以及在它们软件生命周期的“何时”我们需要他们。</p>
-<p><strong>packaging</strong></p>
-<p>现在我们有了 <code>groupId:artifactId:version</code> 地址结构，还有一个更标准的标签给我们一个真正完整的内容：那就是 packaing。在上述示例中定义的 <code>org.codehaus.mojo:my-project:1.0</code> 将被打包为一个 <code>jar</code>。我们可以通过声明不同的 packaging 来使它被打包成一个 <code>war</code>：</p>
+</li>
+<li><p><strong>artifactId:</strong> </p>
+<ul>
+<li><p>通常是项目的名称。</p>
+</li>
+<li><p>与 <code>groupId</code> 一起创建了一个 key ，将该项目与其他项目区分开。</p>
+</li>
+<li><p>与 <code>groupId</code> 一起定义了组件在 Maven 库中的存储位置。</p>
+</li>
+<li><p>上述示例中，<code>my-project</code> 位于 <code>$M2_REPO/org/codehaus/mojo/my-project</code> 目录中。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>version:</strong> </p>
+<ul>
+<li><p>命名拼图的最后一块。</p>
+</li>
+<li><p><code>groupId:artifactId</code> 能够表示单个项目，但它们无法描述我们正在谈论该项目的哪个版本。简而言之，应该对代码更改进行版本控制，并且 <code>version</code> 元素用于控制版本保持一致。它还用于在 Maven 库中将项目按版本区分开。 </p>
+</li>
+<li><p>上述示例中，<code>my-project</code> 的 1.0 版位于 <code>$M2_REPO/org/codehaus/mojo/my-project/1.0</code> 目录中。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>上面给出的三个元素指向<strong>一个项目的一个特定版本</strong>，让 Maven 知道我们正在与”谁”打交道，以及我们需要它们软件生命周期的“何时”。</p>
+<h2 id="2-2-打包方式"><a href="#2-2-打包方式" class="headerlink" title="2.2 打包方式"></a>2.2 打包方式</h2><p>有了 <code>groupId:artifactId:version</code> 坐标体系，还有一个更标准的元素给我们一个真正完整的内容：<code>&lt;packaging&gt;</code> 。上述示例中定义的 <code>org.codehaus.mojo:my-project:1.0</code> 将被打包为一个 <code>jar</code>。我们可以通过声明 <code>&lt;packaging&gt;</code> 来使它被打包成一个 <code>war</code>：</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   ...
@@ -233,11 +261,11 @@
   ...
 &lt;/project&gt;
 </code></pre>
-<p>当没有声明 packaging 时，Maven 默认为 <code>jar</code>。有效类型是组件角色 <code>org.apache.maven.lifecycle.mapping.LifecycleMapping</code> 的 Plexus role-hints（在 Plexus 上阅读更多关于 roles 和 role-hints 的解释）。目前的核心 packaging 值为：<code>pom</code>、<code>jar</code>、<code>maven-plugin</code>、<code>ejb</code>、<code>war</code>、<code>ear</code>、<code>rar</code>。这些包的类型定义了目标的默认列表，即执行不同的构建生命周期阶段对应相应的包结构：有关详细信息，请参阅<a target="_blank" rel="noopener" href="https://maven.apache.org/ref/3.8.4/maven-core/default-bindings.html"> Plugin Bindings for default Lifecycle Reference </a>。</p>
-<h2 id="2-2-POM-关系"><a href="#2-2-POM-关系" class="headerlink" title="2.2 POM 关系"></a>2.2 POM 关系</h2><p>Maven 的一个强大方面是它对项目关系的处理：包括依赖(以及传递依赖)，继承，以及聚合(多模块项目)。</p>
-<p>依赖管理有着“除了最琐碎的项目，其他任何事情都是一团糟”的悠久传统。随着依赖树变得庞大而复杂，“Jarmageddon” 很快就会发生。 接下来是 “Jar Hell”，即系统的依赖项版本不等同于开发所使用的版本，要么是给定了错误的版本，要么是类似命名的 jars 之间的冲突版本。</p>
-<p>Maven 通过一个<strong>公共的本地存储库</strong>解决了这两个问题，从公共的本地存储库中可以正确链接项目、版本和所有内容。</p>
-<h3 id="2-2-1-依赖"><a href="#2-2-1-依赖" class="headerlink" title="2.2.1 依赖"></a>2.2.1 依赖</h3><p>POM 的基石是它的 <a target="_blank" rel="noopener" href="https://maven.apache.org/ref/3.8.4/maven-model/maven.html#class_dependency">dependency</a> 列表。大多数项目依赖于其他项目才能正确构建和运行。Maven 管理这个列表，在编译以及其他需要这些依赖项的时候下载并链接它们。Maven 还有一个额外的好处：引入这些依赖项的依赖项（传递依赖项），允许<strong>你的列表只关注你的项目所需的依赖项</strong>。</p>
+<p>当没有声明 <code>&lt;packaging&gt;</code> 时，Maven 默认为 <code>jar</code>。目前核心的 <code>&lt;packaging&gt;</code> 值为：<code>pom</code>、<code>jar</code>、<code>maven-plugin</code>、<code>ejb</code>、<code>war</code>、<code>ear</code>、<code>rar</code>。这些包类型定义了一系列的默认构建目标，这些目标为一个特定的包结构在每个相应的构建生命周期阶段执行。更多详细信息，请参阅<a target="_blank" rel="noopener" href="https://maven.apache.org/ref/3.8.4/maven-core/default-bindings.html"> Plugin Bindings for default Lifecycle Reference </a>。</p>
+<h2 id="2-3-POM-关系"><a href="#2-3-POM-关系" class="headerlink" title="2.3 POM 关系"></a>2.3 POM 关系</h2><p>Maven 的一个强大方面是它对项目关系的处理：包括依赖(以及传递依赖)，继承，以及聚合(多模块项目)。</p>
+<p>依赖管理有着“依赖琐碎，并且所有事情都一团糟”的传统。随着依赖树变得庞大而复杂，”Jarmageddon” 很快就会发生，接下来是 “Jar Hell” ：即系统的依赖项版本不等同于开发所使用的版本，要么是给定了错误的版本，要么是类似命名的 jars 之间的冲突版本。</p>
+<p>Maven 通过一个<strong>公共的本地存储库</strong>解决了这两个问题，从公共的本地存储库中可以正确链接项目、版本和你需要的一切。</p>
+<h3 id="2-3-1-依赖"><a href="#2-3-1-依赖" class="headerlink" title="2.3.1 依赖"></a>2.3.1 依赖</h3><p>POM 的基石是它的<a target="_blank" rel="noopener" href="https://maven.apache.org/ref/3.8.4/maven-model/maven.html#class_dependency">依赖</a>列表。大多数项目依赖于其他项目才能正确构建和运行，Maven 管理依赖列表，在编译以及其他需要这些依赖的时候下载并链接它们。Maven 还有一个额外的好处：引入这些依赖的依赖（传递依赖），允许你的依赖列表只关注你的项目所需的依赖。</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   ...
@@ -256,114 +284,103 @@
 &lt;/project&gt;
 </code></pre>
 <ul>
-<li><p><strong>groupId、artifactId、version</strong><br>你会经常看到这些元素。这三个元素一起用于计算某个特定项目的 Maven 坐标，并将其划定为项目的依赖项。这个计算的目的是选择一个匹配所有声明的依赖版本（由于传递依赖，同一个 artifact 可以有多个依赖声明）。这些值应该是：  </p>
+<li><p><strong>groupId、artifactId、version</strong></p>
+<p>你会经常看到这些元素，这三个元素一起用于计算某个特定项目的 Maven 坐标，并将其划定为项目的依赖项。这个计算的目的是选择一个匹配所有声明的依赖版本（由于传递依赖，同一个依赖可以存在多个声明）。这些值应该是：  </p>
 <ul>
 <li>groupId，artifactId：直接对应依赖的坐标，</li>
 <li>version：依赖版本需求规范，用于计算依赖的有效版本。  </li>
 </ul>
-<p>由于依赖是通过 Maven 坐标来描述的，你可能会想：“这意味着我的项目只能依赖 Maven artifacts！” 答案是，“当然，但这是一件好事。” 这迫使您只依赖 Maven 可以管理的 dependencies。  </p>
-<p>不幸的是，有时<strong>无法从 central Maven repository 下载项目</strong>。例如，一个项目可能依赖于一个具有闭源许可证的 jar，它不能存储在 central repository 中。有三种方法可以处理这种情况：</p>
+<p>由于依赖是通过 Maven 坐标来描述的，你可能会想：“这意味着我的项目只能依赖 Maven 组件”，答案是，“当然，但这是一件好事”。这迫使您只依赖 Maven 可以管理的依赖项。不幸的是，有时<strong>无法从中央 Maven 库下载项目</strong>，例如，一个项目可能依赖于一个具有闭源许可证的 jar，它不能存储在中央库中。有三种方法可以处理这种情况：</p>
 <ol>
-<li><p>使用安装插件<strong>在本地安装依赖项</strong>。该方法是最简单的推荐方法。例如：<code>mvn install:install-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1 -Dpackaging=jar</code><br>请注意，地址仍然是必需的，只是这次您使用命令行，安装插件会使用给定的地址为您创建一个 POM。</p>
+<li><p>使用安装插件在本地安装依赖，这是最简单的一种方法。<br>例如：<code>mvn install:install-file -Dfile=non-maven-proj.jar -DgroupId=some.group -DartifactId=non-maven-proj -Dversion=1 -Dpackaging=jar</code><br>请注意，地址仍然是必需的，只是这次您使用命令行，安装插件会使用给定的地址为你创建一个 POM。</p>
 </li>
-<li><p>创建你自己的 repository 并部署。对于<strong>拥有内网并且需要让每个人保持同步的公司</strong>来说，这是一种最受欢迎的方法。有一个名为 <code>deploy:deploy-file</code> 的 Maven goal，它类似于 <code>install:install-file</code> goal（阅读 plugin’s goal 页面了解更多信息）。</p>
+<li><p>创建你自己的库并部署，这对拥有内网并且需要让每个人保持同步的公司来说是最受欢迎的一种方法。<br>使用 Maven 目标：<code>deploy:deploy-file</code>，它类似于 <code>install:install-file</code>（阅读 plugin’s goal 页面了解更多信息）。</p>
 </li>
-<li><p>将依赖的 scope 设置为 <code>system</code> 并定义一个 <code>systemPath</code>。不建议这样做，但我们会解释以下要素：</p>
+<li><p>将依赖的 scope 设置为 <code>system</code> 并定义一个 <code>systemPath</code>，但不建议这样做。</p>
 </li>
 </ol>
 </li>
-<li><p><strong>classifier</strong>  </p>
-<p>  classifier 区分由相同 POM 构建但内容不同的 artifacts。它是一个可选的任意的字符串，在版本号之后被附加到 artifact 名称。  </p>
-<p>  例如一个项目同时提供面向 Java 11 以及 Java 1.8 的 artifacts。第一个 artifact 可以配置 classifier 为 <code>jdk11</code>，第二个 artifact 配置为 <code>jdk8</code>，以便用户可以选择使用哪一个。  </p>
-<p>  classifier 的另一个常见用例是将次要 artifacts 附加到项目的主要 artifact。如果你浏览 Maven central repository，你会注意到 classifier <code>source</code> 和 <code>javadoc</code> 分别用于部署<strong>项目源代码</strong>和 <strong>API 文档</strong>到打包的类文件。</p>
+</ul>
+<ul>
+<li><p><strong>classifier</strong></p>
+<p>区分由相同 POM 构建但实际内容不同的组件。它是可选的任意的字符串，附加在组件名称的版本号之后。<br>例如一个项目同时提供面向 Java 11 以及 Java 1.8 的组件，那么第一个组件可以将 <code>&lt;classifier&gt;</code> 配置为 <code>jdk11</code>，第二个组件配置为 <code>jdk8</code>，以便用户可以选择使用哪一个。<br>另一个常见用例是将项目的次要组件附加到项目的主要组件。如果你浏览 Maven 中央库，你会注意到 classifier <code>source</code> 和 <code>javadoc</code> 分别代表将项目源代码或API文档与项目类文件一起部署。</p>
 </li>
 </ul>
 <ul>
-<li><p><strong>type</strong>  </p>
-<p>  依赖项的类型，默认为 <code>jar</code>。虽然它通常表示依赖项文件的扩展名，但情况并非总是如此：一个 type 可以映射到一个不同的扩展名和一个 classifier。type 通常与所使用的 packaging 相对应，但情况并非总是如此。例如 <code>jar</code>, <code>ejb-client</code> 和 <code>test-jar</code>：请参阅 <a target="_blank" rel="noopener" href="https://maven.apache.org/ref/3.8.4/maven-core/artifact-handlers.html">default artifact handlers</a> 以获取列表，但这不代表完整的列表，因为可以通过 <code>extensions</code> 设置为 true 的 plugins 定义新的 type。</p>
+<li><p><strong>type</strong></p>
+<p>指定依赖的类型，默认为 <code>jar</code>。虽然它通常表示依赖文件的扩展名，但情况并非总是如此：一个类型可以被映射到一个不同的扩展名或 classifier。类型通常与该依赖所使用的 <code>&lt;packaging&gt;</code> 相对应，但也不能完全确定。例如 <code>jar</code>, <code>ejb-client</code> 和 <code>test-jar</code>：查看 <a target="_blank" rel="noopener" href="https://maven.apache.org/ref/3.8.4/maven-core/artifact-handlers.html">default artifact handlers</a> 获取列表。但这不代表完整的列表，因为可以通过 <code>&lt;extensions&gt;</code> 为 <code>true</code> 的插件定义新的类型。</p>
 </li>
 </ul>
 <ul>
 <li><p><strong>scope</strong>  </p>
-<p>  该元素控制任务（编译时和运行时、测试时等）的类路径以及如何限制依赖项的传递性。有 5 种 scope 可用：</p>
+<p>指定依赖在什么任务（编译时、运行时、测试时等）的类路径中以及如何限制该依赖的传递性。有 5 种可用的 scope ：</p>
 <ul>
-<li>compile：默认值，compile dependency 在所有类路径（编译、运行、测试）中都可用。此外，这些依赖会传播到依赖项目。</li>
-<li>provided: 类似于 <code>compile</code>，但希望 JDK 或容器在运行时提供该依赖。provided dependency 仅在编译和测试类路径上可用，并且不具传递性。</li>
-<li>runtime: 表示该依赖非编译所必需的，而是执行所必需的。runtime dependency 在运行和测试类路径中，但不在编译类路径中。</li>
-<li>test: 表示该依赖项不是应用程序正常使用所必须的，test dependencies 仅适用于测试编译和执行阶段，不具传递性。</li>
-<li>system: 类似于 <code>provided</code>，但必须提供显示包含依赖的 JAR 包。system dependencies 始终可用，不会去存储库中查找。</li>
+<li>compile：默认值，compile 依赖在所有类路径（编译、运行、测试）中都可用，且 compile 依赖会传递给依赖当前项目的项目。</li>
+<li>provided: 表示希望 JDK 或容器在项目运行时提供该依赖，provided 依赖仅在编译和测试类路径上可用，且不具传递性。</li>
+<li>runtime: 表示该依赖不是项目编译所必需的，而是执行所必需的，runtime 依赖在运行和测试类路径中，不在编译类路径中。</li>
+<li>test: 表示该依赖项不是应用程序正常使用所必须的，test 依赖仅适用于测试编译和执行阶段，不具传递性。</li>
+<li>system: 类似于 provided ，除了必须提供显示包含依赖的 jar 包，system 依赖始终可用，不会去库中查找。</li>
 </ul>
 </li>
 </ul>
 <ul>
 <li><p><strong>systemPath</strong>  </p>
-<p>  仅当 依赖的 <code>scope</code> 是 <code>system</code> 时才使用。否则，如果设置了此元素，会导致构建失败。路径必须是绝对路径，因此建议使用属性来指定特定于机器的路径（下面将详细介绍 <code>properties</code>），例如 <code>$&#123;java.home&#125;/lib</code>。由于 Maven 假定 system denpendencies 是先验安装的，因此 Maven 不会检查项目的存储库，而是检查指定文件是否存在。如果不存在，Maven build 会失败并会建议你手动下载安装该依赖。</p>
+<p>仅当 <code>scope</code> 为 <code>system</code> 时才使用。否则，如果设置了此元素，会导致构建失败。路径必须是绝对路径，因此建议使用属性来指定特定于机器的路径（2.4小节会详细介绍属性），例如 <code>$&#123;java.home&#125;/lib</code>。由于 Maven 假定 system 依赖是先验安装的，因此不会再检查项目的存储库，而是检查指定文件是否存在。如果不存在，Maven 构建会失败并会建议你手动下载安装该依赖。</p>
 </li>
 </ul>
 <ul>
 <li><p><strong>optional</strong>  </p>
-<p>  optional 让想要引用当前项目的其他项目知道，不需要这个标记为 optional 的依赖也可以正常工作。</p>
-<p>  例如，项目 A 依赖于 B 来编译一部分在运行时可能不会使用的代码，那么可能不是一整个项目都需要项目 B。所以如果项目 X 添加了项目 A 作为自己的依赖，那么 Maven 就完全不需要安装依赖 B 了。象征性地，如果 <code>=&gt;</code> 表示必需的依赖项，而 <code>--&gt;</code> 表示可选的，尽管在 build A 时可能 <code>A=&gt;B</code>，但在 build X 时可能 <code>X=&gt;A--&gt;B</code>。即依赖 B 不会传递给项目 X 。  </p>
+<p>让想要引用当前项目的其他项目知道，不需要这个标记为 optional 的依赖也可以正常工作。<br>例如，项目 A 依赖于 B 来编译一部分在运行时可能不会使用的代码，那么对整个项目来说，可能并不需要项目 B。所以如果项目 X 添加了项目 A 作为自己的依赖，是完全不需要安装依赖 B 的。如果 <code>=&gt;</code> 表示必需的依赖项，而 <code>--&gt;</code> 表示可选的，尽管在构建 A 时可能 <code>A=&gt;B</code>，但在构建 X 时可能 <code>X=&gt;A--&gt;B</code>。即依赖 B 不会传递给项目 X 。  </p>
 </li>
 </ul>
-<p><strong>依赖版本需求规范</strong></p>
-<p>依赖项的 <code>version</code> 元素定义了版本要求，用于计算 dependency 的版本。<strong>软需求</strong>可以被 dependency graph 中同一 artifact 的其他版本替换。<strong>硬需求</strong>强制要求一个或多个特定版本并覆盖<strong>软需求</strong>。如果没有满足该 artifact 所有<strong>硬需求</strong>的 dependency 版本，则 build 会失败。</p>
-<p>版本需求具有以下语法：</p>
-<ul>
-<li><code>1.0</code>：1.0 的软需求。如果没 dependency tree 中没有其他版本先出现，则使用 1.0 版本。</li>
-<li><code>[1.0]</code>：1.0 的硬需求。只能使用 1.0 版本。</li>
-<li><code>(,1.0]</code>：任何 &lt;= 1.0 的版本的硬需求。</li>
-<li><code>[1.2,1.3]</code>：1.2 和 1.3 之间的任何版本的硬需求。</li>
-<li><code>[1.0,2.0)</code>：包含 1.0 和 不包含 2.0 之间的任何版本的硬需求。</li>
-<li><code>[1.5,)</code>：任何大于等于 1.5 的版本的硬需求。</li>
-<li><code>(,1.0],[1.2,)</code>：任何小于等于 1.0 或大于等于 1.2 的版本的的硬需求。多个需求用逗号分隔。</li>
-<li><code>(,1.1),(1.1,)</code>：除了 1.1 之外的任何版本的硬需求；例如 1.1 版本有一个严重的漏洞。</li>
-</ul>
-<p>Maven 会选择满足该项目依赖所有硬需求的最高版本。</p>
-<p><strong>版本顺序说明</strong></p>
-<p>如果版本字符串在语法上是正确的 <a target="_blank" rel="noopener" href="https://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a> 版本号，那么几乎在所有情况下，版本比较都遵循该规范中概述的优先规则。这些语法正确的版本h号是常见的字母数字 ASCII 字符串，例如 2.15.2-alpha。更准确地说，要比较的两个版本号都应该与 semantic versioning 规范中 BNF 语法的 “valid semver” 产生式相匹配。Maven 不考虑该规范隐含的任何语义。</p>
-<p><strong>重要提示：</strong> 这仅适用于 <code>Semantic Versioning 1.0.0</code>。 Maven 版本顺序算法与 <code>Semantic Versioning 2.0.0</code> 不兼容。特别是，Maven 不会对加号或构建标识符进行特殊处理。</p>
-<p>当版本字符串不遵循语义版本控制时，需要一组更复杂的规则。Maven 坐标在点 (‘<code>.</code>‘)、连字符 (‘<code>-</code>‘) 以及 <code>数字和字符之间的转换</code>处分割。分隔符会被记录下来，并且会对顺序产生影响。<code>数字和字符之间的转换</code> 相当于连字符“<code>-</code>”。空标记会被替换为“<code>0</code>”。这给出了带有“<code>.</code>”或“<code>-</code>”前缀的版本号（数字 tokens）和版本限定符（非数字 tokens）。</p>
+<p><strong>版本要求规范</strong></p>
+<p>依赖的 <code>&lt;version&gt;</code> 元素定义了版本要求，用于计算依赖的版本。软要求可以被依赖图（依赖树）中同一个依赖的其他版本替换。硬要求强制要求一个特定版本或多个版本并覆盖软要求。如果有依赖没有找到满足所有硬要求的版本，那么构建会失败。</p>
+<p>版本要求具有以下语法：</p>
+<p><code>1.0</code>：软要求，如果依赖树中没有其他版本早于 1.0 出现，则使用 1.0 版本。<br><code>[1.0]</code>：硬要求，只能使用 1.0 版本。<br><code>(,1.0]</code>：硬要求，可以使用任何 &lt;= 1.0 的版本。<br><code>[1.2,1.3]</code>：硬要求，可以使用 1.2 和 1.3 之间的任何版本。<br><code>[1.0,2.0)</code>：硬要求，可以使用任何 &gt;= 1.0 且 &lt; 2.0 的版本。<br><code>[1.5,)</code>：硬要求，可以使用任何 &gt;= 1.5 的版本。<br><code>(,1.0],[1.2,)</code>：硬要求，可以使用任何 &lt;= 1.0 或 &gt;= 1.2 的版本的；多个要求用逗号分隔。<br><code>(,1.1),(1.1,)</code>：硬要求，可以使用除了 1.1 之外的任何版本；例如 1.1 版本有严重的漏洞的场景。</p>
+<p>Maven 会选择满足所有硬要求的该依赖的最高版本。</p>
+<p><strong>版本顺序规范</strong></p>
+<p>如果版本字符串是语法正确的 <a target="_blank" rel="noopener" href="https://semver.org/spec/v1.0.0.html">Semantic Versioning 1.0.0</a> 版本号，那么几乎在所有情况下，版本比较都遵循该规范中概述的优先规则。语法正确的版本号是常见的字母数字 ASCII 字符串，例如 <code>2.15.2-alpha</code> 。更准确地说，要比较的两个版本号都应该与 Semantic Versioning 规范中 BNF 语法的 “valid semver” 产生式相匹配。Maven 不考虑该规范隐含的任何语义。</p>
+<p><u>重要提示</u>：仅适用于 Semantic Versioning 1.0.0。 Maven 版本顺序规范与 Semantic Versioning 2.0.0 不兼容。特别是，Maven 不会对加号或构建标识符进行特殊处理。</p>
+<p>当版本字符串不遵循语义版本控制时，则需要一组更复杂的规则：Maven 坐标会在点 (<code>.</code>)、连字符 (<code>-</code>) 以及<code>数字和字符之间的转换</code>处分割，分割符会被保留下来，并且在后续过程对顺序产生影响。<code>数字和字符之间的转换</code>会被替换为连字符“<code>-</code>”。空标记会被替换为“<code>0</code>”。处理后就产生了一系列带有“<code>.</code>”或“<code>-</code>”前缀的版本数字（即数字tokens）和版本限定符（即非数字tokens）。</p>
 <p>拆分和替换示例：</p>
 <p><code>1-1.foo-bar1baz-.1</code> -&gt; <code>1-1.foo-bar-1-baz-0.1</code></p>
-<p>然后，从版本的末尾开始，修剪尾随的“空”值（<code>0</code>、<code>“”</code>、“<code>fianl</code>”、“<code>ga</code>”）。从尾到头在每个剩余的连字符”<code>-</code>“处重复此过程。</p>
+<p>然后，修剪版本末尾的“空”值（<code>0</code>、<code>“”</code>、“<code>fianl</code>”、“<code>ga</code>”），从后向前在每个剩余的连字符”<code>-</code>“处重复此过程。</p>
 <p>修剪示例：</p>
+<p><code>1.0.0</code> -&gt; <code>1</code><br><code>1.ga</code> -&gt; <code>1</code><br><code>1.final</code> -&gt; <code>1</code><br><code>1.0</code> -&gt; <code>1</code><br><code>1.</code> -&gt; <code>1</code><br><code>1-</code> -&gt; <code>1</code><br><code>1.0.0-foo.0.0</code> -&gt; <code>1-foo</code><br><code>1.0.0-0.0.0</code> -&gt; <code>1</code></p>
+<p>版本顺序是这一系列带前缀的 tokens 的字典顺序，为较短的版本填充足够的“空”值以达到与较长的版本相同的长度。填充的“空”值取决于另一个版本的前缀：如果前缀为“<code>.</code>”则填充 <code>0</code>，如果前缀为“<code>-</code>”则填充 <code>“”</code>。带前缀的 token 的顺序是：</p>
 <ul>
-<li><code>1.0.0</code> -&gt; <code>1</code></li>
-<li><code>1.ga</code> -&gt; <code>1</code></li>
-<li><code>1.final</code> -&gt; <code>1</code></li>
-<li><code>1.0</code> -&gt; <code>1</code></li>
-<li><code>1.</code> -&gt; <code>1</code></li>
-<li><code>1-</code> -&gt; <code>1</code></li>
-<li><code>1.0.0-foo.0.0</code> -&gt; <code>1-foo</code></li>
-<li><code>1.0.0-0.0.0</code> -&gt; <code>1</code></li>
-</ul>
-<p>版本顺序是 prefixed tokens 序列的<strong>字典顺序</strong>，为较短的 token 填充足够的 “null” 值以达到与较长的 token 相同的长度。填充的 “null” 值取决于其他版本的前缀：0 代表“.”，“”代表“-”。前缀令牌顺序是：</p>
+<li><p>如果前缀相同，则比较 token ：</p>
 <ul>
-<li>如果前缀相同，则比较令牌：<ul>
-<li>数字标记具有自然顺序。</li>
-<li>非数字标记（“限定符”）具有字母顺序，除了以下标记按此顺序排在最前面：“alpha” &lt; “beta” &lt; “里程碑” &lt; “rc” = “cr” &lt; “快照” &lt; “” = “final” = “ga” &lt; “sp”<ul>
-<li>当直接后跟数字时，“alpha”、“beta”和“里程碑”限定词可以分别缩短为“a”、“b”和“m”。</li>
+<li><p>数字 tokens 具有自然顺序。</p>
+</li>
+<li><p>非数字 tokens（“qualifiers”）具有字母顺序，除了以下 tokens 按此顺序排在最前面：“<code>alpha</code>” &lt; “<code>beta</code>” &lt; “<code>milestone</code>” &lt; “<code>rc</code>” = “<code>cr</code>” &lt; “<code>snapshot</code>” &lt; “” = “<code>final</code>” = “<code>ga</code>” &lt; “<code>sp</code>”</p>
+<ul>
+<li>当直接后跟数字时，“<code>alpha</code>”、“<code>beta</code>” 和 “<code>milestone</code>” 限定符可以分别缩写为 “<code>a</code>”、“<code>b</code>” 和 “<code>m</code>”。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>否则: “<code>.qualifier</code>“ &lt; “<code>-qualifier</code>“ &lt; “<code>-number</code>“ &lt; “<code>.number</code>“</li>
+<li><p>否则: “<code>.qualifier</code>” &lt; “<code>-qualifier</code>” &lt; “<code>-number</code>” &lt; “<code>.number</code>”</p>
+</li>
 </ul>
 <p>最终结果示例：</p>
-<ul>
-<li>“1” &lt; “1.1”（数字填充）</li>
-<li>“1-snapshot”&lt;“1”&lt;“1-sp”（限定符填充）</li>
-<li>“1-foo2” &lt; “1-foo10”（正确地自动“切换”到数字顺序）</li>
-<li>“1.foo” &lt; “1-foo” &lt; “1-1” &lt; “1.1”</li>
-<li>“1.ga” = “1-ga” = “1-0” = “1.0” = “1”（删除尾随的“空”值）</li>
-<li>“1-sp”&gt;“1-ga”</li>
-<li>“1-sp.1”&gt;“1-ga.1”</li>
-<li>“1-sp-1” &lt; “1-ga-1” = “1-1”（每个连字符的尾随“空”值）</li>
-<li>“1-a1” = “1-alpha-1”<br>注意：与某些设计文档中所述的相反，对于版本顺序，快照与版本或任何其他限定符的处理方式没有区别。</li>
-</ul>
+<p><code>1</code> &lt; <code>1.1</code>（数字填充）<br><code>1-snapshot</code> &lt; <code>1</code> &lt; <code>1-sp</code>（限定符填充）<br><code>1-foo2</code> &lt; <code>1-foo10</code>（正确地自动“切换”到数字顺序）<br><code>1.foo</code> &lt; <code>1-foo</code> &lt; <code>1-1</code> &lt; <code>1.1</code>（根据前缀不同的比较规则）<br><code>1.ga</code> = <code>1-ga</code> = <code>1-0</code> = <code>1.0</code> = <code>1</code>（删除末尾的“空”值）<br><code>1-sp</code> &gt; <code>1-ga</code><br><code>1-sp.1</code> &gt; <code>1-ga.1</code><br><code>1-sp-1</code> &lt; <code>1-ga-1</code> = <code>1-1</code>（每个连字符处处理的末尾“空”值）<br><code>1-a1</code> = <code>1-alpha-1</code></p>
+<p>注意：与某些设计文档中所述的相反，对于版本顺序，对快照版本的处理与发布版本或任何其他限定符的处理方式没有区别。</p>
+<p>注意：已知 <code>2.0-rc1</code> &lt; <code>2.0</code>，那么版本要求 <code>[1.0, 2.0)</code> 就不包括 <code>2.0</code> 但包括 <code>2.0-rc1</code>，这可能与大部分开发者所想的不同。另外，Gradle 对此的解释与 Maven 有所不同，就会导致相同的 POM 产生的依赖树不同，因此如果想限定依赖版本为 <code>1.*</code> ，那么最好的方式为 <code>[1, 1.999999)</code> 。</p>
 <p><strong>版本顺序测试</strong></p>
-<p><strong>Exclusions</strong><br>排除项告诉 Maven 不包括此依赖项的依赖项（换句话说，其传递依赖项）。 例如，<code>maven-embedder</code> 需要 <code>maven-core</code>，我们不想使用它或其依赖项，那么我们将其添加为<code>exclusion</code>。</p>
+<p>Maven 发布版包括一个检查版本顺序的工具，你可以自己尝试一下：</p>
+<pre><code>java -jar $&#123;MAVEN_HOME&#125;/lib/maven-artifact-3.8.7.jar [versions...]
+</code></pre>
+<p><i>示例：</i></p>
+<pre><code class="sh">$ java -jar ./lib/maven-artifact-3.8.7.jar 1 2 1.1
+Display parameters as parsed by Maven (in canonical from and as a list of tokens) and comparison result:
+1. 1 -&gt; 1; tokens: [1]
+   1 &lt; 2
+2. 2 -&gt; 2; tokens: [2]
+   2 &gt; 1.1
+3. 1.1 -&gt; 1.1; tokens: [1, 1]
+</code></pre>
+<p><strong>排除项</strong><br>排除项告诉 Maven 不要引入此依赖的依赖（换句话说，其传递依赖）。例如，<code>maven-embedder</code> 依赖 <code>maven-core</code>，我们不想使用它或它的依赖，则可以将其添加为 <code>&lt;exclusion&gt;</code>：</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   ...
@@ -384,7 +401,7 @@
   ...
 &lt;/project&gt;
 </code></pre>
-<p>裁剪依赖项的传递依赖项有时也很有用。依赖项可能具有错误指定的范围，或者与项目中的其他依赖项冲突。使用通配符排除可以轻松排除一个依赖项的所有传递依赖项。在下面的情况下，您可能正在使用 <code>maven-embedder</code> 并且想管理自己使用的依赖项，因此您可以裁剪掉所有传递依赖项：</p>
+<p>裁剪依赖的传递依赖有时也很有用。依赖可能具有错误指定的范围，或者与项目中的其他依赖冲突。使用通配符排除可以轻松排除一个依赖的所有传递依赖。在下面的示例中，你可能正在使用 <code>maven-embedder</code> 并且想自己管理项目需要的依赖项，因此你可以裁剪掉所有传递依赖：</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   ...
@@ -405,12 +422,338 @@
   ...
 &lt;/project&gt;
 </code></pre>
-<h3 id="2-2-2-继承"><a href="#2-2-2-继承" class="headerlink" title="2.2.2 继承"></a>2.2.2 继承</h3><p><strong>超级 POM</strong></p>
+<ul>
+<li>exclusions: 排除项包括一个或多个 <code>exclusion</code> 元素，每一个 <code>exclusion</code> 包括 <code>groupId</code> 和 <code>artifactId</code> 来指向需要排除的依赖。和 <code>optional</code> 有些不同，<code>optional</code> 的依赖可能会也可能不会被安装和使用；<code>exclusions</code> 积极地在依赖树中将自己删除。</li>
+</ul>
+<h3 id="2-3-2-继承"><a href="#2-3-2-继承" class="headerlink" title="2.3.2 继承"></a>2.3.2 继承</h3><p>Maven 的另一个强大之处是给构建管理带来了程序继承的概念。尽管在构建系统中可以模仿 Ant 继承之类的工具，Maven 在 POM 中显示地实现了项目继承。</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+ 
+  &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+  &lt;artifactId&gt;my-parent&lt;/artifactId&gt;
+  &lt;version&gt;2.0&lt;/version&gt;
+  &lt;packaging&gt;pom&lt;/packaging&gt;
+&lt;/project&gt;
+</code></pre>
+<p>对父项目或聚合（多模块）项目来说，<code>packaging</code> 必须为 <code>pom</code>。这些类型定义了一系列与生命周期阶段绑定的目标，例如，如果你的 <code>packaging</code> 设置为 <code>jar</code>，那么在 <code>package</code> 阶段将会执行 <code>jar:jar</code> 目标。现在，我们可以在父 POM 中添加值，这些值将会被它的子 POM 继承。大部分父 POM 的元素会被它们的子 POM 继承，包括：</p>
+<ul>
+<li>groupId</li>
+<li>version</li>
+<li>description</li>
+<li>url</li>
+<li>inceptionYear</li>
+<li>organization</li>
+<li>licenses</li>
+<li>developers</li>
+<li>contributors</li>
+<li>mailingLists</li>
+<li>scm</li>
+<li>issueManagement</li>
+<li>ciManagement</li>
+<li>properties</li>
+<li>dependencyManagement</li>
+<li>dependencies</li>
+<li>repositories</li>
+<li>pluginRepositories</li>
+<li>build<ul>
+<li>plugin executions with matching ids</li>
+<li>plugin configuration</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>reporting</li>
+<li>profiles</li>
+</ul>
+<p>不会被继承的有：</p>
+<ul>
+<li>artifactId</li>
+<li>name</li>
+<li>prerequisites</li>
+</ul>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+ 
+  &lt;parent&gt;
+    &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    &lt;artifactId&gt;my-parent&lt;/artifactId&gt;
+    &lt;version&gt;2.0&lt;/version&gt;
+    &lt;relativePath&gt;../my-parent&lt;/relativePath&gt;
+  &lt;/parent&gt;
+ 
+  &lt;artifactId&gt;my-project&lt;/artifactId&gt;
+&lt;/project&gt;
+</code></pre>
+<p>注意：<code>relativePath</code> 元素不是必须的，但是可以用来指定首先从该路径搜索该父项目，在搜索本地以及远程库之前。</p>
+<p>继承的实践，查看 <a target="_blank" rel="noopener" href="https://svn.apache.org/viewvc/maven/pom/trunk/asf/pom.xml?view=markup">ASF</a> 或者 <a target="_blank" rel="noopener" href="https://svn.apache.org/viewvc/maven/pom/trunk/maven/pom.xml?view=markup">Maven</a> 父 POM 。</p>
+<p><strong>超级 POM</strong></p>
+<p>类似于面向对象编程中对象的继承，子 POMs 从父 POM 中继承了某些值。此外，就像 Java 对象最终都从 <code>java.lang.Object</code> 继承一样，所有 POM 都从一个基础的超级 POM 继承。下面是 Maven 3.5.4 的超级 POM ：</p>
+<pre><code class="xml">&lt;project&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+ 
+  &lt;repositories&gt;
+    &lt;repository&gt;
+      &lt;id&gt;central&lt;/id&gt;
+      &lt;name&gt;Central Repository&lt;/name&gt;
+      &lt;url&gt;https://repo.maven.apache.org/maven2&lt;/url&gt;
+      &lt;layout&gt;default&lt;/layout&gt;
+      &lt;snapshots&gt;
+        &lt;enabled&gt;false&lt;/enabled&gt;
+      &lt;/snapshots&gt;
+    &lt;/repository&gt;
+  &lt;/repositories&gt;
+ 
+  &lt;pluginRepositories&gt;
+    &lt;pluginRepository&gt;
+      &lt;id&gt;central&lt;/id&gt;
+      &lt;name&gt;Central Repository&lt;/name&gt;
+      &lt;url&gt;https://repo.maven.apache.org/maven2&lt;/url&gt;
+      &lt;layout&gt;default&lt;/layout&gt;
+      &lt;snapshots&gt;
+        &lt;enabled&gt;false&lt;/enabled&gt;
+      &lt;/snapshots&gt;
+      &lt;releases&gt;
+        &lt;updatePolicy&gt;never&lt;/updatePolicy&gt;
+      &lt;/releases&gt;
+    &lt;/pluginRepository&gt;
+  &lt;/pluginRepositories&gt;
+ 
+  &lt;build&gt;
+    &lt;directory&gt;$&#123;project.basedir&#125;/target&lt;/directory&gt;
+    &lt;outputDirectory&gt;$&#123;project.build.directory&#125;/classes&lt;/outputDirectory&gt;
+    &lt;finalName&gt;$&#123;project.artifactId&#125;-$&#123;project.version&#125;&lt;/finalName&gt;
+    &lt;testOutputDirectory&gt;$&#123;project.build.directory&#125;/test-classes&lt;/testOutputDirectory&gt;
+    &lt;sourceDirectory&gt;$&#123;project.basedir&#125;/src/main/java&lt;/sourceDirectory&gt;
+    &lt;scriptSourceDirectory&gt;$&#123;project.basedir&#125;/src/main/scripts&lt;/scriptSourceDirectory&gt;
+    &lt;testSourceDirectory&gt;$&#123;project.basedir&#125;/src/test/java&lt;/testSourceDirectory&gt;
+    &lt;resources&gt;
+      &lt;resource&gt;
+        &lt;directory&gt;$&#123;project.basedir&#125;/src/main/resources&lt;/directory&gt;
+      &lt;/resource&gt;
+    &lt;/resources&gt;
+    &lt;testResources&gt;
+      &lt;testResource&gt;
+        &lt;directory&gt;$&#123;project.basedir&#125;/src/test/resources&lt;/directory&gt;
+      &lt;/testResource&gt;
+    &lt;/testResources&gt;
+    &lt;pluginManagement&gt;
+      &lt;!-- NOTE: These plugins will be removed from future versions of the super POM --&gt;
+      &lt;!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) --&gt;
+      &lt;plugins&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+          &lt;version&gt;1.3&lt;/version&gt;
+        &lt;/plugin&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+          &lt;version&gt;2.2-beta-5&lt;/version&gt;
+        &lt;/plugin&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-dependency-plugin&lt;/artifactId&gt;
+          &lt;version&gt;2.8&lt;/version&gt;
+        &lt;/plugin&gt;
+        &lt;plugin&gt;
+          &lt;artifactId&gt;maven-release-plugin&lt;/artifactId&gt;
+          &lt;version&gt;2.5.3&lt;/version&gt;
+        &lt;/plugin&gt;
+      &lt;/plugins&gt;
+    &lt;/pluginManagement&gt;
+  &lt;/build&gt;
+ 
+  &lt;reporting&gt;
+    &lt;outputDirectory&gt;$&#123;project.build.directory&#125;/site&lt;/outputDirectory&gt;
+  &lt;/reporting&gt;
+ 
+  &lt;profiles&gt;
+    &lt;!-- NOTE: The release profile will be removed from future versions of the super POM --&gt;
+    &lt;profile&gt;
+      &lt;id&gt;release-profile&lt;/id&gt;
+ 
+      &lt;activation&gt;
+        &lt;property&gt;
+          &lt;name&gt;performRelease&lt;/name&gt;
+          &lt;value&gt;true&lt;/value&gt;
+        &lt;/property&gt;
+      &lt;/activation&gt;
+ 
+      &lt;build&gt;
+        &lt;plugins&gt;
+          &lt;plugin&gt;
+            &lt;inherited&gt;true&lt;/inherited&gt;
+            &lt;artifactId&gt;maven-source-plugin&lt;/artifactId&gt;
+            &lt;executions&gt;
+              &lt;execution&gt;
+                &lt;id&gt;attach-sources&lt;/id&gt;
+                &lt;goals&gt;
+                  &lt;goal&gt;jar-no-fork&lt;/goal&gt;
+                &lt;/goals&gt;
+              &lt;/execution&gt;
+            &lt;/executions&gt;
+          &lt;/plugin&gt;
+          &lt;plugin&gt;
+            &lt;inherited&gt;true&lt;/inherited&gt;
+            &lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;
+            &lt;executions&gt;
+              &lt;execution&gt;
+                &lt;id&gt;attach-javadocs&lt;/id&gt;
+                &lt;goals&gt;
+                  &lt;goal&gt;jar&lt;/goal&gt;
+                &lt;/goals&gt;
+              &lt;/execution&gt;
+            &lt;/executions&gt;
+          &lt;/plugin&gt;
+          &lt;plugin&gt;
+            &lt;inherited&gt;true&lt;/inherited&gt;
+            &lt;artifactId&gt;maven-deploy-plugin&lt;/artifactId&gt;
+            &lt;configuration&gt;
+              &lt;updateReleaseInfo&gt;true&lt;/updateReleaseInfo&gt;
+            &lt;/configuration&gt;
+          &lt;/plugin&gt;
+        &lt;/plugins&gt;
+      &lt;/build&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+ 
+&lt;/project&gt;
+</code></pre>
+<p>你可以查看超级 POM 如何影响你自己的 POM：创建一个最简单的 <code>pom.xml</code> ，并在命令行执行 <code>mvn help:effective-pom</code> 。</p>
 <p><strong>依赖管理</strong></p>
-<h3 id="2-2-3-聚合-或多模块"><a href="#2-2-3-聚合-或多模块" class="headerlink" title="2.2.3 聚合 (或多模块)"></a>2.2.3 聚合 (或多模块)</h3><p><strong>继承与聚合</strong></p>
-<h2 id="2-3-属性"><a href="#2-3-属性" class="headerlink" title="2.3 属性"></a>2.3 属性</h2><h1 id="3-Build-Settings"><a href="#3-Build-Settings" class="headerlink" title="3. Build Settings"></a>3. Build Settings</h1><p>除了上面给出的 POM 基础之外，还需要了解另外两个元素：<code>build</code> 元素，声明项目的目录结构和管理插件等；<code>reporting</code> 元素，很大程度上反映了用于报告目的的 build 元素。</p>
-<h2 id="3-1-Build"><a href="#3-1-Build" class="headerlink" title="3.1 Build"></a>3.1 Build</h2><p>根据 POM 4.0.0 XSD，<code>build</code> 元素被概念性地分为两个部分</p>
-<h3 id="3-1-1-BaseBuild-元素集合"><a href="#3-1-1-BaseBuild-元素集合" class="headerlink" title="3.1.1 BaseBuild 元素集合"></a>3.1.1 BaseBuild 元素集合</h3><p><strong>Resources</strong></p>
+<p>除了继承确切的高级别的元素，父 POM 可以配置子 POMs 的值并且传递依赖，其中一个例子就是 <code>dependencyManagement</code> 。</p>
+<ul>
+<li><p><strong>dependencyManagement:</strong>   </p>
+<p>帮助管理所有子 POM 的依赖信息。如果 <code>my-parent</code> 项目使用 <code>dependencyManagement</code> 来定义一个依赖 <code>junit:junit:4.12</code>，那么继承此项目的子 POMs 只需要给定 <code>groupId</code> = <code>junit</code> 以及 <code>artifactId</code> = <code>junit</code>, Maven 会自动填充父 POM 设置的 <code>version</code> 。这种方法的好处是显而易见的：依赖的详细信息可以在一个地方被集中的配置，并传递给所有继承它的 POMs。注意，传递依赖的 <code>version</code> 和 <code>scope</code> 也会受 <code>dependencyManagement</code> 中指定的版本的控制，这可能会导致意外的后果。例如，你在项目中使用了 <code>dep1</code> 和 <code>dep2</code> 两个依赖，而 <code>dep2</code> 也依赖 <code>dep1</code> 并且需要一个特定的小版本才能正常工作。如果你使用 <code>dependencyManagement</code> 指定了一个更早的版本，<code>dep2</code> 会被强制使用该版本并导致失败。所以，你应该使用 <code>mvn dependency:tree</code> 谨慎的检查整个依赖树来避免此类问题。</p>
+</li>
+</ul>
+<h3 id="2-3-3-聚合-或多模块"><a href="#2-3-3-聚合-或多模块" class="headerlink" title="2.3.3 聚合 (或多模块)"></a>2.3.3 聚合 (或多模块)</h3><p>多模块项目或聚合项目指的是一个项目中包含多个模块。模块是该 POM 列出的项目，并且作为组执行。一个打包方式为 <code>pom</code> 的项目可以通过将一系列项目列为 <code>module</code> 来聚合这些项目的构建，<code>module</code> 的值是这些项目的目录或 POM 文件的相对路径。</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+ 
+  &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+  &lt;artifactId&gt;my-parent&lt;/artifactId&gt;
+  &lt;version&gt;2.0&lt;/version&gt;
+  &lt;packaging&gt;pom&lt;/packaging&gt;
+ 
+  &lt;modules&gt;
+    &lt;module&gt;my-project&lt;/module&gt;
+    &lt;module&gt;another-project&lt;/module&gt;
+    &lt;module&gt;third-project/pom-example.xml&lt;/module&gt;
+  &lt;/modules&gt;
+&lt;/project&gt;
+</code></pre>
+<p>列出这些模块时，不需要考虑模块间的依赖关系；例如，模块的声明顺序并不重要。Maven 将对模块进行拓扑排序，以便始终在需要依赖的模块之前构建依赖。</p>
+<p>聚合的实践，查看 <a target="_blank" rel="noopener" href="https://svn.apache.org/viewvc/maven/maven-3/trunk/pom.xml?view=markup">Maven</a> 或 <a target="_blank" rel="noopener" href="https://svn.apache.org/viewvc/maven/plugins/trunk/pom.xml?view=markup">Maven Core Plugins</a> 基础 POM’s 。</p>
+<p><strong>继承与聚合</strong></p>
+<p>继承和聚合通过一个单一的高级别的 POM 动态的控制构建，你可能会经常遇到即是父亲又是聚合的项目。例如，整个 Maven 核心通过一个单一的基础 POM <code>org.apache.maven:maven</code> 运行，所以可以通过一个单一的指令 <code>mvn compile</code> 构建 Maven 项目。但是一个父项目和一个聚合项目都是 POM 项目，它们不是同一个项目，不应该混淆。一个 POM 项目可以继承它聚合的任何模块，但不一定有这种情况；相反，一个 POM 项目也可以聚合没有继承它的项目。</p>
+<h2 id="2-4-属性"><a href="#2-4-属性" class="headerlink" title="2.4 属性"></a>2.4 属性</h2><p>属性是了解 POM 基础的最后一部分内容。类似于 Ant 属性，Maven 属性也是值占位符。属性的值可以在 POM 中的任何地方使用符号 <code>$&#123;X&#125;</code> 访问，其中 <code>X</code> 是属性名称。或者它们可以作为默认值被插件使用，例如:</p>
+<pre><code class="xml">&lt;project&gt;
+  ...
+  &lt;properties&gt;
+    &lt;maven.compiler.source&gt;1.7&lt;/maven.compiler.source&gt;
+    &lt;maven.compiler.target&gt;1.7&lt;/maven.compiler.target&gt;
+    &lt;!-- 下面的 project.-properties 是 Maven 的保留项，将成为一个未来 POM 定义中的元素 --&gt;
+    &lt;!-- 你自己的属性不要以 project. 开头 --&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt; 
+    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;
+  &lt;/properties&gt;
+  ...
+&lt;/project&gt;
+</code></pre>
+<p>属性有 5 种不同的风格：</p>
+<ol>
+<li><p><code>env.X</code>：在变量前加上 “env.” 将返回 shell 的环境变量，例如，<code>$&#123;env.PATH&#125;</code> 返回 PATH 环境变量。<br>注意：虽然环境变量在 Windows 系统中非大小写敏感的，但在查找 POM 属性时是大小写敏感的。换句话说，即使 Windows shell 对 <code>%PATH%</code> 和 <code>%Path%</code> 返回相同的值，但在 Maven 中会区分 <code>$&#123;env.PATH&#125;</code> 和 <code>$&#123;env.Path&#125;</code>。为提高可靠性，环境变量的名称均为大写。</p>
+</li>
+<li><p><code>project.x</code>：POM 中以点(<code>.</code>)表示的路径将包含相应元素的值，例如，<code>&lt;project&gt;&lt;version&gt;1.0&lt;/version&gt;&lt;/project&gt;</code> 可以通过 <code>$&#123;project.version&#125;</code> 访问。</p>
+</li>
+<li><p><code>settings.x</code>：<code>settings.xml</code> 中以点(.)表示的路径将包含相应元素的值，例如，<code>&lt;settings&gt;&lt;offline&gt;false&lt;/offline&gt;&lt;/settings&gt;</code> 可以通过 <code>$&#123;settings.offline&#125;</code> 访问。</p>
+</li>
+<li><p>Java 系统属性：所有可以通过 <code>java.lang.System.getProperties()</code> 访问的属性都可以作为 POM 属性被访问，例如 <code>$&#123;java.home&#125;</code>。</p>
+</li>
+<li><p><code>x</code>: 在 POM 的 <code>&lt;properties /&gt;</code> 中被设置的元素，<code>&lt;properties&gt;&lt;someVar&gt;value&lt;/someVar&gt;&lt;/properties&gt;</code> 的值可以通过 <code>$&#123;someVar&#125;</code> 访问。</p>
+</li>
+</ol>
+<h1 id="3-构建设置"><a href="#3-构建设置" class="headerlink" title="3. 构建设置"></a>3. 构建设置</h1><p>除了上面给出的 POM 基础之外，还需要了解另外两个元素：<code>build</code> 元素，用于声明项目的目录结构和管理插件等；<code>reporting</code> 元素，用于报告。</p>
+<h2 id="3-1-Build"><a href="#3-1-Build" class="headerlink" title="3.1 Build"></a>3.1 Build</h2><p>根据 POM 4.0.0 XSD，<code>build</code> 元素被概念性地分为两个部分：一种是 <code>BaseBuild</code> 类型，包括两个 <code>build</code> 元素（在 <code>project</code> 下的顶层 build 元素以及 <code>profiles</code> 下的 build 元素，如下所述）共同的元素集；另一种是 <code>Build</code> 类型，包括 <code>BaseBuild</code> 集合以及更多用于顶层定义的元素。首先来分析两种类型之间的共同元素。</p>
+<p>注意：这些不同的 <code>build</code> 元素可以被表示为 “project build” 和 “profile build” 。</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;!-- &quot;Project Build&quot; contains more elements than just the BaseBuild set --&gt;
+  &lt;build&gt;...&lt;/build&gt;
+ 
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;!-- &quot;Profile Build&quot; contains a subset of &quot;Project Build&quot;s elements --&gt;
+      &lt;build&gt;...&lt;/build&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+&lt;/project&gt;
+</code></pre>
+<h3 id="3-1-1-BaseBuild-元素集合"><a href="#3-1-1-BaseBuild-元素集合" class="headerlink" title="3.1.1 BaseBuild 元素集合"></a>3.1.1 BaseBuild 元素集合</h3><p>正如它的名字， <code>BaseBuild</code> 是 POM 中两种 <code>build</code> 元素的基础元素集合。</p>
+<pre><code class="xml">&lt;build&gt;
+  &lt;defaultGoal&gt;install&lt;/defaultGoal&gt;
+  &lt;directory&gt;$&#123;basedir&#125;/target&lt;/directory&gt;
+  &lt;finalName&gt;$&#123;artifactId&#125;-$&#123;version&#125;&lt;/finalName&gt;
+  &lt;filters&gt;
+    &lt;filter&gt;filters/filter1.properties&lt;/filter&gt;
+  &lt;/filters&gt;
+  ...
+&lt;/build&gt;
+</code></pre>
+<ul>
+<li><p><strong>defaultGoal</strong>: 如果没有指定，Maven 将执行的默认目标或阶段。如果指定了目标，那么它需要和命令行中定义的相同（例如 jar:jar）。指定了阶段时情况也是一样的（例如 install）。</p>
+</li>
+<li><p><strong>directory</strong>: 这是构建转储其文件的目录，或者用 Maven 的说法，构建的目标位置，它的默认值是 <code>$&#123;basedir&#125;/target</code> 。</p>
+</li>
+<li><p><strong>finalName</strong>: 这是项目最终构建时的名称（不包括文件扩展名，例如：<code>my-project-1.0.jar</code> ），默认值是 <code>$&#123;artifactId&#125;-$&#123;version&#125;</code> 。然而术语 “finalName” 是有一点用词不当的，因为构建项目的插件完全有权忽略或修改这个名字（但他们通常不会这么做）。例如，如果插件 <code>maven-jar-plugin</code> 给一个 jar 配置了 test 分类，那么上面定义的 jar 会被构建为 <code>my-project-1.0-test.jar</code> 。</p>
+</li>
+<li><p><strong>filter</strong>: 定义包括了一系列属性的 <code>*.properties</code> 文件，这些属性会应用到接受它们配置的资源（如下所述）。换句话说，在 filter 文件中定义的 “name=value” 对会在构建时替换资源中的 <code>$&#123;name&#125;</code> 字符串。上面的示例中定义了 <code>filters/</code> 目录下的 <code>filter1.properties</code> 文件。Maven 的默认 filter 目录是 <code>$&#123;basedir&#125;/src/main/filters/</code> 。要更全面地了解 filter 是什么以及它们可以做什么，查看<a target="_blank" rel="noopener" href="https://maven.apache.org/guides/getting-started">快速入门指南</a>。</p>
+</li>
+</ul>
+<p><strong>Resources</strong></p>
+<p><code>build</code> 元素的另一个功能是指定 resources 在你的项目中存在的位置。Resources 通常不是代码，它们不会被编译，但是会被绑定在项目中或者被用于各种其他原因，例如代码生成。</p>
+<p>例如，一个 Plexus 项目需要在 <code>META-INF/plexus</code> 目录下包含一个 <code>configuration.xml</code> 文件（该文件为容器指定组件配置）。尽管我们可以简单的将该文件放置在 <code>src/main/resources/META-INF/plexus</code> 目录下，但我们更倾向于给 Plexus 一个自己的目录 <code>src/main/plexus</code> 。为了让 JAR 插件正确的绑定资源，你需要按下面的方式指定资源：</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;build&gt;
+    ...
+    &lt;resources&gt;
+      &lt;resource&gt;
+        &lt;targetPath&gt;META-INF/plexus&lt;/targetPath&gt;
+        &lt;filtering&gt;false&lt;/filtering&gt;
+        &lt;directory&gt;$&#123;basedir&#125;/src/main/plexus&lt;/directory&gt;
+        &lt;includes&gt;
+          &lt;include&gt;configuration.xml&lt;/include&gt;
+        &lt;/includes&gt;
+        &lt;excludes&gt;
+          &lt;exclude&gt;**/*.properties&lt;/exclude&gt;
+        &lt;/excludes&gt;
+      &lt;/resource&gt;
+    &lt;/resources&gt;
+    &lt;testResources&gt;
+      ...
+    &lt;/testResources&gt;
+    ...
+  &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<ul>
+<li><p><strong>resources</strong>: 是一个 <code>resource</code> 元素的列表，每个 element 元素描述了与项目相关的文件的内容与位置。</p>
+</li>
+<li><p><strong>targetPath</strong>: 指定放置构建后的 resources 集合的目录结构，默认值是 <code>$&#123;basedir&#125;</code>，打包在 JAR 中的常用指定路径是 <code>META-INF</code>。</p>
+</li>
+<li><p><strong>filtering</strong>: <code>true</code> 或者 <code>false</code>，表示该资源的 filter 是否被启用。注意，进行过滤不需要定义 <code>*.properties</code> 文件 —— 资源还可以默认使用在 POM 中定义的属性（例如 <code>$&#123;project.version&#125;</code>），使用通过 <code>-D</code> 传递给命令行的属性（例如 <code>-Dname=value</code>）或者使用由 <code>properties</code> 元素显示定义的属性。Filter 文件已经在上面介绍过。</p>
+</li>
+<li><p><strong>directory</strong>: 定义位于哪里的资源需要被绑定，默认值为 <code>$&#123;basedir&#125;/src/main/resources</code> 。</p>
+</li>
+<li><p><strong>includes</strong>: 一组文件表达式，将指定目录下的文件引用为资源，使用 <code>*</code> 作为通配符。</p>
+</li>
+<li><p><strong>excludes</strong>: 与 <code>includes</code> 结构相同，指定需要忽略哪些文件，如果 <code>includes</code> 和 <code>excludes</code> 之间产生了冲突，那么按照 excludes 执行。</p>
+</li>
+<li><p><strong>testResources</strong>: 包括 <code>testResource</code> 元素，它们的定义和 <code>resource</code> 元素相似，但是只在 test 阶段被使用。唯一的不同是一个项目默认的测试资源目录为 <code>$&#123;basedir&#125;/src/test/resources</code>（由超级 POM 定义）。测试资源不会被部署。</p>
+</li>
+</ul>
 <p><strong>Plugins</strong></p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
@@ -433,16 +776,17 @@
   &lt;/build&gt;
 &lt;/project&gt;
 </code></pre>
-<p>除 <code>groupId:artifactId:version</code> 标准体系之外，还有其他元素可配置插件或配置该 build 与插件的交互：</p>
+<p>除 <code>groupId:artifactId:version</code> 标准体系之外，还有其他元素可配置插件或配置与该插件交互的构建：</p>
 <ul>
-<li><p><strong>extensions</strong>: <code>true</code> or <code>false</code>，是否加载该插件的扩展，默认为 false。本文档后续会详细介绍扩展。</p>
+<li><p><strong>extensions</strong>: <code>true</code> 或者 <code>false</code>，是否加载该插件的扩展，默认为 <code>false</code>。后面会详细介绍扩展。</p>
 </li>
-<li><p><strong>inherited</strong>: <code>true</code> or <code>false</code>，该插件的配置是否可被继承本 POM 的子 POMs 应用，默认值为 true。</p>
+<li><p><strong>inherited</strong>: <code>true</code> 或者 <code>false</code>，该插件的配置是否会被继承，默认值为 <code>true</code>。</p>
 </li>
-<li><p><strong>configuration</strong>: This is specific to the individual plugin. Without going too in depth into the mechanics of how plugins work, suffice it to say that whatever properties that the plugin Mojo may expect (these are getters and setters in the Java Mojo bean) can be specified here.这是特定于单个插件的。无需深入了解插件如何工作的机制，插件 Mojo 可能期望的任何属性（这些是 Java Mojo bean 中的 getter 和 setter）都可以在此处指定。在上面的示例中，we are setting the classifier property to test in the <code>maven-jar-plugin</code>‘s Mojo. It may be good to note that all configuration elements, wherever they are within the POM, are intended to pass values to another underlying system, such as a plugin. In other words: values within a configuration element are never explicitly required by the POM schema, but a plugin goal has every right to require configuration values.<br>If your POM declares a parent, it inherits plugin configuration from either the build/plugins or pluginManagement sections of the parent.</p>
-</li>
-</ul>
-<p>default configuration inheritance:<br>To illustrate, consider the following fragment from a parent POM:</p>
+<li><p><strong>configuration</strong>: 特定于单个插件。这里无需深入了解插件的工作机制，只说明插件 Mojo 可能期望的任何属性（Java Mojo bean 中的 getters 和 setters）都可以在这里指定。在上面的示例中，我们设置了 <code>maven-jar-plugin</code> Mojo 中的 classifier 属性为 test 。值得注意的是，所有配置元素，无论它们位于POM中的何处，都旨在将值传递给另一个底层系统，例如插件。换句话说：POM 模式从来不会显式地要求 <code>configuration</code> 元素中的值，但是插件的目标完全有权要求配置值。</p>
+<p>如果你的 POM 声明了父 POM，它即会继承父 POM <strong>build/plugins</strong> 中的配置，又会继承父 POM <strong>pluginManagement</strong> 中的配置。</p>
+<ul>
+<li><p>默认配置继承：</p>
+<p>为了说明这一点，假设有以下来自父 POM 的片段:</p>
 <pre><code class="xml">&lt;plugin&gt;
   &lt;groupId&gt;my.group&lt;/groupId&gt;
   &lt;artifactId&gt;my-plugin&lt;/artifactId&gt;
@@ -457,7 +801,7 @@
   &lt;/configuration&gt;
 &lt;/plugin&gt;
 </code></pre>
-<p>And consider the following plugin configuration from a project that uses that parent as its parent:</p>
+<p>并且假设有如下项目的插件配置，是上面 POM 的子项目：</p>
 <pre><code class="xml">&lt;plugin&gt;
   &lt;groupId&gt;my.group&lt;/groupId&gt;
   &lt;artifactId&gt;my-plugin&lt;/artifactId&gt;
@@ -471,72 +815,335 @@
   &lt;/configuration&gt;
 &lt;/plugin&gt;
 </code></pre>
-<p>The default behavior is to merge the content of the configuration element according to element name. If the child POM has a particular element, that value becomes the effective value. if the child POM does not have an element, but the parent does, the parent value becomes the effective value. Note that this is purely an operation on XML; no code or configuration of the plugin itself is involved. Only the elements, not their values, are involved.</p>
-<p>Applying those rules to the example, Maven comes up with:</p>
-<plugin>
-  <groupId>my.group</groupId>
-  <artifactId>my-plugin</artifactId>
-  <configuration>
-    <items>
-      <item>child-1</item>
-    </items>
-    <properties>
-      <childKey>child</childKey>
-      <parentKey>parent</parentKey>
-    </properties>
-  </configuration>
-</plugin>
-advanced configuration inheritance: combine.children and combine.self
-You can control how child POMs inherit configuration from parent POMs by adding attributes to the children of the configuration element. The attributes are combine.children and combine.self. Use these attributes in a child POM to control how Maven combines plugin configuration from the parent with the explicit configuration in the child.
-
-<p>Here is the child configuration with illustrations of the two attributes:</p>
-<configuration>
-  <items combine.children="append">
-    <!-- combine.children="merge" is the default -->
-    <item>child-1</item>
-  </items>
-  <properties combine.self="override">
-    <!-- combine.self="merge" is the default -->
-    <childKey>child</childKey>
-  </properties>
-</configuration>
-Now, the effective result is the following:
-
-<configuration>
-  <items combine.children="append">
-    <item>parent-1</item>
-    <item>parent-2</item>
-    <item>child-1</item>
-  </items>
-  <properties combine.self="override">
-    <childKey>child</childKey>
-  </properties>
-</configuration>
-combine.children="append" results in the concatenation of parent and child elements, in that order. combine.self="override", on the other hand, completely suppresses parent configuration. You cannot use both combine.self="override" and combine.children="append" on an element; if you try, override will prevail.
-
-<p>Note that these attributes only apply to the configuration element they are declared on, and are not propagated to nested elements. That is if the content of an item element from the child POM was a complex structure instead of text, its sub-elements would still be subject to the default merge strategy unless they were themselves marked with attributes.</p>
-<p>The combine.* attributes are inherited from parent to child POMs. Take care when adding those attributes to a parent POM as this might affect child or grand-child POMs.</p>
-<p>dependencies: Dependencies are seen a lot within the POM, and are an element under all plugins element blocks. The dependencies have the same structure and function as under that base build. The major difference in this case is that instead of applying as dependencies of the project, they now apply as dependencies of the plugin that they are under. The power of this is to alter the dependency list of a plugin, perhaps by removing an unused runtime dependency via exclusions, or by altering the version of a required dependency. See above under Dependencies for more information.<br>executions: It is important to keep in mind that a plugin may have multiple goals. Each goal may have a separate configuration, possibly even binding a plugin’s goal to a different phase altogether. executions configure the execution of a plugin’s goals.<br>For example, suppose you wanted to bind the antrun:run goal to the verify phase. We want the task to echo the build directory, as well as avoid passing on this configuration to its children (assuming it is a parent) by setting inherited to false. You would get an execution like this:</p>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <build><br>    <plugins><br>      <plugin><br>        <artifactId>maven-antrun-plugin</artifactId><br>        <version>1.1</version><br>        <executions><br>          <execution><br>            <id>echodir</id><br>            <goals><br>              <goal>run</goal><br>            </goals><br>            <phase>verify</phase><br>            <inherited>false</inherited><br>            <configuration><br>              <tasks><br>                <echo>Build Dir: ${project.build.directory}</echo><br>              </tasks><br>            </configuration><br>          </execution><br>        </executions></p>
-<pre><code>  &lt;/plugin&gt;
-&lt;/plugins&gt;
+<p>默认的行为是根据元素名合并配置元素的内容。如果子 POM 有特定的元素，那么该元素的值成为有效值。如果子 POM 没有某一个元素，但父 POM 有，则父 POM 的值将成为有效值。注意，这纯粹是对 XML 的操作；不涉及插件本身的任何代码或配置；只涉及元素，而不涉及它们的值。</p>
+<p>将这些规则应用到示例中，Maven 会得到:</p>
+<pre><code class="xml">&lt;plugin&gt;
+  &lt;groupId&gt;my.group&lt;/groupId&gt;
+  &lt;artifactId&gt;my-plugin&lt;/artifactId&gt;
+  &lt;configuration&gt;
+    &lt;items&gt;
+      &lt;item&gt;child-1&lt;/item&gt;
+    &lt;/items&gt;
+    &lt;properties&gt;
+      &lt;childKey&gt;child&lt;/childKey&gt;
+      &lt;parentKey&gt;parent&lt;/parentKey&gt;
+    &lt;/properties&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;
 </code></pre>
-  </build>
-</project>
-id: Self explanatory. It specifies this execution block between all of the others. When the phase is run, it will be shown in the form: [plugin:goal execution: id]. In the case of this example: [antrun:run execution: echodir]
-goals: Like all pluralized POM elements, this contains a list of singular elements. In this case, a list of plugin goals which are being specified by this execution block.
-phase: This is the phase that the list of goals will execute in. This is a very powerful option, allowing one to bind any goal to any phase in the build lifecycle, altering the default behavior of Maven.
-inherited: Like the inherited element above, setting this to false will suppress Maven from passing this execution onto its children. This element is only meaningful to parent POMs.
-configuration: Same as above, but confines the configuration to this specific list of goals, rather than all goals under the plugin.
-
-<p><strong>Plugin Management</strong><br>pluginManagement: is an element that is seen along side plugins. Plugin Management contains plugin elements in much the same way, except that rather than configuring plugin information for this particular project build, it is intended to configure project builds that inherit from this one. However, this only configures plugins that are actually referenced within the plugins element in the children or in the current POM. The children have every right to override pluginManagement definitions.<br><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <build><br>    …<br>    <pluginManagement><br>      <plugins><br>        <plugin><br>          <groupId>org.apache.maven.plugins</groupId><br>          <artifactId>maven-jar-plugin</artifactId><br>          <version>2.6</version><br>          <executions><br>            <execution><br>              <id>pre-process-classes</id><br>              <phase>compile</phase><br>              <goals><br>                <goal>jar</goal><br>              </goals><br>              <configuration><br>                <classifier>pre-process</classifier><br>              </configuration><br>            </execution><br>          </executions><br>        </plugin><br>      </plugins><br>    </pluginManagement><br>    …<br>  </build><br></project><br>If we added these specifications to the plugins element, they would apply only to a single POM. However, if we apply them under the pluginManagement element, then this POM and all inheriting POMs that add the maven-jar-plugin to the build will get the pre-process-classes execution as well. So rather than the above mess included in every child pom.xml, only the following is required:</p>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <build><br>    …<br>    <plugins><br>      <plugin><br>        <groupId>org.apache.maven.plugins</groupId><br>        <artifactId>maven-jar-plugin</artifactId><br>      </plugin><br>    </plugins><br>    …<br>  </build><br></project></p>
-<h3 id="3-1-2-Build-元素集合"><a href="#3-1-2-Build-元素集合" class="headerlink" title="3.1.2 Build 元素集合"></a>3.1.2 Build 元素集合</h3><p><strong>Directories</strong></p>
+</li>
+<li><p>高级配置继承：<code>combine.children</code> 和 <code>combine.self</code></p>
+<p>你可以通过向配置元素的子元素添加属性来控制子POMs如何从父POMs继承配置，该属性是 <code>combine.children</code> 和 <code>combine.self</code>。在子 POM 中使用这些属性来控制 Maven 如何将来自父 POM 的插件配置与子 POM 中的显式配置相结合。</p>
+<p>下面是拥有两个属性说明的子配置:</p>
+<pre><code class="xml">&lt;configuration&gt;
+  &lt;items combine.children=&quot;append&quot;&gt;
+    &lt;!-- combine.children=&quot;merge&quot; is the default --&gt;
+    &lt;item&gt;child-1&lt;/item&gt;
+  &lt;/items&gt;
+  &lt;properties combine.self=&quot;override&quot;&gt;
+    &lt;!-- combine.self=&quot;merge&quot; is the default --&gt;
+    &lt;childKey&gt;child&lt;/childKey&gt;
+  &lt;/properties&gt;
+&lt;/configuration&gt;
+</code></pre>
+<p>现在，有效的结果如下:</p>
+<pre><code class="xml">&lt;configuration&gt;
+  &lt;items combine.children=&quot;append&quot;&gt;
+    &lt;item&gt;parent-1&lt;/item&gt;
+    &lt;item&gt;parent-2&lt;/item&gt;
+    &lt;item&gt;child-1&lt;/item&gt;
+  &lt;/items&gt;
+  &lt;properties combine.self=&quot;override&quot;&gt;
+    &lt;childKey&gt;child&lt;/childKey&gt;
+  &lt;/properties&gt;
+&lt;/configuration&gt;
+</code></pre>
+<p><strong>combine.children=”append”</strong> 导致按顺序连接父元素和子元素；另一方面，<strong>combine.self=”override”</strong> 完全覆盖父元素。你不能在一个元素上同时使用 <strong>combine.self=”override”</strong> 和 <strong>combine.children=”append”</strong> ，如果你尝试那么做，override 会起作用。</p>
+<p>注意，combine 属性只应用于声明了它们的配置元素，而不会传播到嵌套元素中。也就是说，如果子 POM 的 item 元素的内容是复杂结构，而不是文本，那么它的子元素仍将服从默认的 merge 策略，除非它们本身声明了 combine 属性。</p>
+<p><code>combine.*</code> 属性会从父 POMs 继承到子 POMs，谨慎地将这些属性添加到父 POM，因为这可能会影响子 POM 或孙子 POM。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>dependencies</strong>: 在 POM 中可以多次看到 <code>dependencies</code> ，并且 <code>dependencies</code> 是所有 <code>plugin</code> 元素块下的一个元素。此处的 dependencies 与基础信息下的 dependencies 有相同的结构和功能，主要的不同是此处的依赖不是项目应用的，而是插件应用的。这个功能的强大之处在于改变插件的依赖列表，可能是通过 exclusions 删除一个未使用的运行时依赖项，或者是通过更改所需依赖项的版本。相关信息，请参阅上面的依赖小节。</p>
+</li>
+<li><p><strong>executions</strong>: 重要的是要记住，一个插件可能有多个目标。每个目标可能有一个单独的配置，甚至可能将一个插件的目标绑定到完全不同的阶段。<code>executions</code> 配置插件目标的 <code>execution</code>。<br>例如，假设你想将 <code>antrun:run</code> 目标绑定到 <code>verify</code> 阶段。我们希望任务 echo 构建目录，并通过将 <code>inherited</code> 设置为 <code>false</code> 避免将此配置传递给它的子项目。你需要如下的 <code>execution</code>：</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+        &lt;version&gt;1.1&lt;/version&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;id&gt;echodir&lt;/id&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;run&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;phase&gt;verify&lt;/phase&gt;
+            &lt;inherited&gt;false&lt;/inherited&gt;
+            &lt;configuration&gt;
+              &lt;tasks&gt;
+                &lt;echo&gt;Build Dir: $&#123;project.build.directory&#125;&lt;/echo&gt;
+              &lt;/tasks&gt;
+            &lt;/configuration&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<ul>
+<li><p>id: 在所有 executions 中指定当前 execution。运行该阶段时，会以 <code>[plugin:goal execution: id]</code> 的形式显示。在上面的示例中即：<code>[antrun:run execution: echodir]</code>。</p>
+</li>
+<li><p>goals: 像所有的复数 POM 元素一样，它包含一系列单数元素。在上面的示例中，由 <code>execution</code> 块指定了插件 <code>goals</code>。</p>
+</li>
+<li><p>phase: 指定 <code>goals</code> 在哪个阶段执行。这是一个非常强大的选项，允许将任何目标绑定到构建生命周期中的任何阶段，从而改变 Maven 的默认行为。</p>
+</li>
+<li><p>inherited: 与上面的 <code>inherited</code> 元素一样，将其设置为 <code>false</code> 将阻止 Maven 将此 <code>execution</code> 传递给它的子元素。这个元素只对父 POM 有意义。</p>
+</li>
+<li><p>configuration: 与上面的 <code>configuration</code> 元素一样，但是将配置限制在这个特定的目标列表中，而不是插件下的所有目标。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Plugin Management</strong></p>
+<ul>
+<li><strong>pluginManagement</strong>: 会在 <code>plugins</code> 旁边看到该元素。插件管理以大概相同的方式包含 <code>plugin</code> 元素，只不过它不是为这个特定的项目构建配置插件信息，而是用于配置从此项目继承的项目。但是，这只配置在子 POM 或当前 POM 中的 <code>plugins</code> 元素中实际引用了的插件。子 POM 完全有权利覆盖 <code>pluginManagement</code> 定义。</li>
+</ul>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;build&gt;
+    ...
+    &lt;pluginManagement&gt;
+      &lt;plugins&gt;
+        &lt;plugin&gt;
+          &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+          &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+          &lt;version&gt;2.6&lt;/version&gt;
+          &lt;executions&gt;
+            &lt;execution&gt;
+              &lt;id&gt;pre-process-classes&lt;/id&gt;
+              &lt;phase&gt;compile&lt;/phase&gt;
+              &lt;goals&gt;
+                &lt;goal&gt;jar&lt;/goal&gt;
+              &lt;/goals&gt;
+              &lt;configuration&gt;
+                &lt;classifier&gt;pre-process&lt;/classifier&gt;
+              &lt;/configuration&gt;
+            &lt;/execution&gt;
+          &lt;/executions&gt;
+        &lt;/plugin&gt;
+      &lt;/plugins&gt;
+    &lt;/pluginManagement&gt;
+    ...
+  &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<p>如果我们将这些插件信息添加到 <code>plugins</code> 元素中，它们将只应用于单个 POM 。但是，如果我们在 <code>pluginManagement</code> 元素下应用它们，那么这个 POM 和所有将 <code>maven-jar-plugin</code> 添加到 <code>build</code> 中的子 POM 也将得到 <code>pre-process-classes</code> execution。因此，不需要在每个子 <code>pom.xml</code> 中都包含上述混乱的内容，只需要添加以下内容：</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;build&gt;
+    ...
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+    ...
+  &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<h3 id="3-1-2-Build-元素集合"><a href="#3-1-2-Build-元素集合" class="headerlink" title="3.1.2 Build 元素集合"></a>3.1.2 Build 元素集合</h3><p>在 XSD 中的 <code>Build</code> 类型表示那些只可用于 “project build” 中的元素。尽管额外的元素有 6 个，但是实际上 “project build” 所包含的元素只有两组是 “profile build” 所缺少的：directories 和 extensions。</p>
+<p><strong>Directories</strong></p>
+<p><code>directory</code> 元素集位于 parent build 元素中，parent build 元素为整个 POM 设置了各种目录结构。由于它们不存在于 profile build 中，因此不能由 profiles 更改。</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;build&gt;
+    &lt;sourceDirectory&gt;$&#123;basedir&#125;/src/main/java&lt;/sourceDirectory&gt;
+    &lt;scriptSourceDirectory&gt;$&#123;basedir&#125;/src/main/scripts&lt;/scriptSourceDirectory&gt;
+    &lt;testSourceDirectory&gt;$&#123;basedir&#125;/src/test/java&lt;/testSourceDirectory&gt;
+    &lt;outputDirectory&gt;$&#123;basedir&#125;/target/classes&lt;/outputDirectory&gt;
+    &lt;testOutputDirectory&gt;$&#123;basedir&#125;/target/test-classes&lt;/testOutputDirectory&gt;
+    ...
+  &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<p>If the values of a <code>*Directory</code> element above is set as an absolute path (when their properties are expanded) then that directory is used. Otherwise, it is relative to the base build directory: <code>$&#123;basedir&#125;</code>. Please note that the <code>scriptSourceDirectory</code> is nowhere used in Maven and is obsolete.<br>如果上面的 <code>*Directory</code> 元素的值被设置为绝对路径，那么该目录将被使用。否则，它相对于基本构建目录：<code>$&#123;basedir&#125;</code> 。注意，<code>scriptSourceDirectory</code> 在 Maven 中无处可用，并且已经过时。</p>
 <p><strong>Extensions</strong></p>
-<h2 id="3-2-Reporting"><a href="#3-2-Reporting" class="headerlink" title="3.2 Reporting"></a>3.2 Reporting</h2><h3 id="3-2-1-Report-Sets"><a href="#3-2-1-Report-Sets" class="headerlink" title="3.2.1 Report Sets"></a>3.2.1 Report Sets</h3><h1 id="4-More-Project-Information"><a href="#4-More-Project-Information" class="headerlink" title="4. More Project Information"></a>4. More Project Information</h1><h2 id="4-1-Licenses"><a href="#4-1-Licenses" class="headerlink" title="4.1 Licenses"></a>4.1 Licenses</h2><h2 id="4-2-Organizations"><a href="#4-2-Organizations" class="headerlink" title="4.2 Organizations"></a>4.2 Organizations</h2><h2 id="4-3-Developers"><a href="#4-3-Developers" class="headerlink" title="4.3 Developers"></a>4.3 Developers</h2><h2 id="4-4-Contributors"><a href="#4-4-Contributors" class="headerlink" title="4.4 Contributors"></a>4.4 Contributors</h2><h1 id="5-Environment-Settings"><a href="#5-Environment-Settings" class="headerlink" title="5. Environment Settings"></a>5. Environment Settings</h1><h2 id="5-1-Issue-管理"><a href="#5-1-Issue-管理" class="headerlink" title="5.1 Issue 管理"></a>5.1 Issue 管理</h2><p>Issue 管理定义了缺陷跟踪系统 (Bugzilla, TestTrack, ClearQuest, etc) 的使用。尽管没有什么可以阻止插件将这些信息用于某些目的，但它主要用于生成项目文档。</p>
+<p>扩展是将在此构建中使用的组件列表，它们将包含在正在运行的构建的类路径中。它们可以为构建过程提供扩展（例如为 Wagon 传输机制添加 ftp provider），也可以激活对构建生命周期进行更改的插件。简而言之，扩展是在构建期间激活的组件。扩展实际上不必做任何事情，也不包含 Mojo 。因此，扩展非常适合指定一个通用插件接口的多个实现中的一个。</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;build&gt;
+    ...
+    &lt;extensions&gt;
+      &lt;extension&gt;
+        &lt;groupId&gt;org.apache.maven.wagon&lt;/groupId&gt;
+        &lt;artifactId&gt;wagon-ftp&lt;/artifactId&gt;
+        &lt;version&gt;1.0-alpha-3&lt;/version&gt;
+      &lt;/extension&gt;
+    &lt;/extensions&gt;
+    ...
+  &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<h2 id="3-2-Reporting"><a href="#3-2-Reporting" class="headerlink" title="3.2 Reporting"></a>3.2 Reporting</h2><p>Reporting contains the elements that correspond specifically for the site generation phase. Certain Maven plugins can generate reports defined and configured under the reporting element, for example: generating Javadoc reports. Much like the build element’s ability to configure plugins, reporting commands the same ability. The glaring difference is that rather than fine-grained control of plug-in goals within the executions block, reporting configures goals within reportSet elements. And the subtler difference is that a plugin configuration under the reporting element works as build plugin configuration, although the opposite is not true (a build plugin configuration does not affect a reporting plugin).</p>
+<p>Possibly the only item under the reporting element that would not be familiar to someone who understood the build element is the Boolean excludeDefaults element. This element signifies to the site generator to exclude reports normally generated by default. When a site is generated via the site build cycle, a Project Info section is placed in the left-hand menu, chock full of reports, such as the Project Team report or Dependencies list report. These report goals are generated by maven-project-info-reports-plugin. Being a plugin like any other, it may also be suppressed in the following, more verbose, way, which effectively turns off project-info reports.</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;reporting&gt;
+    &lt;outputDirectory&gt;$&#123;basedir&#125;/target/site&lt;/outputDirectory&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-project-info-reports-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.0.1&lt;/version&gt;
+        &lt;reportSets&gt;
+          &lt;reportSet&gt;&lt;/reportSet&gt;
+        &lt;/reportSets&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/reporting&gt;
+  ...
+&lt;/project&gt;
+</code></pre>
+<p>The other difference is the outputDirectory element under plugin. In the case of reporting, the output directory is ${basedir}/target/site by default.</p>
+<h3 id="3-2-1-Report-集合"><a href="#3-2-1-Report-集合" class="headerlink" title="3.2.1 Report 集合"></a>3.2.1 Report 集合</h3><p>It is important to keep in mind that an individual plugin may have multiple goals. Each goal may have a separate configuration. Report sets configure execution of a report plugin’s goals. Does this sound familiar - deja-vu? The same thing was said about build’s execution element with one difference: you cannot bind a report to another phase. Sorry.</p>
+<p>For example, suppose you wanted to configure the javadoc:javadoc goal to link to “<a target="_blank" rel="noopener" href="http://java.sun.com/j2se/1.5.0/docs/api/&quot;">http://java.sun.com/j2se/1.5.0/docs/api/&quot;</a>, but only the javadoc goal (not the goal maven-javadoc-plugin:jar). We would also like this configuration passed to its children, and set inherited to true. The reportSet would resemble the following:</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;reporting&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        ...
+        &lt;reportSets&gt;
+          &lt;reportSet&gt;
+            &lt;id&gt;sunlink&lt;/id&gt;
+            &lt;reports&gt;
+              &lt;report&gt;javadoc&lt;/report&gt;
+            &lt;/reports&gt;
+            &lt;inherited&gt;true&lt;/inherited&gt;
+            &lt;configuration&gt;
+              &lt;links&gt;
+                &lt;link&gt;http://java.sun.com/j2se/1.5.0/docs/api/&lt;/link&gt;
+              &lt;/links&gt;
+            &lt;/configuration&gt;
+          &lt;/reportSet&gt;
+        &lt;/reportSets&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/reporting&gt;
+  ...
+&lt;/project&gt;
+</code></pre>
+<p>Between build executions and reporting reportSets, it should be clear now as to why they exist. In the simplest sense, they drill down in configuration. The POM must have a way not only to configure plugins, but must also configure the goals of those plugins. That is where these elements come in, giving the POM ultimate granularity in control of its build destiny.</p>
+<h1 id="4-更多项目信息"><a href="#4-更多项目信息" class="headerlink" title="4. 更多项目信息"></a>4. 更多项目信息</h1><p>Several elements do not affect the build, but rather document the project for the convenience of developers. Many of these elements are used to fill in project details when generating the project’s web site. However, like all POM declarations, plugins can use them for anything. The following are the simplest elements:</p>
+<ul>
+<li><p>name: Projects tend to have conversational names, beyond the artifactId. The Sun engineers did not refer to their project as “java-1.5”, but rather just called it “Tiger”. Here is where to set that value.</p>
+</li>
+<li><p>description: A short, human readable description of the project. Although this should not replace formal documentation, a quick comment to any readers of the POM is always helpful.</p>
+</li>
+<li><p>url: The project’s home page.</p>
+</li>
+<li><p>inceptionYear: The year the project was first created.</p>
+</li>
+</ul>
+<h2 id="4-1-Licenses"><a href="#4-1-Licenses" class="headerlink" title="4.1 Licenses"></a>4.1 Licenses</h2><pre><code class="xml">&lt;licenses&gt;
+  &lt;license&gt;
+    &lt;name&gt;Apache-2.0&lt;/name&gt;
+    &lt;url&gt;https://www.apache.org/licenses/LICENSE-2.0.txt&lt;/url&gt;
+    &lt;distribution&gt;repo&lt;/distribution&gt;
+    &lt;comments&gt;A business-friendly OSS license&lt;/comments&gt;
+  &lt;/license&gt;
+&lt;/licenses&gt;
+</code></pre>
+<p>Licenses are legal documents defining how and when a project (or parts of a project) may be used. A project should list licenses that apply directly to this project, and not list licenses that apply to the project’s dependencies.</p>
+<ul>
+<li><p>name, url and comments: are self explanatory, and have been encountered before in other contexts. Using an SPDX identifier as the license name is recommended. The fourth license element is:</p>
+</li>
+<li><p>distribution: This describes how the project may be legally distributed. The two stated methods are repo (they may be downloaded from a Maven repository) or manual (they must be manually installed).</p>
+</li>
+</ul>
+<h2 id="4-2-Organizations"><a href="#4-2-Organizations" class="headerlink" title="4.2 Organizations"></a>4.2 Organizations</h2><p>Most projects are run by some sort of organization (business, private group, etc.). Here is where the most basic information is set.</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;organization&gt;
+    &lt;name&gt;Codehaus Mojo&lt;/name&gt;
+    &lt;url&gt;http://mojo.codehaus.org&lt;/url&gt;
+  &lt;/organization&gt;
+&lt;/project&gt;
+</code></pre>
+<h2 id="4-3-Developers"><a href="#4-3-Developers" class="headerlink" title="4.3 Developers"></a>4.3 Developers</h2><p>All projects consist of files that were created, at some time, by a person. Like the other systems that surround a project, so to do the people involved with a project have a stake in the project. Developers are presumably members of the project’s core development. Note that, although an organization may have many developers (programmers) as members, it is not good form to list them all as developers, but only those who are immediately responsible for the code. A good rule of thumb is, if the person should not be contacted about the project, they do not need to be listed here.</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;developers&gt;
+    &lt;developer&gt;
+      &lt;id&gt;jdoe&lt;/id&gt;
+      &lt;name&gt;John Doe&lt;/name&gt;
+      &lt;email&gt;jdoe@example.com&lt;/email&gt;
+      &lt;url&gt;http://www.example.com/jdoe&lt;/url&gt;
+      &lt;organization&gt;ACME&lt;/organization&gt;
+      &lt;organizationUrl&gt;http://www.example.com&lt;/organizationUrl&gt;
+      &lt;roles&gt;
+        &lt;role&gt;architect&lt;/role&gt;
+        &lt;role&gt;developer&lt;/role&gt;
+      &lt;/roles&gt;
+      &lt;timezone&gt;America/New_York&lt;/timezone&gt;
+      &lt;properties&gt;
+        &lt;picUrl&gt;http://www.example.com/jdoe/pic&lt;/picUrl&gt;
+      &lt;/properties&gt;
+    &lt;/developer&gt;
+  &lt;/developers&gt;
+  ...
+&lt;/project&gt;
+</code></pre>
+<ul>
+<li><p>id, name, email: These correspond to the developer’s ID (presumably some unique ID across an organization), the developer’s name and email address.</p>
+</li>
+<li><p>organization, organizationUrl: As you probably guessed, these are the developer’s organization name and it’s URL, respectively.</p>
+</li>
+<li><p>roles: A role should specify the standard actions that the person is responsible for. Like a single person can wear many hats, a single person can take on multiple roles.</p>
+</li>
+<li><p>timezone: A valid time zone ID like America/New_York or Europe/Berlin, or a numerical offset in hours (and fraction) from UTC where the developer lives, e.g., -5 or +1. Time zone IDs are highly preferred because they are not affected by DST and time zone shifts. Refer to the IANA for the official time zone database and a listing in Wikipedia.</p>
+</li>
+<li><p>properties: This element is where any other properties about the person goes. For example, a link to a personal image or an instant messenger handle. Different plugins may use these properties, or they may simply be for other developers who read the POM.</p>
+</li>
+</ul>
+<h2 id="4-4-Contributors"><a href="#4-4-Contributors" class="headerlink" title="4.4 Contributors"></a>4.4 Contributors</h2><p>Contributors are like developers yet play an ancillary role in a project’s lifecycle. Perhaps the contributor sent in a bug fix, or added some important documentation. A healthy open source project will likely have more contributors than developers.</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;contributors&gt;
+    &lt;contributor&gt;
+      &lt;name&gt;Noelle&lt;/name&gt;
+      &lt;email&gt;some.name@gmail.com&lt;/email&gt;
+      &lt;url&gt;http://noellemarie.com&lt;/url&gt;
+      &lt;organization&gt;Noelle Marie&lt;/organization&gt;
+      &lt;organizationUrl&gt;http://noellemarie.com&lt;/organizationUrl&gt;
+      &lt;roles&gt;
+        &lt;role&gt;tester&lt;/role&gt;
+      &lt;/roles&gt;
+      &lt;timezone&gt;America/Vancouver&lt;/timezone&gt;
+      &lt;properties&gt;
+        &lt;gtalk&gt;some.name@gmail.com&lt;/gtalk&gt;
+      &lt;/properties&gt;
+    &lt;/contributor&gt;
+  &lt;/contributors&gt;
+  ...
+&lt;/project&gt;
+</code></pre>
+<p>Contributors contain the same set of elements than developers sans the id element.</p>
+<h1 id="5-环境设置"><a href="#5-环境设置" class="headerlink" title="5. 环境设置"></a>5. 环境设置</h1><h2 id="5-1-Issue-管理"><a href="#5-1-Issue-管理" class="headerlink" title="5.1 Issue 管理"></a>5.1 Issue 管理</h2><p>Issue 管理定义了 bug 跟踪系统 (Bugzilla, TestTrack, ClearQuest, etc) 的使用。尽管没有什么可以阻止插件将这些信息用于某些目的，但它主要用于生成项目文档。</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   ...
@@ -588,7 +1195,7 @@ configuration: Same as above, but confines the configuration to this specific li
 &lt;/project&gt;
 </code></pre>
 <ul>
-<li>subscribe, unsubscribe: 指定用于执行相关操作的电子邮件地址。要订阅上面的用户列表，用户可以发送电子邮件至 <a href="mailto:&#x75;&#x73;&#101;&#114;&#45;&#115;&#x75;&#x62;&#x73;&#99;&#x72;&#105;&#x62;&#101;&#64;&#49;&#x32;&#55;&#x2e;&#x30;&#x2e;&#x30;&#46;&#49;">&#x75;&#x73;&#101;&#114;&#45;&#115;&#x75;&#x62;&#x73;&#99;&#x72;&#105;&#x62;&#101;&#64;&#49;&#x32;&#55;&#x2e;&#x30;&#x2e;&#x30;&#46;&#49;</a>。</li>
+<li>subscribe, unsubscribe: 指定用于执行相关操作的电子邮件地址。要订阅上面的用户列表，用户可以发送电子邮件至 <a href="mailto:&#x75;&#x73;&#x65;&#x72;&#45;&#115;&#117;&#98;&#x73;&#x63;&#x72;&#x69;&#x62;&#101;&#64;&#x31;&#x32;&#55;&#46;&#48;&#x2e;&#48;&#x2e;&#49;">&#x75;&#x73;&#x65;&#x72;&#45;&#115;&#117;&#98;&#x73;&#x63;&#x72;&#x69;&#x62;&#101;&#64;&#x31;&#x32;&#55;&#46;&#48;&#x2e;&#48;&#x2e;&#49;</a>。</li>
 <li>archive: 指定旧邮件列表电子邮件存档的 url（如果存在）。如果有镜像档案，它们可以在 otherArchives 下指定。</li>
 <li>post: 用于发布到邮件列表的电子邮件地址。请注意，并非所有邮件列表都有能力发布（例如构建失败列表）。</li>
 </ul>
@@ -673,7 +1280,18 @@ configuration: Same as above, but confines the configuration to this specific li
   ...
 &lt;/project&gt;
 </code></pre>
-<p>downloadUrl: is the URL of the repository which another POM can point to in order to grab this POM’s artifact. In the simplest terms, we told the POM how to upload it (through repository/url), but from where can the public download it? This element answers that question.<br>status: Warning! Like a baby bird in a nest, the status should never be touched by human hands! The reason for this is that Maven will set the status of the project when it is transported out to the repository. Its valid types are as follows.<br>none: No special status. This is the default for a POM.<br>converted: The manager of the repository converted this POM from an earlier version to Maven 2.<br>partner: This artifact has been synchronized with a partner repository.<br>deployed: By far the most common status, meaning that this artifact was deployed from a Maven 2 or 3 instance. This is what you get when you manually deploy using the command-line deploy phase.<br>verified: This project has been verified, and should be considered finalized.<br>Repository<br>Whereas the repositories element specifies in the POM the location and manner in which Maven may download remote artifacts for use by the current project, distributionManagement specifies where (and how) this project will get to a remote repository when it is deployed. The repository elements will be used for snapshot distribution if the snapshotRepository is not defined.</p>
+<ul>
+<li>downloadUrl: is the URL of the repository which another POM can point to in order to grab this POM’s artifact. In the simplest terms, we told the POM how to upload it (through repository/url), but from where can the public download it? This element answers that question.</li>
+<li>status: Warning! Like a baby bird in a nest, the status should never be touched by human hands! The reason for this is that Maven will set the status of the project when it is transported out to the repository. Its valid types are as follows.<ul>
+<li>none: No special status. This is the default for a POM.</li>
+<li>converted: The manager of the repository converted this POM from an earlier version to Maven 2.</li>
+<li>partner: This artifact has been synchronized with a partner repository.</li>
+<li>deployed: By far the most common status, meaning that this artifact was deployed from a Maven 2 or 3 instance. This is what you get when you manually deploy using the command-line deploy phase.</li>
+<li>verified: This project has been verified, and should be considered finalized.</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-8-1-Repository"><a href="#5-8-1-Repository" class="headerlink" title="5.8.1 Repository"></a>5.8.1 Repository</h3><p>Whereas the repositories element specifies in the POM the location and manner in which Maven may download remote artifacts for use by the current project, distributionManagement specifies where (and how) this project will get to a remote repository when it is deployed. The repository elements will be used for snapshot distribution if the snapshotRepository is not defined.</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   ...
@@ -697,9 +1315,31 @@ configuration: Same as above, but confines the configuration to this specific li
   ...
 &lt;/project&gt;
 </code></pre>
-<p>id, name: The id is used to uniquely identify this repository amongst many, and the name is a human readable form.<br>uniqueVersion: The unique version takes a true or false value to denote whether artifacts deployed to this repository should get a uniquely generated version number, or use the version number defined as part of the address.<br>url: This is the core of the repository element. It specifies both the location and the transport protocol used to transfer a built artifact (and POM file, and checksum data) to the repository.<br>layout: These are the same types and purpose as the layout element defined in the repository element. They are default and legacy.<br>Site Distribution<br>More than distribution to the repositories, distributionManagement is responsible for defining how to deploy the project’s site and documentation.</p>
-<p><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><br>  …<br>  <distributionManagement><br>    …<br>    <site><br>      <id>mojo.website</id><br>      <name>Mojo Website</name><br>      <url>scp://beaver.codehaus.org/home/projects/mojo/public_html/</url><br>    </site><br>    …<br>  </distributionManagement><br>  …<br></project><br>id, name, url: These elements are similar to their counterparts above in the distributionManagement repository element.</p>
+<ul>
+<li>id, name: The id is used to uniquely identify this repository amongst many, and the name is a human readable form.</li>
+<li>uniqueVersion: The unique version takes a true or false value to denote whether artifacts deployed to this repository should get a uniquely generated version number, or use the version number defined as part of the address.</li>
+<li>url: This is the core of the repository element. It specifies both the location and the transport protocol used to transfer a built artifact (and POM file, and checksum data) to the repository.</li>
+<li>layout: These are the same types and purpose as the layout element defined in the repository element. They are default and legacy.</li>
+</ul>
+<h3 id="5-8-2-Site-Distribution"><a href="#5-8-2-Site-Distribution" class="headerlink" title="5.8.2 Site Distribution"></a>5.8.2 Site Distribution</h3><p>More than distribution to the repositories, distributionManagement is responsible for defining how to deploy the project’s site and documentation.</p>
+<pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  ...
+  &lt;distributionManagement&gt;
+    ...
+    &lt;site&gt;
+      &lt;id&gt;mojo.website&lt;/id&gt;
+      &lt;name&gt;Mojo Website&lt;/name&gt;
+      &lt;url&gt;scp://beaver.codehaus.org/home/projects/mojo/public_html/&lt;/url&gt;
+    &lt;/site&gt;
+    ...
+  &lt;/distributionManagement&gt;
+  ...
+&lt;/project&gt;
+</code></pre>
+<ul>
+<li>id, name, url: These elements are similar to their counterparts above in the distributionManagement repository element.</li>
+</ul>
 <h3 id="5-8-3-Relocation"><a href="#5-8-3-Relocation" class="headerlink" title="5.8.3 Relocation"></a>5.8.3 Relocation</h3><pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;1 xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   ...
@@ -717,7 +1357,7 @@ configuration: Same as above, but confines the configuration to this specific li
 &lt;/project&gt;
 </code></pre>
 <p>Projects are not static; they are living things (or dying things, as the case may be). A common thing that happens as projects grow, is that they are forced to move to more suitable quarters. For example, when your next wildly successful open source project moves under the Apache umbrella, it would be good to give users a heads-up that the project is being renamed to org.apache:my-project:1.0. Besides specifying the new address, it is also good form to provide a message explaining why.</p>
-<h2 id="5-9-Profiles"><a href="#5-9-Profiles" class="headerlink" title="5.9 Profiles"></a>5.9 Profiles</h2><p>POM 4.0 的一个新特性是 maven project 能够根据 build 环境更改设置。<code>profile</code> 元素包含一个可选的 <code>activation</code>（配置文件触发器）和一组对 POM 的更改（如果该配置文件已被激活）。例如，为测试环境构建的项目可能指向与最终部署不同的数据库；或者可以根据使用的 JDK 版本从不同的存储库中提取依赖项。<code>profiles</code>的元素如下：</p>
+<h2 id="5-9-Profiles"><a href="#5-9-Profiles" class="headerlink" title="5.9 Profiles"></a>5.9 Profiles</h2><p>POM 4.0 的一个新特性是 maven project 能够根据构建环境更改设置。<code>profile</code> 元素包含一个可选的 <code>activation</code>（配置文件触发器）和一组对 POM 的更改（如果该配置文件已被激活）。例如，为测试环境构建的项目可能指向与最终部署不同的数据库；或者可以根据使用的 JDK 版本从不同的存储库中提取依赖项。<code>profiles</code> 的元素如下：</p>
 <pre><code class="xml">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
   xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
   ...
@@ -767,23 +1407,23 @@ configuration: Same as above, but confines the configuration to this specific li
   &lt;/profiles&gt;
 &lt;/project&gt;
 </code></pre>
-<p>在 Maven 3.2.2 版本之前，Activation 发生在满足一个或多个指定的条件时。当遇到第一个肯定结果时，停止处理并将该 profile 标记为 active。在 Maven 3.2.2 版本之后，Activation 发生在满足所有指定的条件时。</p>
+<p>在 Maven 3.2.2 版本之前，Activation 发生在满足一个或多个指定的条件时，当遇到第一个肯定结果时，停止处理并将该 profile 标记为 active；在 Maven 3.2.2 版本之后，Activation 发生在满足所有指定的条件时。</p>
 <ul>
 <li><p><strong>jdk</strong>: <code>activation</code> 的 <code>jdk</code> 元素进行一个内置的以 Java 为中心的检查。如果测试在与给定前缀匹配的 jdk 版本号下运行，就会发生激活。在上面的示例中，<code>1.5.0_06</code> 将符合条件。该检查条件还支持范围。有关支持的范围的更多详细信息，请参阅 <a target="_blank" rel="noopener" href="https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html">maven-enforcer-plugin</a>。</p>
 </li>
-<li><p><strong>os</strong>: <code>activation</code> 的  <code>os</code> 元素可以定义一些如上所示的操作系统特定属性。有关 OS 值的更多详细信息，请参阅 maven-enforcer-plugins <a target="_blank" rel="noopener" href="https://maven.apache.org/enforcer/enforcer-rules/requireOS.html">RequireOS Rule</a>。</p>
+<li><p><strong>os</strong>: <code>activation</code> 的 <code>os</code> 元素可以定义一些如上所示的操作系统特定属性。有关 OS 值的更多详细信息，请参阅 maven-enforcer-plugins <a target="_blank" rel="noopener" href="https://maven.apache.org/enforcer/enforcer-rules/requireOS.html">RequireOS Rule</a>。</p>
 </li>
 <li><p><strong>property</strong>: 如果 Maven 检测到相关 <code>name=value</code> 对的系统属性或命令行属性（a value which can be dereferenced within the POM by <code>$&#123;name&#125;</code>），<code>profile</code> 会被激活。</p>
 </li>
 <li><p><strong>file</strong>: 最后，给定的文件名可以通过文件的 <code>existence</code> 或 <code>missing</code> 来激活 <code>profile</code>。注意：此元素的插值仅限于 <code>$&#123;basedir&#125;</code>、系统属性和请求属性。</p>
 </li>
 </ul>
-<p><code>activation</code> 元素不是激活一个配置文件的唯一方法 is not the only way that a profile may be activated. The <code>settings.xml</code> file’s activeProfile element may contain the profile’s id. They may also be activated explicitly through the command line via a comma separated list after the -P flag (e.g. -P codecoverage).</p>
+<p><code>activation</code> 元素不是激活一个配置文件的唯一方法。The <code>settings.xml</code> file’s <code>activeProfile</code> element may contain the profile’s <code>id</code>. They may also be activated explicitly through the command line via a comma separated list after the <code>-P</code> flag (e.g. <code>-P codecoverage</code>).</p>
 <p>To see which profile will activate in a certain build, use the <code>maven-help-plugin</code>.</p>
 <pre><code class="sh">mvn help:active-profiles
 </code></pre>
-<h3 id="5-9-2-The-BaseBuild-Element-Set-revisited"><a href="#5-9-2-The-BaseBuild-Element-Set-revisited" class="headerlink" title="5.9.2 The BaseBuild Element Set (revisited)"></a>5.9.2 The BaseBuild Element Set (revisited)</h3><p>As mentioned above, the reason for the two types of build elements reside in the fact that it does not make sense for a profile to configure build directories or extensions as it does in the top level of the POM. Reguardless of in which environment the project is built, some values will remain constant, such as the directory structure of the source code. If you find your project needing to keep two sets of code for different environments, it may be prudent to investigate refactoring the project into two or more separate projects.</p>
-<h1 id="6-最终的话"><a href="#6-最终的话" class="headerlink" title="6. 最终的话"></a>6. 最终的话</h1><p>Maven POM 内容很多。然而，它的大小也证明了它的多功能性。至少可以说，Maven POM 将项目的所有方面抽象为单个 artifact 的能力是强大的。为每个项目创建数十种不同的构建脚本和分散的文档的时代已经过去了。与组成 Maven 星系的 Maven 其他明星一起 —— 明确定义的 build lifecycle、易于编写和维护的 plugins、集中式 repositories、系统范围和基于用户的 configurations，以及越来越多的工具来帮助开发人员轻松维护复杂的项目 —— POM 是大而明亮的中心。</p>
+<h3 id="5-9-2-The-BaseBuild-Element-Set-revisited"><a href="#5-9-2-The-BaseBuild-Element-Set-revisited" class="headerlink" title="5.9.2 The BaseBuild Element Set (revisited)"></a>5.9.2 The BaseBuild Element Set (revisited)</h3><p>如上所述，存在两种类型的 <code>build</code> 元素的原因在于：即 profile 没有必要像在 POM 的顶层那样配置构建目录或扩展。无论在哪个环境中构建项目，有些值将保持不变，例如源代码的目录结构。如果你发现你的项目需要为不同的环境保留两组代码，那么谨慎的做法是将项目重构为两个或多个独立的项目。</p>
+<h1 id="6-最终的话"><a href="#6-最终的话" class="headerlink" title="6. 最终的话"></a>6. 最终的话</h1><p>Maven POM 内容很多。然而，它的大小也证明了它的多功能性。至少可以说，Maven POM 将项目的所有方面抽象为单个组件的能力是强大的。为每个项目创建数十种不同的构建脚本和分散的文档的时代已经过去了。与组成 Maven 星系的 Maven 其他明星一起 —— 明确定义的构建生命周期、易于编写和维护的插件、集中式类库、系统范围和用户范围的配置，以及越来越多的工具来帮助开发人员轻松维护复杂的项目 —— POM 是大而明亮的中心。</p>
 
         </div>
 
@@ -882,7 +1522,7 @@ configuration: Same as above, but confines the configuration to this specific li
   <div class="widget-wrap widget-cate">
     <div class="widget-title"><span>Categories</span></div>
     <div class="widget-inner">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ELK/">ELK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/devOps/">devOps</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%BC%80%E5%8F%91/">测试开发</a></li></ul>
     </div>
   </div>
 
@@ -892,7 +1532,7 @@ configuration: Same as above, but confines the configuration to this specific li
   <div class="widget-wrap widget-tags">
     <div class="widget-title"><span>Tags</span></div>
     <div class="widget-inner">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Cucumber/" rel="tag">Cucumber</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ELK/" rel="tag">ELK</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sentry/" rel="tag">Sentry</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gatling/" rel="tag">Gatling</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Monitoring/" rel="tag">Monitoring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RxJava/" rel="tag">RxJava</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devOps/" rel="tag">devOps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2/" rel="tag">全文搜索</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="tag">响应式编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -905,7 +1545,15 @@ configuration: Same as above, but confines the configuration to this specific li
       <ul>
         
           <li>
-            <a href="/2022/11/21/Cucumber-%E5%AE%98%E6%96%B9%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%95%E8%A8%80/">Cucumber 官方指南（一）引言</a>
+            <a href="/2023/01/04/RxJava-JVM-%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E6%89%A9%E5%B1%95/">RxJava: JVM 的响应式扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2023/01/03/RxJava-%E5%9F%BA%E7%A1%80/">RxJava 基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/28/Elasticsearch%EF%BC%88%E4%B8%80%EF%BC%89%E5%85%A5%E9%97%A8/">Elasticsearch（一）入门</a>
           </li>
         
           <li>
@@ -914,14 +1562,6 @@ configuration: Same as above, but confines the configuration to this specific li
         
           <li>
             <a href="/2022/08/06/GIT-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">GIT 常用命令</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E5%9B%9B%EF%BC%89Guides/">Gatling 官方文档（四）Guides</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/01/Gatling-%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%EF%BC%88%E4%B8%89%EF%BC%89Reference/">Gatling 官方文档（三）Reference</a>
           </li>
         
       </ul>
@@ -933,7 +1573,7 @@ configuration: Same as above, but confines the configuration to this specific li
   <div class="widget-wrap widget-archive">
     <div class="widget-title"><span>Archive</span></div>
     <div class="widget-inner">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a></li></ul>
     </div>
   </div>
 
@@ -954,7 +1594,7 @@ configuration: Same as above, but confines the configuration to this specific li
 
     <div class="footer-wrap">
         <div class="footer-inner"> 
-            杜圆圆的学习笔记 &copy; 2022<br>
+            杜圆圆的学习笔记 &copy; 2023<br>
             Powered By Hexo · Theme By <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Aomori</a>
         </div>
     </div>
